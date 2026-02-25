@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets - Carlos Tetchom Kenmoe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <!-- Navigation (identique à index.html) -->
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-blue-400 font-bold text-xl">CTK</a>
+                <div class="hidden md:flex space-x-4">
+                    <a href="index.html#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Accueil</a>
+                    <a href="index.html#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">À Propos</a>
+                    <a href="index.html#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Compétences</a>
+                    <a href="projets.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-600">Mes Projets</a>
+                    <a href="index.html#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Contact</a>
+                </div>
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu mobile -->
+        <div class="md:hidden hidden" id="mobileMenu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Accueil</a>
+                <a href="index.html#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">À Propos</a>
+                <a href="index.html#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Compétences</a>
+                <a href="projets.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600">Mes Projets</a>
+                <a href="index.html#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 max-w-7xl mx-auto px-4">
+        <h1 class="text-4xl font-bold text-blue-400 mb-10 text-center">Mes Projets</h1>
+
+        <!-- Liste des projets ajoutés dynamiquement (affichée en haut) -->
+        <div id="listeProjets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"></div>
+
+        <!-- Formulaire d'ajout de projet -->
+        <section class="max-w-2xl mx-auto mb-12 bg-gray-900 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-blue-400">Ajouter un projet</h2>
+            <form id="ajoutProjetForm" class="space-y-4" enctype="multipart/form-data">
+                <div>
+                    <label for="titreProjet" class="block text-sm font-medium text-gray-300 mb-1">Titre du projet</label>
+                    <input type="text" id="titreProjet" name="titre" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white">
+                </div>
+                <div>
+                    <label for="descProjet" class="block text-sm font-medium text-gray-300 mb-1">Description</label>
+                    <textarea id="descProjet" name="desc" rows="3" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white"></textarea>
+                </div>
+                <div>
+                    <label for="categorieProjet" class="block text-sm font-medium text-gray-300 mb-1">Catégorie</label>
+                    <select id="categorieProjet" name="cat" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white">
+                        <option value="Programmation">Programmation</option>
+                        <option value="Réseau">Réseau</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+                <div id="champLien">
+                    <label for="lienProjet" class="block text-sm font-medium text-gray-300 mb-1">Lien (facultatif)</label>
+                    <input type="url" id="lienProjet" name="lien" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white">
+                </div>
+                <div id="champCapture" style="display:none;">
+                    <label for="captureProjet" class="block text-sm font-medium text-gray-300 mb-1">Captures d'écran (PNG, JPG, plusieurs possibles)</label>
+                    <input type="file" id="captureProjet" name="captures[]" accept="image/png, image/jpeg" multiple class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white">
+                </div>
+                <div id="champVideo" style="display:none;">
+                    <label for="videoProjet" class="block text-sm font-medium text-gray-300 mb-1">Vidéo de simulation (MP4, facultatif)</label>
+                    <input type="file" id="videoProjet" name="video" accept="video/mp4" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white">
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium">Ajouter</button>
+            </form>
+        </section>
+
+        <!-- Projets exemples (optionnel, tu peux les retirer si tu veux tout dynamique) -->
+        <div id="projetsExemples" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-900 rounded-lg shadow-lg p-6 border-l-4 border-blue-500 flex flex-col">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-code text-blue-400 text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">Gestionnaire de tâches Python</h2>
+                </div>
+                <p class="mb-2 text-gray-300">Application console permettant de gérer une liste de tâches (ajout, suppression, affichage) en Python.</p>
+                <span class="text-sm text-gray-400 mb-2">Technologies : Python</span>
+                <a href="#" class="mt-auto text-blue-400 hover:underline">Voir le code</a>
+            </div>
+            <div class="bg-gray-900 rounded-lg shadow-lg p-6 border-l-4 border-green-500 flex flex-col">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-network-wired text-green-400 text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">Simulation réseau Packet Tracer</h2>
+                </div>
+                <p class="mb-2 text-gray-300">Conception d'un réseau d'entreprise avec VLAN, routage et sécurité sur Cisco Packet Tracer.</p>
+                <span class="text-sm text-gray-400 mb-2">Technologies : Cisco Packet Tracer</span>
+                <a href="#" class="mt-auto text-blue-400 hover:underline">Voir le projet</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-400 text-sm">
+            &copy; 2023 Portfolio de Carlos Tetchom Kenmoe. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+document.getElementById('mobileMenuButton').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+});
+
+// Affichage conditionnel des champs selon la catégorie
+const categorieProjet = document.getElementById('categorieProjet');
+const champLien = document.getElementById('champLien');
+const champCapture = document.getElementById('champCapture');
+const champVideo = document.getElementById('champVideo');
+categorieProjet.addEventListener('change', function() {
+    if (this.value === 'Réseau' || this.value === 'Programmation') {
+        champLien.style.display = '';
+        champCapture.style.display = '';
+        champVideo.style.display = '';
+    } else {
+        champLien.style.display = '';
+        champCapture.style.display = 'none';
+        champVideo.style.display = 'none';
+    }
+});
+
+// Gestion des projets dynamiques avec persistance localStorage
+let projets = [];
+
+// Charger les projets depuis le localStorage au démarrage
+if (localStorage.getItem('projets')) {
+    try {
+        projets = JSON.parse(localStorage.getItem('projets'));
+    } catch(e) {
+        projets = [];
+    }
+}
+
+function saveProjets() {
+    localStorage.setItem('projets', JSON.stringify(projets));
+}
+
+async function fetchProjets() {
+    const res = await fetch('lister_projets.php');
+    return await res.json();
+}
+
+async function renderProjets() {
+    const projets = await fetchProjets();
+    const liste = document.getElementById('listeProjets');
+    liste.innerHTML = '';
+    projets.forEach((projet, index) => {
+        let border = 'border-blue-500', icon = 'fa-code', iconColor = 'text-blue-400';
+        if (projet.categorie === 'Réseau') { border = 'border-green-500'; icon = 'fa-network-wired'; iconColor = 'text-green-400'; }
+        if (projet.categorie === 'Programmation') { border = 'border-purple-500'; icon = 'fa-code'; iconColor = 'text-purple-400'; }
+        if (projet.categorie === 'Autre') { border = 'border-gray-500'; icon = 'fa-folder'; iconColor = 'text-gray-400'; }
+        let capturesHtml = '';
+        if (projet.captures && projet.captures.length) {
+            capturesHtml = `<div class="flex flex-wrap gap-2 mt-2">` +
+                projet.captures.map(src => `<img src="${src}" alt="Capture" class="w-24 h-16 object-cover rounded border border-gray-700">`).join('') +
+                `</div>`;
+        }
+        let videoHtml = '';
+        if (projet.video) {
+            videoHtml = `<video controls class="w-full mt-2 rounded border border-gray-700" style="max-height:180px;">
+                <source src="${projet.video}" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>`;
+        }
+        liste.innerHTML += `
+            <div class="bg-gray-900 rounded-lg shadow-lg p-6 border-l-4 ${border} flex flex-col relative group">
+                <div class="flex items-center mb-4">
+                    <i class="fas ${icon} ${iconColor} text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">${projet.titre}</h2>
+                </div>
+                <p class="mb-2 text-gray-300">${projet.description}</p>
+                <span class="text-sm text-gray-400 mb-2">Catégorie : ${projet.categorie}</span>
+                ${projet.lien ? `<a href="${projet.lien}" target="_blank" class="mt-auto text-blue-400 hover:underline">Voir le projet</a>` : ''}
+                ${capturesHtml}
+                ${videoHtml}
+            </div>
+        `;
+    });
+}
+
+document.getElementById('ajoutProjetForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+
+    const res = await fetch('ajout_projet.php', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await res.json();
+    if (data.success) {
+        this.reset();
+        renderProjets();
+    } else {
+        alert("Erreur lors de l'ajout du projet : " + (data.error || ''));
+    }
+});
+
+// Suppression d'un projet
+function supprimerProjet(index) {
+    projets.splice(index, 1);
+    saveProjets();
+    renderProjets();
+}
+window.supprimerProjet = supprimerProjet; // Pour accès depuis le HTML
+
+// Afficher les projets au chargement de la page
+renderProjets();
+
+</script>
+</body>
+</html>
