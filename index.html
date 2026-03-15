@@ -9,7 +9,7 @@
     <style>
         html {
           scrollbar-width: thin;
-          scrollbar-color: #2563eb #0a0a1a;
+          scrollbar-color: #9BC0EE #0a0a1a;
         }
 
         /* Pour Chrome, Edge, Safari */
@@ -17,7 +17,7 @@
           width: 10px;
         }
         body::-webkit-scrollbar-thumb {
-          background: #2563eb;
+          background: #9BC0EE;
           border-radius: 8px;
         }
         body::-webkit-scrollbar-track {
@@ -42,11 +42,11 @@
 
         .binary-digit {
             position: absolute;
-            color: rgba(100, 255, 255, 0.7);
+            color: rgba(155, 192, 238, 0.7);
             font-family: monospace;
             font-size: 16px;
             animation: floatDown 15s linear infinite;
-            text-shadow: 0 0 5px rgba(100, 255, 255, 0.7);
+            text-shadow: 0 0 3px rgba(155, 192, 238, 0.7);
         }
 
         @keyframes floatDown {
@@ -68,8 +68,8 @@
         
         .network-line {
             position: absolute;
-            background: linear-gradient(90deg, rgba(59, 130, 246, 0), rgba(100, 100, 255, 0.8), rgba(59, 130, 246, 0));
-            box-shadow: 0 0 10px rgba(100, 100, 255, 0.5);
+            background: linear-gradient(90deg, rgba(155, 192, 238, 0), rgba(155, 192, 238, 0.8), rgba(155, 192, 238, 0));
+            box-shadow: 0 0 5px rgba(155, 192, 238, 0.5);
             animation: pulse 2s ease-in-out infinite alternate;
         }
 
@@ -84,7 +84,7 @@
         
         .profile-pic-container:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 10px rgba(155, 192, 238, 0.5);
         }
         
         .skill-card {
@@ -93,13 +93,13 @@
         }
         .skill-card:hover {
             transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 12px 32px 0 rgba(59,130,246,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.15);
+            box-shadow: 0 12px 16px 0 rgba(155,192,238,0.25), 0 1.5px 4px 0 rgba(0,0,0,0.15);
             z-index: 2;
         }
         
         .floating {
             animation: floating 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(100, 100, 255, 0.7));
+            filter: drop-shadow(0 0 4px rgba(155, 192, 238, 0.7));
         }
 
         .holographic-particle {
@@ -107,8 +107,8 @@
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background: rgba(100, 200, 255, 0.7);
-            box-shadow: 0 0 10px 2px rgba(100, 200, 255, 0.7);
+            background: rgba(155, 192, 238, 0.7);
+            box-shadow: 0 0 5px 1px rgba(155, 192, 238, 0.7);
             animation: floatAround 15s infinite ease-in-out;
         }
 
@@ -127,7 +127,7 @@
 
         .progress-bar {
           width: 100%;
-          height: 8px;
+          height: 2px;
           background: #222;
           border-radius: 6px;
           overflow: hidden;
@@ -160,6 +160,55 @@
             font-weight: bold;
             text-shadow: 0 0 6px currentColor;
         }
+        /* styling for about section */
+        .about-section {
+            background: linear-gradient(135deg, rgba(10,10,26,0.85), rgba(15,15,35,0.85));
+            border: 2px solid #9BC0EE;
+            padding: 2rem 1rem;
+            border-radius: 1rem;
+        }
+        .about-card {
+            border-left: 4px solid #9BC0EE;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: rgba(0,0,0,0.7);
+        }
+        .about-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+        .about-card h3 {
+            display: flex;
+            align-items: center;
+        }
+        .about-card h3 i {
+            margin-right: 0.5rem;
+        }
+        .bio-text {
+            line-height: 1.7;
+        }
+        .about-section h2 i {
+            margin-right: 0.5rem;
+        }
+        .about-section p {
+            opacity: 0.95;
+        }
+        .about-card ul li:hover {
+            color: #fff;
+        }
+        /* améliorations visuelles pour la section À Propos */
+        .about-card .bio-text {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .about-card .info-list li strong {
+            color: #ffffff;
+        }
+        .about-cta {
+            display: inline-flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="tech-bg text-gray-100 min-h-screen">
@@ -167,26 +216,47 @@
     <div class="network-lines" id="networkLines"></div>
     
     <!-- Navigation -->
-    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-md fixed w-full z-50">
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-sm fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <span class="text-blue-400 font-bold text-xl">CTK</span>
+                        <span class="text-[#9BC0EE] font-bold text-xl">CTK</span>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-600">Accueil</a>
+                            <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white bg-[#9BC0EE]">Accueil</a>
                             <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">À Propos</a>
                             <a href="#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Compétences</a>
-                            <a href="projets.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Mes Projets</a>
+                            <a href="#projects" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Projets</a>
+
+                            <div class="relative group">
+                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
+                                    Mes Projets <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="absolute left-0 mt-2 w-56 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                                    <a href="projets en entreprise.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en entreprise</a>
+                                    <a href="projets en formation .html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en formation</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
+                                    Autres <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                                    <a href="Autres.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Page Autres</a>
+                                    <a href="Certification.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Certification</a>
+                                    <a href="Epreuve E6.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Épreuve E6</a>
+                                </div>
+                            </div>
                             <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Contact</a>
                         </div>
                     </div>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-4 flex items-center md:ml-6">
-                        <button id="downloadCV" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                        <button id="downloadCV" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
                             <i class="fas fa-download mr-2"></i> Télécharger CV
                         </button>
                     </div>
@@ -202,12 +272,23 @@
         </div>
         
         <!-- Mobile menu -->
-        <div class="hidden md:hidden" id="mobileMenu">
+            <div class="hidden md:hidden" id="mobileMenu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600">Accueil</a>
+                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-white bg-[#9BC0EE]">Accueil</a>
                 <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">À Propos</a>
                 <a href="#skills" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Compétences</a>
-                <a href="projets.html" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Mes Projets</a>
+                <a href="#projects" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets</a>
+                <div class="border-t border-gray-700"></div>
+                <div class="pl-2">
+                    <a href="projets en entreprise.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en entreprise</a>
+                    <a href="projets en formation .html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en formation</a>
+                </div>
+                <div class="border-t border-gray-700"></div>
+                <div class="pl-2">
+                    <a href="Autres.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Page Autres</a>
+                    <a href="Certification.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Certification</a>
+                    <a href="Epreuve E6.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Épreuve E6</a>
+                </div>
                 <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
                 <button id="downloadCVMobile" class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">
                     <i class="fas fa-download mr-2"></i> Télécharger CV
@@ -217,179 +298,502 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none">
+        <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex flex-col justify-center pt-20 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 pointer-events-none">
             <source src="istockphoto-1056187110-640_adpp_is.mp4" type="video/mp4" />
         </video>
-        <div class="relative z-10">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">TETCHOM KENMOE CARLOS</h1>
-                    <h2 class="text-2xl md:text-3xl text-blue-400 font-semibold mb-6">Étudiant en BTS SIO SISR</h2>
-                    <p class="text-lg text-gray-300 mb-8">Passionné par les réseaux et l'administration système. Je maîtrise GLPI, Samba, Packet Tracer et les configurations de routeurs.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <button id="downloadCVHero" onclick="window.open('cv-carlos.pdf', '_blank')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium flex items-center justify-center">
-                            <i class="fas fa-download mr-2"></i> Télécharger mon CV
-                        </button>
-                        <a href="#contact" class="border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-6 py-3 rounded-md text-lg font-medium flex items-center justify-center">
-                            <i class="fas fa-envelope mr-2"></i> Me contacter
-                        </a>
+        <!-- Vertical Navigation Bar on Left -->
+        <div class="fixed left-0 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-8 pl-6">
+            <a href="#home" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Accueil">
+                <i class="fas fa-cog"></i>
+            </a>
+            <a href="#home" class="text-[#9BC0EE] text-2xl transition-all" title="Home">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#about" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="� Propos">
+                <i class="fas fa-user"></i>
+            </a>
+            <a href="#skills" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Comp�tences">
+                <i class="fas fa-briefcase"></i>
+            </a>
+            <a href="#projects" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Projets">
+                <i class="fas fa-folder"></i>
+            </a>
+            <a href="#contact" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Contact">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto w-full">
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-16">
+                <!-- Photo de profil � gauche -->
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="profile-pic-container relative w-80 h-96 rounded-2xl overflow-hidden border-8 border-white shadow-2xl">
+                            <img id="profileImage" src="WhatsApp Image 2025-07-23 � 14.56.27_60941eca.jpg" alt="Photo de profil" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                                <label for="uploadPhoto" class="cursor-pointer bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-camera mr-2"></i> Changer
+                                </label>
+                                <input type="file" id="uploadPhoto" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                        <!-- Social Media Icons -->
+                        <div class="flex justify-center gap-4 mt-8">
+                            <a href="https://facebook.com" target="_blank" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="bg-blue-800 hover:bg-blue-900 text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="profile-pic-container relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-400">
-                        <img id="profileImage" src="WhatsApp Image 2025-07-23 à 14.56.27_60941eca.jpg" alt="Photo de profil" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                            <label for="uploadPhoto" class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
-                                <i class="fas fa-camera mr-2"></i> Changer photo
-                            </label>
-                            <input type="file" id="uploadPhoto" accept="image/*" class="hidden">
+
+                <!-- Texte � droite -->
+                <div class="lg:w-1/2">
+                    <div class="space-y-6">
+                        <div>
+                            <h1 class="text-5xl md:text-6xl font-bold mb-2">
+                              A Propos <span class="text-[#9BC0EE]">CARLOS</span>
+                            </h1>
+                            <h2 class="text-2xl md:text-3xl text-[#9BC0EE] font-semibold mb-1">Etudiant en BTS SIO</h2>
+                            <h3 class="text-lg text-gray-400 mb-6">Option SISR</h3>
+                        </div>
+                        
+                        <p class="text-lg text-gray-300 leading-relaxed max-w-lg">
+                            je suis actuellement étudiant en BTS SIO (Services Informatiques aux Organisations), spécialité SISR (Solutions d’Infrastructure, Systèmes et Réseaux). Passionné par l’informatique et les technologies réseaux, je me forme à l’administration des systèmes, à la gestion des infrastructures informatiques et à la sécurisation des réseaux.
+
+Au cours de ma formation, je développe des compétences dans l’installation et la configuration de serveurs, la gestion des réseaux, la virtualisation ainsi que le dépannage et la maintenance des systèmes informatiques.
+
+Curieux, motivé et toujours en quête d’apprentissage, je m’intéresse particulièrement aux domaines des réseaux et de la cybersécurité. Mon objectif est de mettre mes compétences au service d’une entreprise et de continuer à évoluer dans le domaine des systèmes et réseaux.
+
+À travers ce portfolio, je présente mes projets, mes compétences et mon parcours dans le domaine de l’informatique.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                            <button id="downloadCVHero" onclick="window.open('cv-carlos.pdf', '_blank')" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-8 py-3 rounded-md text-lg font-semibold flex items-center justify-center transition-all transform hover:scale-105">
+                                <i class="fas fa-download mr-2"></i> Télécharger CV
+                            </button>
+                            <a href="#contact" class="border-2 border-[#9BC0EE] text-[#9BC0EE] hover:bg-[#9BC0EE] hover:text-white px-8 py-3 rounded-md text-lg font-semibold flex items-center justify-center transition-all">
+                                <i class="fas fa-info-circle mr-2"></i> Plus d'informations
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Floating tech icons -->
-            <div class="absolute top-1/4 right-10 text-blue-400 text-4xl opacity-30 floating">
+            <div class="absolute top-1/4 right-10 text-[#9BC0EE] text-4xl opacity-30 floating">
                 <i class="fas fa-server"></i>
             </div>
-            <div class="absolute top-1/3 left-10 text-blue-400 text-4xl opacity-30 floating" style="animation-delay: 0.5s;">
+            <div class="absolute top-1/3 left-20 text-[#9BC0EE] text-4xl opacity-30 floating" style="animation-delay: 0.5s;">
                 <i class="fas fa-network-wired"></i>
             </div>
-            <div class="absolute bottom-1/4 right-20 text-blue-400 text-4xl opacity-30 floating" style="animation-delay: 1s;">
+            <div class="absolute bottom-1/4 right-20 text-[#9BC0EE] text-4xl opacity-30 floating" style="animation-delay: 1s;">
                 <i class="fas fa-code"></i>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-800 bg-opacity-50 rounded-xl backdrop-blur-sm my-10">
-        <h2 class="text-3xl font-bold mb-10 text-center text-blue-400">À Propos de Moi</h2>
-        
-        <div class="flex flex-col md:flex-row">
-            <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Informations Personnelles</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-user mt-1 mr-3 text-blue-400"></i>
-                            <span><strong>Nom complet :</strong> TETCHOM KENMOE CARLOS</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-birthday-cake mt-1 mr-3 text-blue-400"></i>
-                            <span><strong>Date et lieu de naissance :</strong> 06/05/2008 à Douala, Cameroun</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-graduation-cap mt-1 mr-3 text-blue-400"></i>
-                            <span><strong>Formation actuelle :</strong> BTS SIO (Services Informatiques aux Organisations) option SISR (Solutions d'Infrastructure, Systèmes et Réseaux)</span>
-                        </li>
-                    </ul>
+        <!-- About Section -->
+    <section id="about" class="relative min-h-screen flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="network-lines"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto w-full">
+            <h2 class="text-5xl font-bold mb-16 text-center">
+                A propos de<span class="text-[#9BC0EE]">Moi</span>
+            </h2>
+
+            <div class="flex flex-col lg:flex-row gap-16 items-start">
+                <!-- Left Side: Bio & Info -->
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-bold mb-6 uppercase tracking-wide">CREATIVITY BLEEDS FROM THE PEN OF INSPIRATION.</h3>
+                    
+                    <p class="text-lg text-gray-300 mb-10 leading-relaxed">
+                        La créativité naît de l'inspiration.
+
+Actuellement étudiant en BTS SIO (Services Informatiques aux Organisations), option SISR (Solutions d’Infrastructure, Systèmes et Réseaux), je me forme à l’administration des systèmes et des réseaux informatiques.
+
+Au cours de ma formation et de mes périodes en entreprise, j’ai développé des compétences dans l’installation et la configuration de réseaux, la gestion des systèmes, ainsi que les bases de la cybersécurité. Mes expériences, notamment durant mes <strong>16 semaines</strong>  d’alternance, m’ont permis de découvrir le fonctionnement réel des infrastructures informatiques et de participer à différentes missions techniques.
+
+Motivé et curieux, je cherche constamment à développer mes compétences dans les domaines des réseaux, des systèmes et de la sécurité informatique. À travers ce portfolio, je présente mon parcours, mes compétences et les projets réalisés durant ma formation.
+                    </p>
+
+                    <div class="space-y-4 mb-12">
+                        <div class="flex items-start">
+                            <span class="text-[#9BC0EE] font-bold mr-4">Full Name :</span>
+                            <span class="text-gray-300">TETCHOM KENMOE CARLOS</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-[#9BC0EE] font-bold mr-4">Age</span>
+                            <span class="text-gray-300">18 ans</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-[#9BC0EE] font-bold mr-4">Language :</span>
+                            <span class="text-gray-300">French, English</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-[#9BC0EE] font-bold mr-4">Téléphone:</span>
+                            <span class="text-gray-300">+33 7 44 25 88 44</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-[#9BC0EE] font-bold mr-4">Email</span>
+                            <span class="text-gray-300">jackkenmoe@gmail.com</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-[#9BC0EE] font-bold mr-4">Address :</span>
+                            <span class="text-gray-300">Douala, Cameroon - BTS SIO Student</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Skills with Progress Bars -->
+                <div class="lg:w-1/2">
+                    <div class="space-y-8">
+                        <!-- GLPI -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="text-lg font-bold text-white">GLPI</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 80%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Active Directory -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="text-lg font-bold text-white">ACTIVE DIRECTORY</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg">81%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 81%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Packet Tracer -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="text-lg font-bold text-white">PACKET TRACER</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 85%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Samba -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="text-lg font-bold text-white">SAMBA</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 30%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Windows Server -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="text-lg font-bold text-white">WINDOWS SERVER</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 80%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Linux -->
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <h4 class="text-lg font-bold text-white">LINUX</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg">70%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 70%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="md:w-1/2">
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Biographie</h3>
-                    <p class="mb-4">Étudiant motivé en première année de BTS SIO option SISR, je suis passionné par la cybersécurité et l'administration réseau.</p>
-                    <p class="mb-4">Mon parcours académique et mes projets personnels m'ont permis d'acquérir des compétences solides dans la gestion des infrastructures réseau et des systèmes informatiques.</p>
-                    <p>Je maîtrise plusieurs outils professionnels comme GLPI pour la gestion des parcs informatiques, Samba pour le partage de fichiers entre systèmes Linux et Windows, ainsi que Packet Tracer pour la simulation et la configuration d'équipements réseau.</p>
+
+            <!-- Services Section at Bottom -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-gray-700">
+                <div class="text-center">
+                    <div class="bg-gray-900 p-6 rounded-lg mb-4">
+                        <i class="fas fa-network-wired text-blue-400 text-4xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-white">Network Admin</h4>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-900 p-6 rounded-lg mb-4">
+                        <i class="fas fa-cogs text-blue-400 text-4xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-white">System Config</h4>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-900 p-6 rounded-lg mb-4">
+                        <i class="fas fa-lock text-blue-400 text-4xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-white">Cybersecurity</h4>
+                </div>
+                <div class="text-center">
+                    <div class="bg-gray-900 p-6 rounded-lg mb-4">
+                        <i class="fas fa-server text-blue-400 text-4xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-white">IT Support</h4>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Projects Folder Section -->
+    <section id="projects" class="relative min-h-screen flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="network-lines"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto w-full">
+            <h2 class="text-5xl font-bold mb-16 text-center">
+                Mes <span class="text-blue-400">Projets</span>
+            </h2>
+
+            <div class="flex justify-center">
+                <div class="folder-container">
+                    <!-- Main Folder -->
+                    <div class="folder main-folder" onclick="toggleMainFolder()">
+                        <div class="folder-icon">📁</div>
+                        <div class="folder-name">Portfolio</div>
+                    </div>
+
+                    <!-- Sub Folders -->
+                    <div class="sub-folders" id="subFolders" style="display: none;">
+                        <div class="folder sub-folder" onclick="toggleProjectsFolder()">
+                            <div class="folder-icon">📂</div>
+                            <div class="folder-name">Mes Projets</div>
+                        </div>
+                        <div class="folder sub-folder" onclick="toggleOthersFolder()">
+                            <div class="folder-icon">📂</div>
+                            <div class="folder-name">Autres</div>
+                        </div>
+                    </div>
+
+                    <!-- Projects Sub Sub Folders -->
+                    <div class="sub-sub-folders" id="projectsSubFolders" style="display: none;">
+                        <a href="javascript:void(0)" onclick="checkPassword('projets en entreprise.html')" class="folder-link">
+                            <div class="folder sub-sub-folder">
+                                <div class="folder-icon">📁</div>
+                                <div class="folder-name">Projets en entreprise</div>
+                            </div>
+                        </a>
+                        <a href="projets en formation .html" class="folder-link">
+                            <div class="folder sub-sub-folder">
+                                <div class="folder-icon">📁</div>
+                                <div class="folder-name">Projets en formation</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Others Sub Sub Folders -->
+                    <div class="sub-sub-folders" id="othersSubFolders" style="display: none;">
+                        <a href="Certification.html" class="folder-link">
+                            <div class="folder sub-sub-folder">
+                                <div class="folder-icon">📄</div>
+                                <div class="folder-name">Certifications</div>
+                            </div>
+                        </a>
+                        <a href="Epreuve E6.html" class="folder-link">
+                            <div class="folder sub-sub-folder">
+                                <div class="folder-icon">📄</div>
+                                <div class="folder-name">Épreuve E6</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes progressBar {
+            from { width: 0; }
+        }
+
+        .folder-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #2563eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .folder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+        }
+
+        .folder-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .folder-name {
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .sub-folders, .sub-sub-folders {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .sub-folder, .sub-sub-folder {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #2563eb;
+        }
+
+        .folder-link {
+            text-decoration: none;
+        }
+
+        .folder-link .folder:hover {
+            background: rgba(37, 99, 235, 0.2);
+        }
+    </style>
+
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto my-10">
-      <h2 class="text-3xl font-bold mb-10 text-center text-blue-400">À Propos de Moi</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Cybersécurité -->
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg border border-cyan-500">
-          <div class="flex items-center mb-4">
-            <div class="bg-cyan-500 p-3 rounded-full mr-4">
-              <i class="fas fa-lock text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Cybersécurité</h3>
-          </div>
-          <div class="mb-2 flex justify-between"><span>Firewall</span><span>75%</span></div>
-          <div class="progress-bar mb-4" data-value="75" data-color="#06b6d4"></div>
-          <div class="mb-2 flex justify-between"><span>VPN</span><span>70%</span></div>
-          <div class="progress-bar mb-4" data-value="70" data-color="#06b6d4"></div>
-          <div class="mb-2 flex justify-between"><span>Détection d'intrusions</span><span>65%</span></div>
-          <div class="progress-bar mb-4" data-value="65" data-color="#06b6d4"></div>
+        <!-- Experience Section -->
+    <section id="skills" class="relative min-h-screen flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="network-lines"></div>
         </div>
-        <!-- Réseaux -->
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg border border-green-500">
-          <div class="flex items-center mb-4">
-            <div class="bg-green-500 p-3 rounded-full mr-4">
-              <i class="fas fa-network-wired text-white text-2xl"></i>
+
+        <div class="relative z-10 max-w-7xl mx-auto w-full">
+            <h2 class="text-5xl font-bold mb-16 text-center">
+                <span class="text-blue-400">Experience</span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <!-- Education Column -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-12 uppercase tracking-wide">EDUCATION</h3>
+                    
+                    <div class="space-y-12">
+                        <!-- BTS SIO - Currently in progress -->
+                        <div class="relative pl-8 border-l-2 border-blue-400">
+                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                            
+                            <div class="text-sm text-gray-400 font-bold mb-2">2024 - 2026 (EN COURS)</div>
+                            <h4 class="text-xl font-bold text-blue-400 mb-2">BTS SIO Option SISR</h4>
+                            <p class="text-sm font-semibold text-gray-300 mb-3">- Etude Supérieure</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                
+Formation en Services Informatiques aux Organisations, spécialité Solutions d’Infrastructure, Systèmes et Réseaux.
+Apprentissage de l’administration des systèmes et réseaux, de la gestion des infrastructures informatiques, de la virtualisation et des bases en cybersécurité.</p>
+                        </div>
+
+                        <!-- BTS GSI -->
+                        <div class="relative pl-8 border-l-2 border-blue-400">
+                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                            
+                            <div class="text-sm text-gray-400 font-bold mb-2">2022 - 2024</div>
+                            <h4 class="text-xl font-bold text-blue-400 mb-2">GSI (Gestion des Systèmes Informatiques) – Cameroun</h4>
+                            <p class="text-sm font-semibold text-gray-300 mb-3">- Etude Supérieure (Cameroun)</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                BTS GSI (Gestion des Systèmes Informatiques) – Cameroun
+Formation axée sur les bases de l’informatique, la maintenance des équipements, les réseaux informatiques et l’utilisation des outils informatiques en entreprise.
+                            </p>
+                        </div>
+
+                        <!-- High School -->
+                        <div class="relative pl-8 border-l-2 border-blue-400">
+                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                            
+                            <div class="text-sm text-gray-400 font-bold mb-2">2021 - 2022</div>
+                            <h4 class="text-xl font-bold text-blue-400 mb-2">Baccalauréat CG (Comptabilité et Gestion)</h4>
+                            <p class="text-sm font-semibold text-gray-300 mb-3">- Collége Technique</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Formation en comptabilité, gestion d’entreprise, économie et outils numériques appliqués au monde professionnel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Column -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-12 uppercase tracking-wide">EXPERIENCE</h3>
+                    
+                    <div class="space-y-12">
+                        <!-- Apprentice - Network Admin -->
+                        <div class="relative pl-8 border-l-2 border-blue-400">
+                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                            
+                            <div class="text-sm text-gray-400 font-bold mb-2">JANVIERE 2026 - PRESENT</div>
+                            <h4 class="text-xl font-bold text-blue-400 mb-2">Technicien Systèmes et Réseaux (Alternance)</h4>
+                            <p class="text-sm font-semibold text-gray-300 mb-3">- Alternace (IEF2I)</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Participation à l’administration et au support du système informatique de l’entreprise. Intégration de nouveaux utilisateurs dans l’infrastructure interne, configuration d’équipements réseau (borne Wi-Fi), et assistance technique aux utilisateurs. Installation d’un environnement de virtualisation avec Proxmox et déploiement d’images ISO pour la création de machines virtuelles. Réalisation de schémas réseau d’un site de l’entreprise et développement de scripts pour automatiser certaines tâches techniques.
+                            </p>
+                        </div>
+
+                        <!-- IT Technician -->
+                        <div class="relative pl-8 border-l-2 border-blue-400">
+                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                            
+                            <div class="text-sm text-gray-400 font-bold mb-2">SEPTEMBRE 2025  - DECEMBRE 2025</div>
+                            <h4 class="text-xl font-bold text-blue-400 mb-2">Technicien Support Informatique – Stage Alterné</h4>
+                            <p class="text-sm font-semibold text-gray-300 mb-3">- Stage Alterné de 3 mois (IEF2I)</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Assistance aux utilisateurs pour la résolution de problèmes informatiques courants. Participation à la maintenance des postes de travail et à l’installation d’équipements informatiques. Découverte des outils d’administration et des bonnes pratiques de gestion des infrastructures informatiques.
+                            </p>
+                        </div>
+
+                        <!-- IT Project - Network Management -->
+                        <div class="relative pl-8 border-l-2 border-blue-400">
+                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                            
+                            <div class="text-sm text-gray-400 font-bold mb-2">JUIN 2025 - AOUT 2025</div>
+                            <h4 class="text-xl font-bold text-blue-400 mb-2">Technicien Maintenance Informatique – Stage</h4>
+                            <p class="text-sm font-semibold text-gray-300 mb-3">- Stage de 6 semaines(Les Réparateurs Mac Et Pc)</p>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Stage réalisé dans une entreprise spécialisée dans la maintenance informatique. Les missions consistaient à diagnostiquer les pannes sur les postes de travail, récupérer et sécuriser les données des utilisateurs à partir de disques durs défectueux ou endommagés, et participer aux opérations de maintenance et de remise en état des équipements informatiques. Cette expérience m’a permis de développer des compétences en diagnostic matériel, sauvegarde de données et assistance technique aux utilisateurs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h3 class="text-xl font-bold">Réseaux</h3>
-          </div>
-          <div class="mb-2 flex justify-between"><span>Packet Tracer</span><span>80%</span></div>
-          <div class="progress-bar mb-4" data-value="80" data-color="#22c55e"></div>
-          <div class="mb-2 flex justify-between"><span>Configuration Samba</span><span>75%</span></div>
-          <div class="progress-bar mb-4" data-value="75" data-color="#22c55e"></div>
-          <div class="mb-2 flex justify-between"><span>GLPI</span><span>70%</span></div>
-          <div class="progress-bar mb-4" data-value="70" data-color="#22c55e"></div>
         </div>
-        <!-- Programmation -->
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg border border-purple-500">
-          <div class="flex items-center mb-4">
-            <div class="bg-purple-500 p-3 rounded-full mr-4">
-              <i class="fas fa-code text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Programmation</h3>
-          </div>
-          <div class="mb-2 flex justify-between"><span>Python</span><span>65%</span></div>
-          <div class="progress-bar mb-4" data-value="65" data-color="#a78bfa"></div>
-          <div class="mb-2 flex justify-between"><span>Bash</span><span>70%</span></div>
-          <div class="progress-bar mb-4" data-value="70" data-color="#a78bfa"></div>
-          <div class="mb-2 flex justify-between"><span>HTML/CSS</span><span>80%</span></div>
-          <div class="progress-bar mb-4" data-value="80" data-color="#a78bfa"></div>
-        </div>
-        <!-- Langues -->
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg border border-orange-500">
-          <div class="flex items-center mb-4">
-            <div class="bg-orange-500 p-3 rounded-full mr-4">
-              <i class="fas fa-language text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Langues</h3>
-          </div>
-          <div class="mb-2 flex justify-between"><span>Français</span><span>100%</span></div>
-          <div class="progress-bar mb-4" data-value="100" data-color="#f59e42"></div>
-          <div class="mb-2 flex justify-between"><span>Anglais</span><span>70%</span></div>
-          <div class="progress-bar mb-4" data-value="70" data-color="#f59e42"></div>
-        </div>
-        <!-- Soft Skills -->
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg border border-pink-500">
-          <div class="flex items-center mb-4">
-            <div class="bg-pink-500 p-3 rounded-full mr-4">
-              <i class="fas fa-users text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Soft Skills</h3>
-          </div>
-          <div class="flex flex-wrap gap-2 mt-2">
-            <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Travail d'équipe</span>
-            <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Autonomie</span>
-            <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Curiosité</span>
-            <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Adaptabilité</span>
-            <span class="bg-gray-700 text-gray-200 px-3 py-1 rounded-full text-sm">Rigueur</span>
-          </div>
-        </div>
-        <!-- Certifications -->
-        <div class="skill-card bg-gray-900 p-6 rounded-lg shadow-lg border border-red-500">
-          <div class="flex items-center mb-4">
-            <div class="bg-red-500 p-3 rounded-full mr-4">
-              <i class="fas fa-certificate text-white text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-bold">Certifications</h3>
-          </div>
-          <ul class="mt-2 space-y-2 text-gray-200">
-            <li><i class="fas fa-check-circle text-red-400 mr-2"></i>BTS GSI (Gestion des Systèmes d'Information Au Cameroun)</li>
-            <li><i class="fas fa-check-circle text-red-400 mr-2"></i>Formation en SISR (Systèmes d'Information et de Services en cours)</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
     <!-- Contact Section -->
@@ -399,36 +803,36 @@
         <div class="flex flex-col md:flex-row">
             <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
                 <div class="bg-gray-900 p-6 rounded-lg shadow-lg h-full">
-                    <h3 class="text-2xl font-semibold mb-6 text-blue-400">Coordonnées</h3>
+                    <h3 class="text-2xl font-semibold mb-6 text-[#9BC0EE]">Coordonnées</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fas fa-envelope text-blue-400 mt-1 mr-4 text-xl"></i>
+                            <i class="fas fa-envelope text-[#9BC0EE] mt-1 mr-4 text-xl"></i>
                             <div>
                                 <h4 class="font-medium">Email</h4>
-                                <a href="mailto:jackkenmoe3@gmail.com" class="text-gray-300 hover:text-blue-400">jackkenmoe3@gmail.com</a>
+                                <a href="mailto:jackkenmoe3@gmail.com" class="text-gray-300 hover:text-[#9BC0EE]">jackkenmoe3@gmail.com</a>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-phone text-blue-400 mt-1 mr-4 text-xl"></i>
+                            <i class="fas fa-phone text-[#9BC0EE] mt-1 mr-4 text-xl"></i>
                             <div>
                                 <h4 class="font-medium">Téléphone</h4>
-                                <a href="tel:+33744258844" class="text-gray-300 hover:text-blue-400">+33 7 44 25 88 44</a>
+                                <a href="tel:+33744258844" class="text-gray-300 hover:text-[#9BC0EE]">+33 7 44 25 88 44</a>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <i class="fab fa-linkedin text-blue-400 mt-1 mr-4 text-xl"></i>
+                            <i class="fab fa-linkedin text-[#9BC0EE] mt-1 mr-4 text-xl"></i>
                             <div>
                                 <h4 class="font-medium">LinkedIn</h4>
-                                <a href="https://www.linkedin.com/in/carlos-kenmoe-b06472384/" target="_blank" class="text-gray-300 hover:text-blue-400">
+                                <a href="https://www.linkedin.com/in/carlos-kenmoe-b06472384/" target="_blank" class="text-gray-300 hover:text-[#9BC0EE]">
                                     linkedin.com/in/carlos-kenmoe-b06472384
                                 </a>
                             </div>
                         </li>
                         <li class="flex items-start">
-                            <i class="fab fa-github text-blue-400 mt-1 mr-4 text-xl"></i>
+                            <i class="fab fa-github text-[#9BC0EE] mt-1 mr-4 text-xl"></i>
                             <div>
                                 <h4 class="font-medium">GitHub</h4>
-                                <a href="#" class="text-gray-300 hover:text-blue-400">github.com/carlos-tk</a>
+                                <a href="#" class="text-gray-300 hover:text-[#9BC0EE]">github.com/carlos-tk</a>
                             </div>
                         </li>
                     </ul>
@@ -440,17 +844,17 @@
                     <form id="contactForm" class="space-y-4">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nom complet</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white">
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white">
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"></textarea>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white"></textarea>
                         </div>
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium w-full">
+                        <button type="submit" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-6 py-3 rounded-md text-lg font-medium w-full">
                             <i class="fas fa-paper-plane mr-2"></i> Envoyer le message
                         </button>
                     </form>
@@ -464,17 +868,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <span class="text-blue-400 font-bold text-xl">TETCHOM KENMOE CARLOS</span>
+                    <span class="text-[#9BC0EE] font-bold text-xl">TETCHOM KENMOE CARLOS</span>
                     <p class="text-gray-400 mt-1">Étudiant en BTS SIO option SISR</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-blue-400">
+                    <a href="#" class="text-gray-400 hover:text-[#9BC0EE]">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400">
+                    <a href="#" class="text-gray-400 hover:text-[#9BC0EE]">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="mailto:jackkenmoe3@gmail.com" class="text-gray-400 hover:text-blue-400">
+                    <a href="mailto:jackkenmoe3@gmail.com" class="text-gray-400 hover:text-[#9BC0EE]">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
                 </div>
@@ -497,7 +901,7 @@
             <p class="mb-4">Le CV est actuellement indisponible. Veuillez me contacter pour plus d'informations.</p>
             <div class="flex justify-end space-x-3">
                 <button id="cancelDownload" class="px-4 py-2 border border-gray-600 rounded-md text-gray-300 hover:bg-gray-700">Annuler</button>
-                <a href="mailto:jackkenmoe3@gmail.com" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md">Contactez-moi</a>
+                <a href="mailto:jackkenmoe3@gmail.com" class="px-4 py-2 bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white rounded-md">Contactez-moi</a>
             </div>
         </div>
     </div>
@@ -567,7 +971,7 @@
                 for (let i = 0; i < columns; i++) {
                     const digit = document.createElement('div');
                     digit.className = 'binary-digit';
-                    digit.style.left = `${(i * 20) + (Math.random() * 20)}px`;
+                    digit.style.left = `${(i * 20) (Math.random() * 20)}px`;
                     digit.style.animationDelay = `${Math.random() * 5}s`;
                     digit.textContent = Math.random() > 0.5 ? '1' : '0';
                     container.appendChild(digit);
@@ -632,10 +1036,10 @@
                     const sectionHeight = section.offsetHeight;
                     
                     if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        link.classList.add('text-white', 'bg-blue-600');
+                        link.classList.add('text-white', 'bg-[#9BC0EE]');
                         link.classList.remove('text-gray-300', 'hover:text-white');
                     } else {
-                        link.classList.remove('text-white', 'bg-blue-600');
+                        link.classList.remove('text-white', 'bg-[#9BC0EE]');
                         link.classList.add('text-gray-300', 'hover:text-white');
                     }
                 }
@@ -771,6 +1175,58 @@
 
       bars.forEach(bar => observer.observe(bar));
     });
+
+    // Folder toggle functions
+    function toggleMainFolder() {
+        const subFolders = document.getElementById('subFolders');
+        const projectsSubFolders = document.getElementById('projectsSubFolders');
+        const othersSubFolders = document.getElementById('othersSubFolders');
+        
+        if (subFolders.style.display === 'none' || subFolders.style.display === '') {
+            subFolders.style.display = 'flex';
+        } else {
+            subFolders.style.display = 'none';
+            projectsSubFolders.style.display = 'none';
+            othersSubFolders.style.display = 'none';
+        }
+    }
+
+    function toggleProjectsFolder() {
+        const projectsSubFolders = document.getElementById('projectsSubFolders');
+        const othersSubFolders = document.getElementById('othersSubFolders');
+        
+        othersSubFolders.style.display = 'none'; // Hide others if open
+        if (projectsSubFolders.style.display === 'none' || projectsSubFolders.style.display === '') {
+            projectsSubFolders.style.display = 'flex';
+        } else {
+            projectsSubFolders.style.display = 'none';
+        }
+    }
+
+    function toggleOthersFolder() {
+        const projectsSubFolders = document.getElementById('projectsSubFolders');
+        const othersSubFolders = document.getElementById('othersSubFolders');
+        
+        projectsSubFolders.style.display = 'none'; // Hide projects if open
+        if (othersSubFolders.style.display === 'none' || othersSubFolders.style.display === '') {
+            othersSubFolders.style.display = 'flex';
+        } else {
+            othersSubFolders.style.display = 'none';
+        }
+    }
+
+    function checkPassword(url) {
+        const password = prompt("Veuillez entrer le mot de passe pour accéder aux projets en entreprise:");
+        if (password === "Test123") {
+            window.location.href = url;
+        } else {
+            alert("Mot de passe incorrect. Accès refusé.");
+        }
+    }
 </script>
 </body>
 </html>
+
+
+
+

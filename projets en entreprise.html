@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets en entreprise - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>body { background: #0a0a1a; color: #e5e7eb; }</style>
+</head>
+<body class="min-h-screen">
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0"><span class="text-blue-400 font-bold text-xl">CTK</span></div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Accueil</a>
+                            <a href="index.html#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">À Propos</a>
+                            <a href="index.html#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Compétences</a>
+
+                            <div class="relative group">
+                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
+                                    Mes Projets <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="absolute left-0 mt-2 w-56 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                                    <a href="projets en entreprise.html" class="block px-4 py-2 text-sm text-white bg-gray-700">Projets en entreprise</a>
+                                    <a href="projets en formation .html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en formation</a>
+                                </div>
+                            </div>
+
+                            <a href="Autres.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Autres</a>
+                            <a href="index.html#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 max-w-6xl mx-auto px-4">
+        <h1 class="text-3xl font-bold mb-6">Projets en entreprise</h1>
+        <p class="text-gray-300 mb-6">Projets réalisés en entreprise lors de stages ou missions professionnelles.</p>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <article class="bg-gray-800 p-6 rounded">
+                <h2 class="text-xl font-semibold mb-2">Projet Serveur AD</h2>
+                <p class="text-gray-300">Description du projet, tâches réalisées et technologies utilisées.</p>
+            </article>
+            <article class="bg-gray-800 p-6 rounded">
+                <h2 class="text-xl font-semibold mb-2">Supervision réseau</h2>
+                <p class="text-gray-300">Description du projet, tâches réalisées et technologies utilisées.</p>
+            </article>
+            <article class="bg-gray-800 p-6 rounded">
+                <h2 class="text-xl font-semibold mb-2">Documentation Proxmox</h2>
+                <p class="text-gray-300">PDF détaillant la procédure d'installation et de compréhension de Proxmox en bare‑metal.</p>
+                <a href="pdfs/proxmox_procedure.pdf" class="text-blue-400 hover:underline" target="_blank">Télécharger le PDF</a>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

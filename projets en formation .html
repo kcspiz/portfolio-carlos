@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets - Carlos Tetchom Kenmoe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles pour le carousel */
+        .carousel-section {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 500%; /* 5 slides */
+        }
+
+        .carousel-slide {
+            flex: 0 0 20%; /* 100% / 5 slides */
+            position: relative;
+            /* ensure consistent height for all slides */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-link {
+            display: block;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            /* add white frame around each image */
+            border: 2px solid #fff;
+        }
+
+        .slide-image {
+            width: 100%;
+            /* allow full image to be visible; height adjusts automatically */
+            height: auto;
+            object-fit: contain;
+            background: #000;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .slide-link:hover .slide-image {
+            transform: scale(1.05);
+            /* keep original brightness so images remain clear */
+            filter: brightness(1);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* lighten gradient for better visibility */
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .slide-link:hover .slide-overlay {
+            transform: translateY(0);
+        }
+
+        .slide-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .slide-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(59, 130, 246, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(59, 130, 246, 1);
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(156, 163, 175, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #3b82f6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-slide {
+                flex: 0 0 100%;
+            }
+            .carousel-wrapper {
+                width: 500%; /* Toujours 5 slides, mais affichage 1 par 1 */
+            }
+            .slide-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <!-- Navigation (identique à index.html) -->
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-blue-400 font-bold text-xl">CTK</a>
+                <div class="hidden md:flex space-x-4">
+                    <a href="index.html#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Accueil</a>
+                    <a href="index.html#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">À Propos</a>
+                    <a href="index.html#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Compétences</a>
+
+                    <div class="relative group">
+                        <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
+                            Mes Projets <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-56 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                            <a href="projets en entreprise.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en entreprise</a>
+                            <a href="projets en formation .html" class="block px-4 py-2 text-sm text-white bg-blue-600">Projets en formation</a>
+                        </div>
+                    </div>
+
+                    <a href="Autres.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Autres</a>
+                    <a href="index.html#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Contact</a>
+                </div>
+                <!-- Bouton menu mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu mobile -->
+        <div class="md:hidden hidden" id="mobileMenu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Accueil</a>
+                <a href="index.html#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">À Propos</a>
+                <a href="index.html#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Compétences</a>
+                <div class="pl-2">
+                    <a href="projets en entreprise.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en entreprise</a>
+                    <a href="projets en formation .html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600">Projets en formation</a>
+                </div>
+                <a href="index.html#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 max-w-7xl mx-auto px-4">
+        <h1 class="text-4xl font-bold text-blue-400 mb-10 text-center">Mes Projets en Formation</h1>
+
+        <!-- Texte d'introduction -->
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-white mb-6">Projet en cours</h2>
+            <p class="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">
+                Dans le cadre de ma formation en BTS SIO (Services Informatiques aux Organisations), j'ai participé à divers projets pédagogiques qui m'ont permis de développer mes compétences techniques et organisationnelles.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto mt-4">
+                Voici un aperçu des principales réalisations effectuées au cours de ma formation.
+            </p>
+        </div>
+
+        <!-- Galerie Interactive -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-wrapper" id="carouselWrapper">
+                    <!-- Slide 1: Active Directory -->
+                    <div class="carousel-slide">
+                        <a href="pdfs/active_directory_procedure.pdf" target="_blank" class="slide-link">
+                            <img src="image/Active%20dierctory.jpg" alt="Procédure Active Directory" class="slide-image">
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Active Directory</h3>
+                                <p class="slide-description">Procédure d'installation et configuration d'Active Directory</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 2: Programmation Python -->
+                    <div class="carousel-slide">
+                        <a href="pdfs/python_programming.pdf" target="_blank" class="slide-link">
+                            <img src="image/Programmation%20Python.jpg" alt="Procédure Programmation Python" class="slide-image">
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Programmation Python</h3>
+                                <p class="slide-description">Guide de développement en Python</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 3: Configuration Réseau -->
+                    <div class="carousel-slide">
+                        <a href="pdfs/network_configuration.pdf" target="_blank" class="slide-link">
+                            <img src="image/Configuration%20r%C3%A9seau.jpg" alt="Procédure Configuration Réseau" class="slide-image">
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Configuration Réseau</h3>
+                                <p class="slide-description">Procédure de configuration réseau avec Packet Tracer</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 4: Linux Administration -->
+                    <div class="carousel-slide">
+                        <a href="pdfs/linux_admin.pdf" target="_blank" class="slide-link">
+                            <img src="image/Administration%20linux.jpg" alt="Procédure Linux Administration" class="slide-image">
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Administration Linux</h3>
+                                <p class="slide-description">Guide d'administration système Linux</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 5: Sécurité Informatique -->
+                    <div class="carousel-slide">
+                        <a href="pdfs/cybersecurity.pdf" target="_blank" class="slide-link">
+                            <img src="image/securite_informatique.jpg" alt="Procédure Sécurité Informatique" class="slide-image">
+                            <div class="slide-overlay">
+                                <h3 class="slide-title">Sécurité Informatique</h3>
+                                <p class="slide-description">Procédures de sécurisation des systèmes</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Boutons de navigation -->
+                <button class="carousel-btn prev-btn" id="prevBtn">&lt;</button>
+                <button class="carousel-btn next-btn" id="nextBtn">&gt;</button>
+            </div>
+
+            <!-- Indicateurs -->
+            <div class="carousel-indicators" id="indicators"></div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-400 text-sm">
+            &copy; 2023 Portfolio de Carlos Tetchom Kenmoe. Tous droits réservés.
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Carousel functionality
+        const carouselWrapper = document.getElementById('carouselWrapper');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        let currentIndex = 0;
+        const totalSlides = 5; // Nombre de slides
+
+        // Créer les indicateurs
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+
+        const indicators = document.querySelectorAll('.indicator');
+
+        function updateCarousel() {
+            const translateX = -currentIndex * 20; // 20% par slide (100% / 5)
+            carouselWrapper.style.transform = `translateX(${translateX}%)`;
+
+            // Mettre à jour les indicateurs
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        // Événements des boutons
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Auto-slide optionnel (toutes les 5 secondes)
+        setInterval(nextSlide, 5000);
+
+        // Support tactile pour mobile
+        let startX = 0;
+        let endX = 0;
+
+        carouselWrapper.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        carouselWrapper.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+
+            if (Math.abs(diffX) > 50) { // Seuil de swipe
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

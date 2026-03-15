@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0a0a1a; color: #e5e7eb; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-blue-400 font-bold text-xl">CTK</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Accueil</a>
+                            <a href="index.html#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">À Propos</a>
+                            <a href="index.html#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Compétences</a>
+
+                            <div class="relative group">
+                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
+                                    Mes Projets <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="absolute left-0 mt-2 w-56 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                                    <a href="projets en entreprise.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en entreprise</a>
+                                    <a href="projets en formation .html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en formation</a>
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white inline-flex items-center hover:text-white">
+                                    Autres <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
+                                    <a href="Autres.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Page Autres</a>
+                                    <a href="Certification.html" class="block px-4 py-2 text-sm text-white bg-gray-700">Certification</a>
+                                    <a href="Epreuve E6.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Épreuve E6</a>
+                                </div>
+                            </div>
+                            <a href="index.html#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="-mr-2 flex md:hidden">
+                <button id="mobileMenuButton" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobileMenu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Accueil</a>
+                <a href="index.html#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">À Propos</a>
+                <a href="index.html#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Compétences</a>
+                <div class="border-t border-gray-700"></div>
+                <div class="pl-2">
+                    <a href="projets en entreprise.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en entreprise</a>
+                    <a href="projets en formation .html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en formation</a>
+                </div>
+                <div class="border-t border-gray-700"></div>
+                <div class="pl-2">
+                    <a href="Autres.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600">Page Autres</a>
+                    <a href="Certification.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700">Certification</a>
+                    <a href="Epreuve E6.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Épreuve E6</a>
+                </div>
+                <a href="index.html#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+
+    <main class="pt-32 max-w-4xl mx-auto px-4">
+        <h1 class="text-3xl font-bold mb-6">Certifications</h1>
+        <section class="bg-gray-800 p-6 rounded">
+            <p class="text-gray-300 mb-4">Liste et preuves des certifications obtenues.</p>
+            <ul class="list-disc pl-6 text-gray-300">
+                <li>Certification 1 — Détails / fichier</li>
+                <li>Certification 2 — Détails / fichier</li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
+
