@@ -80,11 +80,373 @@
         
         .profile-pic-container {
             transition: all 0.3s ease;
+            border: none;
+            box-shadow: none;
+            position: relative;
+            border-radius: 0;
+            animation: slideInLeft 1.5s ease-out;
+        }
+        
+        .profile-pic-container::after {
+            content: '';
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: transparent;
+        }
+        
+        .profile-pic-container img {
+            border-radius: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease, filter 0.3s ease;
+        }
+        
+        .profile-pic-container:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1) contrast(1.1);
         }
         
         .profile-pic-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(155, 192, 238, 0.3);
+        }
+        
+        /* Animations d'entrée */
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .hero-text {
+            animation: slideInRight 1.5s ease-out 0.3s both;
+        }
+        
+        .hero-title {
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        .hero-subtitle {
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+        
+        .hero-buttons {
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+        
+        .floating-icon {
+            animation: floating 3s ease-in-out infinite, pulse 4s ease-in-out infinite 1s;
+        }
+        
+        .tech-particle {
+            animation: floatAround 15s infinite ease-in-out, fadeInUp 2s ease-out both;
+        }
+        
+        /* Animations de survol interactives */
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(155, 192, 238, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .hover-scale {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-scale:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 10px rgba(155, 192, 238, 0.5);
+        }
+        
+        .hover-rotate {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-rotate:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        .hover-color {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-color:hover {
+            color: #9BC0EE;
+            text-shadow: 0 0 10px rgba(155, 192, 238, 0.8);
+        }
+        
+        .hover-border {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .hover-border:hover {
+            border-color: #9BC0EE;
+            box-shadow: 0 0 15px rgba(155, 192, 238, 0.5);
+        }
+        
+        .hover-lift {
+            transition: all 0.4s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hover-pulse {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-pulse:hover {
+            animation: pulse 1s infinite;
+        }
+        
+        .hover-shine {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .hover-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .hover-shine:hover::before {
+            left: 100%;
+        }
+        
+        .hover-shine:hover {
+            transform: scale(1.02);
+        }
+        
+        .hover-bounce {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-bounce:hover {
+            animation: bounce 0.6s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .hover-tilt {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-tilt:hover {
+            transform: perspective(1000px) rotateY(10deg) rotateX(5deg);
+        }
+        
+        .hover-magnetic {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .hover-magnetic:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 10px 25px rgba(155, 192, 238, 0.3);
+        }
+        
+        /* Animations spéciales pour la section Expérience */
+        .timeline-item {
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInFromLeft 0.8s ease-out forwards;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+        .timeline-item:nth-child(5) { animation-delay: 1.0s; }
+        .timeline-item:nth-child(6) { animation-delay: 1.2s; }
+        
+        .timeline-dot {
+            transition: all 0.3s ease;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .timeline-dot:hover {
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(155, 192, 238, 0.8);
+        }
+        
+        .timeline-content {
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateX(10px);
+            background: rgba(155, 192, 238, 0.05);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid #9BC0EE;
+        }
+        
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(155, 192, 238, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(155, 192, 238, 0.8);
+            }
+        }
+        
+        /* Animations spéciales pour la section À propos */
+        .story-text {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(155, 192, 238, 0.1), transparent);
+            animation: text-shimmer 3s infinite;
+        }
+        
+        .story-highlight {
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .story-highlight:hover {
+            color: #9BC0EE;
+            text-shadow: 0 0 10px rgba(155, 192, 238, 0.8);
+            transform: scale(1.05);
+        }
+        
+        .bio-quote {
+            position: relative;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(155, 192, 238, 0.1), rgba(10, 10, 26, 0.1));
+            border-left: 4px solid #9BC0EE;
+            border-radius: 0.5rem;
+            animation: quote-appear 1s ease-out;
+        }
+        
+        .bio-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 4rem;
+            color: rgba(155, 192, 238, 0.3);
+            font-family: serif;
+        }
+        
+        @keyframes text-shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: -100%; }
+        }
+        
+        @keyframes quote-appear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .life-story {
+            animation: story-reveal 1.5s ease-out;
+        }
+        
+        @keyframes story-reveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+            box-shadow: 0 0 25px rgba(155, 192, 238, 0.8), inset 0 0 30px rgba(155, 192, 238, 0.3);
+            border-color: #7BA3D8;
+            text-shadow: 0 0 10px #9BC0EE;
         }
         
         .skill-card {
@@ -215,112 +577,30 @@
     <!-- Network background lines -->
     <div class="network-lines" id="networkLines"></div>
     
-    <!-- Navigation -->
-    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-sm fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <span class="text-[#9BC0EE] font-bold text-xl">CTK</span>
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white bg-[#9BC0EE]">Accueil</a>
-                            <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">À Propos</a>
-                            <a href="#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Compétences</a>
-                            <a href="#projects" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Projets</a>
-
-                            <div class="relative group">
-                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
-                                    Mes Projets <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                                </button>
-                                <div class="absolute left-0 mt-2 w-56 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
-                                    <a href="projets en entreprise.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en entreprise</a>
-                                    <a href="projets en formation .html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en formation</a>
-                                </div>
-                            </div>
-
-                            <div class="relative group">
-                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
-                                    Autres <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                                </button>
-                                <div class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
-                                    <a href="Autres.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Page Autres</a>
-                                    <a href="Certification.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Certification</a>
-                                    <a href="Epreuve E6.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Épreuve E6</a>
-                                </div>
-                            </div>
-                            <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
-                        <button id="downloadCV" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
-                            <i class="fas fa-download mr-2"></i> Télécharger CV
-                        </button>
-                    </div>
-                </div>
-                <div class="-mr-2 flex md:hidden">
-                    <button id="mobileMenuButton" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile menu -->
-            <div class="hidden md:hidden" id="mobileMenu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-white bg-[#9BC0EE]">Accueil</a>
-                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">À Propos</a>
-                <a href="#skills" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Compétences</a>
-                <a href="#projects" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets</a>
-                <div class="border-t border-gray-700"></div>
-                <div class="pl-2">
-                    <a href="projets en entreprise.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en entreprise</a>
-                    <a href="projets en formation .html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en formation</a>
-                </div>
-                <div class="border-t border-gray-700"></div>
-                <div class="pl-2">
-                    <a href="Autres.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Page Autres</a>
-                    <a href="Certification.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Certification</a>
-                    <a href="Epreuve E6.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Épreuve E6</a>
-                </div>
-                <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
-                <button id="downloadCVMobile" class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">
-                    <i class="fas fa-download mr-2"></i> Télécharger CV
-                </button>
-            </div>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
         <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex flex-col justify-center pt-20 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="home" class="relative min-h-screen flex flex-col justify-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 pointer-events-none">
             <source src="istockphoto-1056187110-640_adpp_is.mp4" type="video/mp4" />
         </video>
         <!-- Vertical Navigation Bar on Left -->
         <div class="fixed left-0 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-8 pl-6">
-            <a href="#home" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Accueil">
+            <a href="#home" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all hover-bounce hover-glow" title="Accueil">
                 <i class="fas fa-cog"></i>
             </a>
-            <a href="#home" class="text-[#9BC0EE] text-2xl transition-all" title="Home">
+            <a href="#home" class="text-[#9BC0EE] text-2xl transition-all hover-rotate hover-shine" title="Home">
                 <i class="fas fa-home"></i>
             </a>
-            <a href="#about" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="� Propos">
+            <a href="#about" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all hover-tilt hover-magnetic" title="À Propos">
                 <i class="fas fa-user"></i>
             </a>
-            <a href="#skills" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Comp�tences">
+            <a href="#skills" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all hover-pulse hover-lift" title="Compétences">
                 <i class="fas fa-briefcase"></i>
             </a>
-            <a href="#projects" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Projets">
+            <a href="#projects" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all hover-scale hover-border" title="Projets">
                 <i class="fas fa-folder"></i>
             </a>
-            <a href="#contact" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all" title="Contact">
+            <a href="#contact" class="text-gray-400 hover:text-[#9BC0EE] text-2xl transition-all hover-bounce hover-glow" title="Contact">
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
@@ -328,29 +608,23 @@
         <div class="relative z-10 max-w-7xl mx-auto w-full">
             <div class="flex flex-col lg:flex-row items-center justify-center gap-16">
                 <!-- Photo de profil � gauche -->
-                <div class="lg:w-1/2 flex justify-center">
+                <div class="lg:w-1/2 flex justify-center items-center">
                     <div class="relative">
-                        <div class="profile-pic-container relative w-80 h-96 rounded-2xl overflow-hidden border-8 border-white shadow-2xl">
-                            <img id="profileImage" src="WhatsApp Image 2025-07-23 � 14.56.27_60941eca.jpg" alt="Photo de profil" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                <label for="uploadPhoto" class="cursor-pointer bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-4 py-2 rounded-md flex items-center">
-                                    <i class="fas fa-camera mr-2"></i> Changer
-                                </label>
-                                <input type="file" id="uploadPhoto" accept="image/*" class="hidden">
-                            </div>
+                        <div class="profile-pic-container relative w-full max-w-6xl h-[600px] rounded-lg overflow-hidden">
+                            <img id="profileImage" src="profil.jpeg" alt="Photo de profil" class="w-full h-full">
                         </div>
                         <!-- Social Media Icons -->
                         <div class="flex justify-center gap-4 mt-8">
-                            <a href="https://facebook.com" target="_blank" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                            <a href="https://facebook.com" target="_blank" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110 hover-bounce hover-glow">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="https://instagram.com" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                            <a href="https://instagram.com" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110 hover-rotate hover-shine">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="https://twitter.com" target="_blank" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                            <a href="https://twitter.com" target="_blank" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110 hover-tilt hover-magnetic">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="https://linkedin.com" target="_blank" class="bg-blue-800 hover:bg-blue-900 text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110">
+                            <a href="https://linkedin.com" target="_blank" class="bg-blue-800 hover:bg-blue-900 text-white w-12 h-12 rounded-full flex items-center justify-center text-lg transition-all transform hover:scale-110 hover-pulse hover-lift">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </div>
@@ -358,17 +632,17 @@
                 </div>
 
                 <!-- Texte � droite -->
-                <div class="lg:w-1/2">
+                <div class="lg:w-1/2 hero-text">
                     <div class="space-y-6">
                         <div>
-                            <h1 class="text-5xl md:text-6xl font-bold mb-2">
+                            <h1 class="text-5xl md:text-6xl font-bold mb-2 hero-title">
                               A Propos <span class="text-[#9BC0EE]">CARLOS</span>
                             </h1>
-                            <h2 class="text-2xl md:text-3xl text-[#9BC0EE] font-semibold mb-1">Etudiant en BTS SIO</h2>
-                            <h3 class="text-lg text-gray-400 mb-6">Option SISR</h3>
+                            <h2 class="text-2xl md:text-3xl text-[#9BC0EE] font-semibold mb-1 hero-subtitle">Etudiant en BTS SIO</h2>
+                            <h3 class="text-lg text-gray-400 mb-6 hero-subtitle">Option SISR</h3>
                         </div>
                         
-                        <p class="text-lg text-gray-300 leading-relaxed max-w-lg">
+                        <p class="text-lg text-gray-300 leading-relaxed max-w-lg hero-subtitle hover-lift p-4 rounded-lg transition-all">
                             je suis actuellement étudiant en BTS SIO (Services Informatiques aux Organisations), spécialité SISR (Solutions d’Infrastructure, Systèmes et Réseaux). Passionné par l’informatique et les technologies réseaux, je me forme à l’administration des systèmes, à la gestion des infrastructures informatiques et à la sécurisation des réseaux.
 
 Au cours de ma formation, je développe des compétences dans l’installation et la configuration de serveurs, la gestion des réseaux, la virtualisation ainsi que le dépannage et la maintenance des systèmes informatiques.
@@ -378,11 +652,11 @@ Curieux, motivé et toujours en quête d’apprentissage, je m’intéresse part
 À travers ce portfolio, je présente mes projets, mes compétences et mon parcours dans le domaine de l’informatique.
                         </p>
 
-                        <div class="flex flex-col sm:flex-row gap-4 pt-6">
-                            <button id="downloadCVHero" onclick="window.open('cv-carlos.pdf', '_blank')" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-8 py-3 rounded-md text-lg font-semibold flex items-center justify-center transition-all transform hover:scale-105">
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6 hero-buttons">
+                            <button id="downloadCVHero" onclick="window.location.href='pdfs/CV carlos.pdf'" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-8 py-3 rounded-md text-lg font-semibold flex items-center justify-center transition-all transform hover:scale-105 hover-glow hover-shine">
                                 <i class="fas fa-download mr-2"></i> Télécharger CV
                             </button>
-                            <a href="#contact" class="border-2 border-[#9BC0EE] text-[#9BC0EE] hover:bg-[#9BC0EE] hover:text-white px-8 py-3 rounded-md text-lg font-semibold flex items-center justify-center transition-all">
+                            <a href="#contact" class="border-2 border-[#9BC0EE] text-[#9BC0EE] hover:bg-[#9BC0EE] hover:text-white px-8 py-3 rounded-md text-lg font-semibold flex items-center justify-center transition-all hover-lift hover-border">
                                 <i class="fas fa-info-circle mr-2"></i> Plus d'informations
                             </a>
                         </div>
@@ -391,15 +665,22 @@ Curieux, motivé et toujours en quête d’apprentissage, je m’intéresse part
             </div>
             
             <!-- Floating tech icons -->
-            <div class="absolute top-1/4 right-10 text-[#9BC0EE] text-4xl opacity-30 floating">
+            <div class="absolute top-1/4 right-10 text-[#9BC0EE] text-4xl opacity-30 floating-icon">
                 <i class="fas fa-server"></i>
             </div>
-            <div class="absolute top-1/3 left-20 text-[#9BC0EE] text-4xl opacity-30 floating" style="animation-delay: 0.5s;">
+            <div class="absolute top-1/3 left-20 text-[#9BC0EE] text-4xl opacity-30 floating-icon" style="animation-delay: 0.5s;">
                 <i class="fas fa-network-wired"></i>
             </div>
-            <div class="absolute bottom-1/4 right-20 text-[#9BC0EE] text-4xl opacity-30 floating" style="animation-delay: 1s;">
+            <div class="absolute bottom-1/4 right-20 text-[#9BC0EE] text-4xl opacity-30 floating-icon" style="animation-delay: 1s;">
                 <i class="fas fa-code"></i>
             </div>
+            
+            <!-- Tech particles -->
+            <div class="absolute top-20 left-1/4 w-2 h-2 bg-[#9BC0EE] rounded-full tech-particle" style="animation-delay: 0s;"></div>
+            <div class="absolute top-40 right-1/3 w-1 h-1 bg-[#9BC0EE] rounded-full tech-particle" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-32 left-1/3 w-1.5 h-1.5 bg-[#9BC0EE] rounded-full tech-particle" style="animation-delay: 2s;"></div>
+            <div class="absolute top-60 right-20 w-1 h-1 bg-[#9BC0EE] rounded-full tech-particle" style="animation-delay: 0.5s;"></div>
+            <div class="absolute bottom-20 left-20 w-2 h-2 bg-[#9BC0EE] rounded-full tech-particle" style="animation-delay: 1.5s;"></div>
         </div>
     </section>
 
@@ -419,42 +700,42 @@ Curieux, motivé et toujours en quête d’apprentissage, je m’intéresse part
             <div class="flex flex-col lg:flex-row gap-16 items-start">
                 <!-- Left Side: Bio & Info -->
                 <div class="lg:w-1/2">
-                    <h3 class="text-2xl font-bold mb-6 uppercase tracking-wide">CREATIVITY BLEEDS FROM THE PEN OF INSPIRATION.</h3>
+                    <h3 class="text-2xl font-bold mb-6 uppercase tracking-wide bio-quote">CREATIVITY BLEEDS FROM THE PEN OF INSPIRATION.</h3>
                     
-                    <p class="text-lg text-gray-300 mb-10 leading-relaxed">
+                    <p class="text-lg text-gray-300 mb-10 leading-relaxed life-story">
                         La créativité naît de l'inspiration.
 
 Actuellement étudiant en BTS SIO (Services Informatiques aux Organisations), option SISR (Solutions d’Infrastructure, Systèmes et Réseaux), je me forme à l’administration des systèmes et des réseaux informatiques.
 
-Au cours de ma formation et de mes périodes en entreprise, j’ai développé des compétences dans l’installation et la configuration de réseaux, la gestion des systèmes, ainsi que les bases de la cybersécurité. Mes expériences, notamment durant mes <strong>16 semaines</strong>  d’alternance, m’ont permis de découvrir le fonctionnement réel des infrastructures informatiques et de participer à différentes missions techniques.
+Au cours de ma formation et de mes périodes en entreprise, j’ai développé des compétences dans l’installation et la configuration de réseaux, la gestion des systèmes, ainsi que les bases de la cybersécurité. Mes expériences, notamment durant mes <strong class="story-highlight">16 semaines</strong>  d’alternance, m’ont permis de découvrir le fonctionnement réel des infrastructures informatiques et de participer à différentes missions techniques.
 
 Motivé et curieux, je cherche constamment à développer mes compétences dans les domaines des réseaux, des systèmes et de la sécurité informatique. À travers ce portfolio, je présente mon parcours, mes compétences et les projets réalisés durant ma formation.
                     </p>
 
                     <div class="space-y-4 mb-12">
-                        <div class="flex items-start">
-                            <span class="text-[#9BC0EE] font-bold mr-4">Full Name :</span>
-                            <span class="text-gray-300">TETCHOM KENMOE CARLOS</span>
+                        <div class="flex items-start hover-lift p-3 rounded-lg transition-all">
+                            <span class="text-[#9BC0EE] font-bold mr-4 hover-color">Full Name :</span>
+                            <span class="text-gray-300 hover-color">TETCHOM KENMOE CARLOS</span>
                         </div>
-                        <div class="flex items-start">
-                            <span class="text-[#9BC0EE] font-bold mr-4">Age</span>
-                            <span class="text-gray-300">18 ans</span>
+                        <div class="flex items-start hover-lift p-3 rounded-lg transition-all">
+                            <span class="text-[#9BC0EE] font-bold mr-4 hover-color">Age</span>
+                            <span class="text-gray-300 hover-color">18 ans</span>
                         </div>
-                        <div class="flex items-start">
-                            <span class="text-[#9BC0EE] font-bold mr-4">Language :</span>
-                            <span class="text-gray-300">French, English</span>
+                        <div class="flex items-start hover-lift p-3 rounded-lg transition-all">
+                            <span class="text-[#9BC0EE] font-bold mr-4 hover-color">Language :</span>
+                            <span class="text-gray-300 hover-color">French, English</span>
                         </div>
-                        <div class="flex items-start">
-                            <span class="text-[#9BC0EE] font-bold mr-4">Téléphone:</span>
-                            <span class="text-gray-300">+33 7 44 25 88 44</span>
+                        <div class="flex items-start hover-lift p-3 rounded-lg transition-all">
+                            <span class="text-[#9BC0EE] font-bold mr-4 hover-color">Téléphone:</span>
+                            <span class="text-gray-300 hover-color">+33 7 44 25 88 44</span>
                         </div>
-                        <div class="flex items-start">
-                            <span class="text-[#9BC0EE] font-bold mr-4">Email</span>
-                            <span class="text-gray-300">jackkenmoe@gmail.com</span>
+                        <div class="flex items-start hover-lift p-3 rounded-lg transition-all">
+                            <span class="text-[#9BC0EE] font-bold mr-4 hover-color">Email</span>
+                            <span class="text-gray-300 hover-color">jackkenmoe@gmail.com</span>
                         </div>
-                        <div class="flex items-start">
-                            <span class="text-[#9BC0EE] font-bold mr-4">Address :</span>
-                            <span class="text-gray-300">Douala, Cameroon - BTS SIO Student</span>
+                        <div class="flex items-start hover-lift p-3 rounded-lg transition-all">
+                            <span class="text-[#9BC0EE] font-bold mr-4 hover-color">Address :</span>
+                            <span class="text-gray-300 hover-color">Douala, Cameroon - BTS SIO Student</span>
                         </div>
                     </div>
                 </div>
@@ -463,46 +744,46 @@ Motivé et curieux, je cherche constamment à développer mes compétences dans 
                 <div class="lg:w-1/2">
                     <div class="space-y-8">
                         <!-- GLPI -->
-                        <div>
+                        <div class="hover-lift p-4 rounded-lg transition-all">
                             <div class="flex justify-between items-center mb-3">
-                                <h4 class="text-lg font-bold text-white">GLPI</h4>
-                                <span class="text-[#9BC0EE] font-bold text-lg">80%</span>
+                                <h4 class="text-lg font-bold text-white hover-color">GLPI</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg hover-glow">80%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 80%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden hover-glow">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full hover-shine" style="width: 80%; animation: progressBar 1.5s ease-out forwards;"></div>
                             </div>
                         </div>
 
                         <!-- Active Directory -->
-                        <div>
+                        <div class="hover-lift p-4 rounded-lg transition-all">
                             <div class="flex justify-between items-center mb-3">
-                                <h4 class="text-lg font-bold text-white">ACTIVE DIRECTORY</h4>
-                                <span class="text-[#9BC0EE] font-bold text-lg">81%</span>
+                                <h4 class="text-lg font-bold text-white hover-color">ACTIVE DIRECTORY</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg hover-glow">81%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 81%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden hover-glow">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full hover-shine" style="width: 81%; animation: progressBar 1.5s ease-out forwards;"></div>
                             </div>
                         </div>
 
                         <!-- Packet Tracer -->
-                        <div>
+                        <div class="hover-lift p-4 rounded-lg transition-all">
                             <div class="flex justify-between items-center mb-3">
-                                <h4 class="text-lg font-bold text-white">PACKET TRACER</h4>
-                                <span class="text-[#9BC0EE] font-bold text-lg">85%</span>
+                                <h4 class="text-lg font-bold text-white hover-color">PACKET TRACER</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg hover-glow">85%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 85%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden hover-glow">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full hover-shine" style="width: 85%; animation: progressBar 1.5s ease-out forwards;"></div>
                             </div>
                         </div>
 
                         <!-- Samba -->
-                        <div>
+                        <div class="hover-lift p-4 rounded-lg transition-all">
                             <div class="flex justify-between items-center mb-3">
-                                <h4 class="text-lg font-bold text-white">SAMBA</h4>
-                                <span class="text-[#9BC0EE] font-bold text-lg">30%</span>
+                                <h4 class="text-lg font-bold text-white hover-color">SAMBA</h4>
+                                <span class="text-[#9BC0EE] font-bold text-lg hover-glow">30%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                                <div class="bg-[#9BC0EE] h-3 rounded-full" style="width: 30%; animation: progressBar 1.5s ease-out forwards;"></div>
+                            <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden hover-glow">
+                                <div class="bg-[#9BC0EE] h-3 rounded-full hover-shine" style="width: 30%; animation: progressBar 1.5s ease-out forwards;"></div>
                             </div>
                         </div>
 
@@ -583,38 +864,38 @@ Motivé et curieux, je cherche constamment à développer mes compétences dans 
 
                     <!-- Sub Folders -->
                     <div class="sub-folders" id="subFolders" style="display: none;">
-                        <div class="folder sub-folder" onclick="toggleProjectsFolder()">
-                            <div class="folder-icon">📂</div>
-                            <div class="folder-name">Mes Projets</div>
+                        <div class="folder sub-folder hover-lift hover-glow" onclick="toggleProjectsFolder()">
+                            <div class="folder-icon hover-bounce">📂</div>
+                            <div class="folder-name hover-color">Mes Projets</div>
                         </div>
-                        <div class="folder sub-folder" onclick="toggleOthersFolder()">
-                            <div class="folder-icon">📂</div>
-                            <div class="folder-name">Autres</div>
+                        <div class="folder sub-folder hover-lift hover-glow" onclick="toggleOthersFolder()">
+                            <div class="folder-icon hover-bounce">📂</div>
+                            <div class="folder-name hover-color">Autres</div>
                         </div>
                     </div>
 
                     <!-- Projects Sub Sub Folders -->
                     <div class="sub-sub-folders" id="projectsSubFolders" style="display: none;">
-                        <a href="javascript:void(0)" onclick="checkPassword('projets en entreprise.html')" class="folder-link">
-                            <div class="folder sub-sub-folder">
-                                <div class="folder-icon">📁</div>
-                                <div class="folder-name">Projets en entreprise</div>
+                        <a href="javascript:void(0)" onclick="checkPassword('projets en entreprise.html')" class="folder-link hover-shine hover-scale">
+                            <div class="folder sub-sub-folder hover-lift">
+                                <div class="folder-icon hover-rotate">📁</div>
+                                <div class="folder-name hover-color">Projets en entreprise</div>
                             </div>
                         </a>
-                        <a href="projets en formation .html" class="folder-link">
-                            <div class="folder sub-sub-folder">
-                                <div class="folder-icon">📁</div>
-                                <div class="folder-name">Projets en formation</div>
+                        <a href="projets en formation .html" class="folder-link hover-shine hover-scale">
+                            <div class="folder sub-sub-folder hover-lift">
+                                <div class="folder-icon hover-rotate">📁</div>
+                                <div class="folder-name hover-color">Projets en formation</div>
                             </div>
                         </a>
                     </div>
 
                     <!-- Others Sub Sub Folders -->
                     <div class="sub-sub-folders" id="othersSubFolders" style="display: none;">
-                        <a href="Certification.html" class="folder-link">
-                            <div class="folder sub-sub-folder">
-                                <div class="folder-icon">📄</div>
-                                <div class="folder-name">Certifications</div>
+                        <a href="Certification.html" class="folder-link hover-shine hover-scale">
+                            <div class="folder sub-sub-folder hover-lift">
+                                <div class="folder-icon hover-tilt">📄</div>
+                                <div class="folder-name hover-color">Certifications</div>
                             </div>
                         </a>
                         <a href="Epreuve E6.html" class="folder-link">
@@ -711,39 +992,39 @@ Motivé et curieux, je cherche constamment à développer mes compétences dans 
                     
                     <div class="space-y-12">
                         <!-- BTS SIO - Currently in progress -->
-                        <div class="relative pl-8 border-l-2 border-blue-400">
-                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                        <div class="timeline-item relative pl-8 border-l-2 border-blue-400">
+                            <div class="timeline-dot absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
                             
-                            <div class="text-sm text-gray-400 font-bold mb-2">2024 - 2026 (EN COURS)</div>
-                            <h4 class="text-xl font-bold text-blue-400 mb-2">BTS SIO Option SISR</h4>
-                            <p class="text-sm font-semibold text-gray-300 mb-3">- Etude Supérieure</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">
+                            <div class="timeline-content text-sm text-gray-400 font-bold mb-2 hover-color">2024 - 2026 (EN COURS)</div>
+                            <h4 class="timeline-content text-xl font-bold text-blue-400 mb-2 hover-color">BTS SIO Option SISR</h4>
+                            <p class="timeline-content text-sm font-semibold text-gray-300 mb-3 hover-color">- Etude Supérieure</p>
+                            <p class="timeline-content text-gray-400 text-sm leading-relaxed hover-lift">
                                 
 Formation en Services Informatiques aux Organisations, spécialité Solutions d’Infrastructure, Systèmes et Réseaux.
 Apprentissage de l’administration des systèmes et réseaux, de la gestion des infrastructures informatiques, de la virtualisation et des bases en cybersécurité.</p>
                         </div>
 
                         <!-- BTS GSI -->
-                        <div class="relative pl-8 border-l-2 border-blue-400">
-                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                        <div class="timeline-item relative pl-8 border-l-2 border-blue-400">
+                            <div class="timeline-dot absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
                             
-                            <div class="text-sm text-gray-400 font-bold mb-2">2022 - 2024</div>
-                            <h4 class="text-xl font-bold text-blue-400 mb-2">GSI (Gestion des Systèmes Informatiques) – Cameroun</h4>
-                            <p class="text-sm font-semibold text-gray-300 mb-3">- Etude Supérieure (Cameroun)</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">
+                            <div class="timeline-content text-sm text-gray-400 font-bold mb-2 hover-color">2022 - 2024</div>
+                            <h4 class="timeline-content text-xl font-bold text-blue-400 mb-2 hover-color">GSI (Gestion des Systèmes Informatiques) – Cameroun</h4>
+                            <p class="timeline-content text-sm font-semibold text-gray-300 mb-3 hover-color">- Etude Supérieure (Cameroun)</p>
+                            <p class="timeline-content text-gray-400 text-sm leading-relaxed hover-lift">
                                 BTS GSI (Gestion des Systèmes Informatiques) – Cameroun
 Formation axée sur les bases de l’informatique, la maintenance des équipements, les réseaux informatiques et l’utilisation des outils informatiques en entreprise.
                             </p>
                         </div>
 
                         <!-- High School -->
-                        <div class="relative pl-8 border-l-2 border-blue-400">
-                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                        <div class="timeline-item relative pl-8 border-l-2 border-blue-400">
+                            <div class="timeline-dot absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
                             
-                            <div class="text-sm text-gray-400 font-bold mb-2">2021 - 2022</div>
-                            <h4 class="text-xl font-bold text-blue-400 mb-2">Baccalauréat CG (Comptabilité et Gestion)</h4>
-                            <p class="text-sm font-semibold text-gray-300 mb-3">- Collége Technique</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">
+                            <div class="timeline-content text-sm text-gray-400 font-bold mb-2 hover-color">2021 - 2022</div>
+                            <h4 class="timeline-content text-xl font-bold text-blue-400 mb-2 hover-color">Baccalauréat CG (Comptabilité et Gestion)</h4>
+                            <p class="timeline-content text-sm font-semibold text-gray-300 mb-3 hover-color">- Collége Technique</p>
+                            <p class="timeline-content text-gray-400 text-sm leading-relaxed hover-lift">
                                 Formation en comptabilité, gestion d’entreprise, économie et outils numériques appliqués au monde professionnel.
                             </p>
                         </div>
@@ -756,37 +1037,37 @@ Formation axée sur les bases de l’informatique, la maintenance des équipemen
                     
                     <div class="space-y-12">
                         <!-- Apprentice - Network Admin -->
-                        <div class="relative pl-8 border-l-2 border-blue-400">
-                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                        <div class="timeline-item relative pl-8 border-l-2 border-blue-400">
+                            <div class="timeline-dot absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
                             
-                            <div class="text-sm text-gray-400 font-bold mb-2">JANVIERE 2026 - PRESENT</div>
-                            <h4 class="text-xl font-bold text-blue-400 mb-2">Technicien Systèmes et Réseaux (Alternance)</h4>
-                            <p class="text-sm font-semibold text-gray-300 mb-3">- Alternace (IEF2I)</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">
+                            <div class="timeline-content text-sm text-gray-400 font-bold mb-2 hover-color">JANVIERE 2026 - PRESENT</div>
+                            <h4 class="timeline-content text-xl font-bold text-blue-400 mb-2 hover-color">Technicien Systèmes et Réseaux (Alternance)</h4>
+                            <p class="timeline-content text-sm font-semibold text-gray-300 mb-3 hover-color">- Alternace (IEF2I)</p>
+                            <p class="timeline-content text-gray-400 text-sm leading-relaxed hover-lift">
                                 Participation à l’administration et au support du système informatique de l’entreprise. Intégration de nouveaux utilisateurs dans l’infrastructure interne, configuration d’équipements réseau (borne Wi-Fi), et assistance technique aux utilisateurs. Installation d’un environnement de virtualisation avec Proxmox et déploiement d’images ISO pour la création de machines virtuelles. Réalisation de schémas réseau d’un site de l’entreprise et développement de scripts pour automatiser certaines tâches techniques.
                             </p>
                         </div>
 
                         <!-- IT Technician -->
-                        <div class="relative pl-8 border-l-2 border-blue-400">
-                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                        <div class="timeline-item relative pl-8 border-l-2 border-blue-400">
+                            <div class="timeline-dot absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
                             
-                            <div class="text-sm text-gray-400 font-bold mb-2">SEPTEMBRE 2025  - DECEMBRE 2025</div>
-                            <h4 class="text-xl font-bold text-blue-400 mb-2">Technicien Support Informatique – Stage Alterné</h4>
-                            <p class="text-sm font-semibold text-gray-300 mb-3">- Stage Alterné de 3 mois (IEF2I)</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">
+                            <div class="timeline-content text-sm text-gray-400 font-bold mb-2 hover-color">SEPTEMBRE 2025  - DECEMBRE 2025</div>
+                            <h4 class="timeline-content text-xl font-bold text-blue-400 mb-2 hover-color">Technicien Support Informatique – Stage Alterné</h4>
+                            <p class="timeline-content text-sm font-semibold text-gray-300 mb-3 hover-color">- Stage Alterné de 3 mois (IEF2I)</p>
+                            <p class="timeline-content text-gray-400 text-sm leading-relaxed hover-lift">
                                 Assistance aux utilisateurs pour la résolution de problèmes informatiques courants. Participation à la maintenance des postes de travail et à l’installation d’équipements informatiques. Découverte des outils d’administration et des bonnes pratiques de gestion des infrastructures informatiques.
                             </p>
                         </div>
 
                         <!-- IT Project - Network Management -->
-                        <div class="relative pl-8 border-l-2 border-blue-400">
-                            <div class="absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
+                        <div class="timeline-item relative pl-8 border-l-2 border-blue-400">
+                            <div class="timeline-dot absolute -left-3 top-0 w-5 h-5 bg-blue-400 rounded-full"></div>
                             
-                            <div class="text-sm text-gray-400 font-bold mb-2">JUIN 2025 - AOUT 2025</div>
-                            <h4 class="text-xl font-bold text-blue-400 mb-2">Technicien Maintenance Informatique – Stage</h4>
-                            <p class="text-sm font-semibold text-gray-300 mb-3">- Stage de 6 semaines(Les Réparateurs Mac Et Pc)</p>
-                            <p class="text-gray-400 text-sm leading-relaxed">
+                            <div class="timeline-content text-sm text-gray-400 font-bold mb-2 hover-color">JUIN 2025 - AOUT 2025</div>
+                            <h4 class="timeline-content text-xl font-bold text-blue-400 mb-2 hover-color">Technicien Maintenance Informatique – Stage</h4>
+                            <p class="timeline-content text-sm font-semibold text-gray-300 mb-3 hover-color">- Stage de 6 semaines(Les Réparateurs Mac Et Pc)</p>
+                            <p class="timeline-content text-gray-400 text-sm leading-relaxed hover-lift">
                                 Stage réalisé dans une entreprise spécialisée dans la maintenance informatique. Les missions consistaient à diagnostiquer les pannes sur les postes de travail, récupérer et sécuriser les données des utilisateurs à partir de disques durs défectueux ou endommagés, et participer aux opérations de maintenance et de remise en état des équipements informatiques. Cette expérience m’a permis de développer des compétences en diagnostic matériel, sauvegarde de données et assistance technique aux utilisateurs.
                             </p>
                         </div>
@@ -842,19 +1123,19 @@ Formation axée sur les bases de l’informatique, la maintenance des équipemen
                 <div class="bg-gray-900 p-6 rounded-lg shadow-lg h-full">
                     <h3 class="text-2xl font-semibold mb-6 text-blue-400">Formulaire de Contact</h3>
                     <form id="contactForm" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Nom complet</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white">
+                        <div class="hover-lift">
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1 hover-color">Nom complet</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white hover-glow transition-all">
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white">
+                        <div class="hover-lift">
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1 hover-color">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white hover-glow transition-all">
                         </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white"></textarea>
+                        <div class="hover-lift">
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1 hover-color">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#9BC0EE] text-white hover-glow transition-all"></textarea>
                         </div>
-                        <button type="submit" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-6 py-3 rounded-md text-lg font-medium w-full">
+                        <button type="submit" class="bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white px-6 py-3 rounded-md text-lg font-medium w-full hover-shine hover-lift transition-all">
                             <i class="fas fa-paper-plane mr-2"></i> Envoyer le message
                         </button>
                     </form>
@@ -872,13 +1153,13 @@ Formation axée sur les bases de l’informatique, la maintenance des équipemen
                     <p class="text-gray-400 mt-1">Étudiant en BTS SIO option SISR</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-[#9BC0EE]">
+                    <a href="#" class="text-gray-400 hover:text-[#9BC0EE] hover-bounce hover-glow transition-all">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-[#9BC0EE]">
+                    <a href="#" class="text-gray-400 hover:text-[#9BC0EE] hover-rotate hover-shine transition-all">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="mailto:jackkenmoe3@gmail.com" class="text-gray-400 hover:text-[#9BC0EE]">
+                    <a href="mailto:jackkenmoe3@gmail.com" class="text-gray-400 hover:text-[#9BC0EE] hover-tilt hover-magnetic transition-all">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
                 </div>
@@ -898,10 +1179,10 @@ Formation axée sur les bases de l’informatique, la maintenance des équipemen
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <p class="mb-4">Le CV est actuellement indisponible. Veuillez me contacter pour plus d'informations.</p>
+            <p class="mb-4">Cliquez sur le bouton ci-dessous pour télécharger mon CV.</p>
             <div class="flex justify-end space-x-3">
                 <button id="cancelDownload" class="px-4 py-2 border border-gray-600 rounded-md text-gray-300 hover:bg-gray-700">Annuler</button>
-                <a href="mailto:jackkenmoe3@gmail.com" class="px-4 py-2 bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white rounded-md">Contactez-moi</a>
+                <a href="pdfs/CV carlos.pdf" download class="px-4 py-2 bg-[#9BC0EE] hover:bg-[#8BB8E6] text-white rounded-md">Télécharger</a>
             </div>
         </div>
     </div>
