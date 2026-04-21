@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets en Entreprise — Carlos Tetchom Kenmoe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --accent: #9BC0EE;
+      --accent2: #5B8FC9;
+      --bg: #060612;
+      --surface: #0d0d22;
+      --surface2: #111130;
+      --border: rgba(155,192,238,0.18);
+      --text: #e2e8f0;
+      --muted: #7a8ba0;
+      --green: #28c840;
+      --gold: #F0B429;
+      --red: #ff6b6b;
+      --purple: #a29bfe;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--bg);
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLL PROGRESS ─── */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent), var(--green));
+      z-index: 1000;
+      width: 0%;
+      transition: width 0.1s;
+    }
+
+    /* ─── GRID BG ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(155,192,238,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(155,192,238,0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ─── NOISE ─── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.5;
+    }
+
+    /* ─── BACK BTN ─── */
+    .back-btn {
+      position: fixed;
+      top: 1.5rem; left: 1.5rem;
+      z-index: 500;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      background: rgba(6,6,18,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .back-btn:hover {
+      color: var(--accent); border-color: var(--accent);
+      transform: translateX(-4px);
+      box-shadow: 0 0 16px rgba(155,192,238,0.15);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 52vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(40,200,64,0.07) 0%, rgba(91,143,201,0.05) 40%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: orb-pulse 7s ease-in-out infinite;
+    }
+    @keyframes orb-pulse {
+      0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    }
+
+    /* Floating tech icons */
+    .float-icon {
+      position: absolute;
+      color: var(--accent);
+      opacity: 0.07;
+      font-size: 1.8rem;
+      pointer-events: none;
+    }
+    .float-icon:nth-child(1) { top:15%; left:8%; animation: float1 7s ease-in-out infinite; }
+    .float-icon:nth-child(2) { top:25%; right:10%; animation: float2 9s ease-in-out infinite; }
+    .float-icon:nth-child(3) { bottom:20%; left:12%; animation: float1 8s 1s ease-in-out infinite; }
+    .float-icon:nth-child(4) { bottom:30%; right:8%; animation: float2 6s 2s ease-in-out infinite; }
+    .float-icon:nth-child(5) { top:40%; left:5%; animation: float1 10s 0.5s ease-in-out infinite; }
+
+    @keyframes float1 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-18px) rotate(5deg)} }
+    @keyframes float2 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-14px) rotate(-4deg)} }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      color: var(--green);
+      border: 1px solid rgba(40,200,64,0.35);
+      padding: 0.3rem 0.9rem; border-radius: 100px;
+      margin-bottom: 1.8rem;
+      background: rgba(40,200,64,0.05);
+      opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .hero-tag::before {
+      content: ''; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--green);
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      line-height: 1.05; margin-bottom: 1rem;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-title .accent { color: var(--accent); }
+    .hero-title .green { color: var(--green); }
+
+    .hero-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem; color: var(--muted);
+      letter-spacing: 0.06em; max-width: 520px;
+      line-height: 1.8;
+      opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+      flex-wrap: wrap; justify-content: center;
+      margin-top: 2.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.8rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 2rem 3rem;
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .divider-line { flex:1; height:1px; background: var(--border); }
+    .divider-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.18em;
+      color: var(--accent); text-transform: uppercase; white-space: nowrap;
+    }
+
+    /* ─── PROJECTS SECTION ─── */
+    .projects-section {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 1.5rem; font-weight: 800;
+      letter-spacing: -0.02em; margin-bottom: 2rem;
+    }
+
+    /* ─── PROJECT CARD ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      opacity: 0; transform: translateY(28px);
+    }
+    .project-card.visible {
+      animation: cardIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes cardIn { to { opacity:1; transform:translateY(0); } }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(155,192,238,0.1);
+    }
+
+    /* Top gradient bar */
+    .project-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height:3px;
+      border-radius: 14px 14px 0 0;
+    }
+    .project-card.cat-network::before { background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+    .project-card.cat-system::before { background: linear-gradient(90deg, var(--green), #00b894); }
+    .project-card.cat-script::before { background: linear-gradient(90deg, var(--purple), #6c5ce7); }
+    .project-card.cat-support::before { background: linear-gradient(90deg, var(--gold), #e17055); }
+    .project-card.cat-security::before { background: linear-gradient(90deg, var(--red), #d63031); }
+
+    .project-visual {
+      height: 120px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative;
+      overflow: hidden;
+    }
+    .project-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--surface) 100%);
+    }
+    .project-visual.bg-network { background: linear-gradient(135deg, rgba(91,143,201,0.12), rgba(155,192,238,0.05)); }
+    .project-visual.bg-system  { background: linear-gradient(135deg, rgba(40,200,64,0.1), rgba(0,184,148,0.05)); }
+    .project-visual.bg-script  { background: linear-gradient(135deg, rgba(162,155,254,0.1), rgba(108,92,231,0.05)); }
+    .project-visual.bg-support { background: linear-gradient(135deg, rgba(240,180,41,0.1), rgba(225,112,85,0.05)); }
+    .project-visual.bg-security{ background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(214,48,49,0.05)); }
+
+    .project-body { padding: 1.4rem 1.5rem 1.5rem; }
+
+    .project-meta {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 0.7rem;
+    }
+    .project-cat {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.2rem 0.6rem;
+      border-radius: 4px; border: 1px solid var(--border);
+    }
+    .project-cat.network { color: var(--accent); border-color: rgba(155,192,238,0.3); background: rgba(155,192,238,0.06); }
+    .project-cat.system  { color: var(--green); border-color: rgba(40,200,64,0.3); background: rgba(40,200,64,0.06); }
+    .project-cat.script  { color: var(--purple); border-color: rgba(162,155,254,0.3); background: rgba(162,155,254,0.06); }
+    .project-cat.support { color: var(--gold); border-color: rgba(240,180,41,0.3); background: rgba(240,180,41,0.06); }
+    .project-cat.security{ color: var(--red); border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.06); }
+
+    .project-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; color: var(--muted); margin-left: auto;
+    }
+
+    .project-title {
+      font-size: 1rem; font-weight: 800;
+      letter-spacing: -0.01em; line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    .project-desc {
+      font-size: 0.82rem; color: var(--muted);
+      line-height: 1.7; margin-bottom: 1.2rem;
+    }
+
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.06em;
+      padding: 0.2rem 0.55rem; border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--muted); background: rgba(255,255,255,0.02);
+    }
+
+    .project-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .project-company {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 600; color: var(--muted);
+    }
+    .company-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      animation: blink 2s infinite;
+    }
+    .project-arrow {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); color: var(--muted);
+      font-size: 0.75rem;
+      transition: all 0.2s; cursor: pointer;
+    }
+    .project-card:hover .project-arrow {
+      background: var(--accent); border-color: var(--accent);
+      color: #06060f; transform: translateX(3px);
+    }
+
+    .project-buttons {
+      display: flex; gap: 0.8rem; align-items: center;
+      margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .btn-procedure {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      background: rgba(240, 180, 41, 0.1);
+      border: 1px solid rgba(240, 180, 41, 0.3);
+      border-radius: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.08em;
+      color: var(--gold);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+    }
+    .btn-procedure:hover {
+      background: rgba(240, 180, 41, 0.2);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FULL-WIDTH FEATURED CARD ─── */
+    .featured-card {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .featured-card .project-visual {
+      height: auto; min-height: 180px; font-size: 4rem;
+      border-radius: 0;
+    }
+    .featured-card .project-visual::after {
+      background: linear-gradient(to right, transparent 60%, var(--surface) 100%);
+    }
+    .featured-badge {
+      position: absolute; top: 1rem; left: 1rem; z-index: 1;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.12em;
+      padding: 0.25rem 0.7rem; border-radius: 4px;
+      background: var(--accent); color: #06060f;
+      font-weight: 700; text-transform: uppercase;
+    }
+
+    /* ─── TIMELINE (entreprise) ─── */
+    .company-block {
+      margin-bottom: 4rem;
+    }
+    .company-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .company-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      border: 1px solid var(--border); background: var(--surface2);
+    }
+    .company-name { font-size: 1rem; font-weight: 800; margin-bottom: 0.15rem; }
+    .company-period {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; color: var(--accent); letter-spacing: 0.08em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .featured-card { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<a href="index.html" class="back-btn">
+  <i class="fas fa-arrow-left"></i> Retour au portfolio
+</a>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <i class="fas fa-server float-icon"></i>
+  <i class="fas fa-network-wired float-icon"></i>
+  <i class="fas fa-terminal float-icon"></i>
+  <i class="fas fa-shield-alt float-icon"></i>
+  <i class="fas fa-hdd float-icon"></i>
+
+  <div class="hero-tag">IEF2I · Alternance & Stage</div>
+
+  <h1 class="hero-title">
+    Projets en <span class="green">Entreprise</span>
+  </h1>
+
+  <p class="hero-sub">
+    Missions réalisées en alternance chez IEF2I et en stage chez Les Réparateurs Mac Et PC.<br>
+    Infrastructure, systèmes, réseaux & support technique.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Projets réalisés</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Entreprises</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">18</div>
+      <div class="stat-label">Mois d'expérience</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DIVIDER ─── -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-label">IEF2I — Alternance</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- ─── PROJECTS ─── -->
+<div class="projects-section">
+
+  <!-- IEF2I -->
+  <div class="company-block">
+    <div class="company-header reveal-card" style="opacity:0; transform:translateY(20px);">
+      <div class="company-icon">🏢</div>
+      <div>
+        <div class="company-name">IEF2I — Technicien Systèmes & Réseaux</div>
+        <div class="company-period">Janvier 2026 – Présent · Alternance</div>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Featured: Proxmox -->
+      <div class="project-card cat-system featured-card reveal-card" data-pdf="pdf porfolio/Promox.pdf">
+        <div class="project-visual bg-system" style="font-size:4rem; min-height:180px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <span class="featured-badge">✦ Projet phare</span>
+          🖥️
+          <div style="position:absolute;inset:0;background:linear-gradient(to right, transparent 60%, var(--surface) 100%);"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Virtualisation</span>
+            <span class="project-date">Jan 2026</span>
+          </div>
+          <div class="project-title">Déploiement d'une infrastructure Proxmox VE</div>
+          <div class="project-desc">
+            Installation et configuration d'un hyperviseur Proxmox VE sur serveur dédié. Déploiement de machines virtuelles via images ISO (Windows Server, Debian, Ubuntu). Gestion des ressources CPU/RAM, configuration des réseaux virtuels et bridges. Mise en place de snapshots et sauvegardes automatiques.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Proxmox VE</span>
+            <span class="tag">Virtualisation</span>
+            <span class="tag">ISO</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">Debian</span>
+            <span class="tag">KVM</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company">
+              <div class="company-dot"></div>
+              IEF2I
+            </div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Promox.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Directory -->
+      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+        <div class="project-visual bg-system">🗄️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Administration</span>
+            <span class="project-date">Jan–Mar 2026</span>
+          </div>
+          <div class="project-title">Intégration d'utilisateurs — Active Directory</div>
+          <div class="project-desc">
+            Création et gestion des comptes utilisateurs dans l'infrastructure Active Directory. Attribution des droits, groupes de sécurité et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">Intégration</span>
+            <span class="tag">Windows Server</span>
+            
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Intra.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+        <div class="project-visual bg-system">🗄️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Administration</span>
+            <span class="project-date">Jan–Mar 2026</span>
+          </div>
+          <div class="project-title">installation automatique avec MDT</div>
+          <div class="project-desc">
+            Installation et configuration de Microsoft Deployment Toolkit (MDT) pour automatiser le déploiement de systèmes d'exploitation Windows. Création d'une image de référence, configuration des séquences de tâches et déploiement sur des machines physiques ou virtuelles.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">MDT</span>
+            <span class="tag">Intégration</span>
+            <span class="tag">Windows Server</span>
+            
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/MDT.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+        <div class="project-visual bg-system">🗄️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Administration</span>
+            <span class="project-date">Jan–Mar 2026</span>
+          </div>
+          <div class="project-title">Gérer les options et les rôles dans Ms Teams </div>
+          <div class="project-desc">
+            Gestion des options et des rôles dans Microsoft Teams. Accès à l'interface d'administration, sélection de l'équipe, configuration des paramètres d'équipe, gestion des membres et attribution des rôles (propriétaire, membre, invité). Communication des changements aux utilisateurs concernés.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">Microsoft Teams</span>
+            
+            
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/option_teams.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+        <div class="project-visual bg-system">🗄️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Administration</span>
+            <span class="project-date">Jan–Mar 2026</span>
+          </div>
+          <div class="project-title">Réinitialiser un mot de passe Utilisateur outlook</div>
+          <div class="project-desc">
+            Rénitialisation du mot de passe d'un utilisateur dans Outlook. Accès à l'interface d'administration, sélection de l'utilisateur, réinitialisation du mot de passe et communication des nouvelles informations d'identification à l'utilisateur.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">Outlook</span>
+
+            
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Outlook.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+        <div class="project-visual bg-system">🗄️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Administration</span>
+            <span class="project-date">Jan–Mar 2026</span>
+          </div>
+          <div class="project-title">Profils utilisateurs — Active Directory</div>
+          <div class="project-desc">
+           gestion des profils utilisateurs dans l'infrastructure Active Directory. Configuration des paramètres, droits d'accès et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">Gestion des profils</span>
+            <span class="tag">Configuration</span>
+            <span class="tag">Profils</span>
+            <span class="tag">Windows Server</span>
+            
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Intra.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+        <div class="project-visual bg-system">🗄️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Administration</span>
+            <span class="project-date">Jan–Mar 2026</span>
+          </div>
+          <div class="project-title">Intégration d'utilisateurs — Active Directory</div>
+          <div class="project-desc">
+            Création et gestion des comptes utilisateurs dans l'infrastructure Active Directory. Attribution des droits, groupes de sécurité et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">Intégration</span>
+            <span class="tag">Windows Server</span>
+            
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Intra.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+        <div class="project-visual bg-system">🗄️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat system">Administration</span>
+            <span class="project-date">Jan–Mar 2026</span>
+          </div>
+          <div class="project-title">Intégration d'utilisateurs — Active Directory</div>
+          <div class="project-desc">
+            Création et gestion des comptes utilisateurs dans l'infrastructure Active Directory. Attribution des droits, groupes de sécurité et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">Intégration</span>
+            <span class="tag">Windows Server</span>
+            
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Profil.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wi-Fi -->
+      <div class="project-card cat-network reveal-card" data-pdf="pdf porfolio/Borne_wifi.pdf">
+        <div class="project-visual bg-network">📡</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat network">Réseau</span>
+            <span class="project-date">Fév 2026</span>
+          </div>
+          <div class="project-title">Configuration de bornes Wi-Fi entreprise</div>
+          <div class="project-desc">
+            Déploiement et paramétrage de bornes Wi-Fi dans l'infrastructure réseau. Configuration SSID, sécurité WPA2-Enterprise, segmentation VLAN et intégration dans l'infrastructure existante.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Wi-Fi</span>
+            <span class="tag">WPA2</span>
+            <span class="tag">VLAN</span>
+            <span class="tag">RADIUS</span>
+            <span class="tag">TCP/IP</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Borne_wifi.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scripts -->
+      <div class="project-card cat-script reveal-card" data-pdf="pdf porfolio/guide.pdf">
+        <div class="project-visual bg-script">⚙️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat script">Scripting</span>
+            <span class="project-date">Mar 2026</span>
+          </div>
+          <div class="project-title">Scripts d'automatisation des tâches IT</div>
+          <div class="project-desc">
+            Développement de scripts PowerShell et Bash pour automatiser des tâches récurrentes : déploiement de configurations, inventaire réseau automatique, rapports de maintenance et monitoring de services.
+          </div>
+          <div class="project-tags">
+            <span class="tag">PowerShell</span>
+            <span class="tag">Bash</span>
+            <span class="tag">Automatisation</span>
+            <span class="tag">Monitoring</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Chocolatey.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schéma réseau -->
+      <div class="project-card cat-network reveal-card" data-pdf="pdf porfolio/guide.pdf">
+        <div class="project-visual bg-network">🗺️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat network">Architecture</span>
+            <span class="project-date">Fév 2026</span>
+          </div>
+          <div class="project-title">Cartographie de l'infrastructure réseau</div>
+          <div class="project-desc">
+            Réalisation d'un schéma réseau complet de l'infrastructure : topologie physique et logique, équipements actifs, adressage IP, VLAN et plan de câblage. Documentation des interconnexions.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Draw.io</span>
+            <span class="tag">Cisco Packet Tracer</span>
+            <span class="tag">VLAN</span>
+            <span class="tag">IPv4</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="images/SHreseau.jpg" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="project-card cat-support reveal-card" data-pdf="pdf porfolio/guide.pdf">
+        <div class="project-visual bg-support">🎧</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat support">Support</span>
+            <span class="project-date">Jan–Présent</span>
+          </div>
+          <div class="project-title">Support technique & assistance utilisateurs</div>
+          <div class="project-desc">
+            Gestion des tickets de support, résolution d'incidents matériels et logiciels. Maintenance préventive des postes de travail, installation de logiciels et configuration des périphériques.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Helpdesk</span>
+            <span class="tag">ITSM</span>
+            <span class="tag">Windows 10/11</span>
+            <span class="tag">Ticketing</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="project-buttons">
+            <a href="pdf porfolio/Anydesk.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider" style="padding: 0 0 3rem; max-width:100%">
+    <div class="divider-line"></div>
+    <span class="divider-label">Les Réparateurs Mac Et PC — Stage</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- Réparateurs Mac Et PC -->
+  <div class="company-block">
+    <div class="company-header reveal-card" style="opacity:0; transform:translateY(20px);">
+      <div class="company-icon">🔧</div>
+      <div>
+        <div class="company-name">Les Réparateurs Mac Et PC</div>
+        <div class="company-period">Juin – Août 2025 · Stage (6 semaines)</div>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Diagnostic pannes -->
+      <div class="project-card cat-support reveal-card" data-pdf="pdf porfolio/rapport_stage_reparateurs.pdf">
+        <div class="project-visual bg-support">🔍</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat support">Maintenance</span>
+            <span class="project-date">Juin–Août 2025</span>
+          </div>
+          <div class="project-title">Diagnostic et réparation de matériel informatique</div>
+          <div class="project-desc">
+            Identification des pannes sur ordinateurs fixes et portables (Mac & PC). Démontage, tests composants, remplacement de pièces défectueuses (RAM, HDD, écrans). Rédaction de devis de réparation.
+          </div>
+          <div class="project-tags">
+            <span class="tag">Diagnostic</span>
+            <span class="tag">Hardware</span>
+            <span class="tag">Mac OS</span>
+            <span class="tag">Windows</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company" style="color:var(--gold)">
+              <div class="company-dot" style="background:var(--gold); box-shadow:0 0 6px var(--gold)"></div>
+              Réparateurs Mac Et PC
+            </div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Récupération données -->
+      <div class="project-card cat-security reveal-card" data-pdf="pdf porfolio/rapport_stage_reparateurs.pdf">
+        <div class="project-visual bg-security">💾</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat security">Sauvegarde</span>
+            <span class="project-date">Juin–Août 2025</span>
+          </div>
+          <div class="project-title">Récupération de données sur disques défectueux</div>
+          <div class="project-desc">
+            Récupération et sécurisation de données sur disques durs défectueux (HDD, SSD, clés USB). Utilisation d'outils spécialisés de forensique numérique. Procédures de sauvegarde et transfert sécurisé.
+          </div>
+          <div class="project-tags">
+            <span class="tag">TestDisk</span>
+            <span class="tag">Recuva</span>
+            <span class="tag">Clonezilla</span>
+            <span class="tag">Data Recovery</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company" style="color:var(--gold)">
+              <div class="company-dot" style="background:var(--gold); box-shadow:0 0 6px var(--gold)"></div>
+              Réparateurs Mac Et PC
+            </div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Remise en état -->
+      <div class="project-card cat-support reveal-card" data-pdf="pdf porfolio/rapport_stage_reparateurs.pdf">
+        <div class="project-visual bg-support">🖥️</div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-cat support">Maintenance</span>
+            <span class="project-date">Juin–Août 2025</span>
+          </div>
+          <div class="project-title">Remise en état & reconditionnement d'équipements</div>
+          <div class="project-desc">
+            Nettoyage physique, remplacement thermique, mise à jour BIOS/firmware. Réinstallation des OS (macOS, Windows), configuration initiale et tests de performance post-réparation.
+          </div>
+          <div class="project-tags">
+            <span class="tag">macOS</span>
+            <span class="tag">Windows 11</span>
+            <span class="tag">BIOS</span>
+            <span class="tag">Reconditionnement</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-company" style="color:var(--gold)">
+              <div class="company-dot" style="background:var(--gold); box-shadow:0 0 6px var(--gold)"></div>
+              Réparateurs Mac Et PC
+            </div>
+            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 Carlos Tetchom Kenmoe — BTS SIO SISR &nbsp;·&nbsp; Projets en Entreprise
+</footer>
+
+<script>
+  // Scroll progress
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('scroll-progress').style.width = (window.scrollY / max * 100) + '%';
+  });
+
+  // Reveal on scroll
+  const cards = document.querySelectorAll('.reveal-card');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const delay = parseInt(e.target.dataset.delay || 0);
+        setTimeout(() => {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          e.target.style.transition = 'opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1)';
+          e.target.classList.add('visible');
+        }, delay);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Stagger siblings
+  document.querySelectorAll('.projects-grid').forEach(grid => {
+    [...grid.querySelectorAll('.reveal-card')].forEach((card, i) => {
+      card.dataset.delay = i * 80;
+    });
+  });
+
+  cards.forEach(c => obs.observe(c));
+
+  // Handle PDF opens on arrow click
+  document.querySelectorAll('.project-arrow').forEach(arrow => {
+    arrow.style.cursor = 'pointer';
+    arrow.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const card = this.closest('.project-card');
+      const pdfPath = card.dataset.pdf;
+      
+      if (pdfPath) {
+        // Open PDF in new tab
+        window.open(pdfPath, '_blank');
+      } else {
+        alert('Aucun PDF disponible pour ce projet');
+      }
+    });
+  });
+</script>
+</body>
+</html>

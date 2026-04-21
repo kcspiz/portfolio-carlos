@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille Technologique — Cybersécurité au Quotidien</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #07090f;
+  --card:    rgba(255,255,255,0.03);
+  --cyan:    #00e5ff;
+  --red:     #ff4d6d;
+  --green:   #00f5a0;
+  --yellow:  #ffd166;
+  --purple:  #b388ff;
+  --border:  rgba(0,229,255,0.14);
+  --muted:   rgba(255,255,255,0.5);
+  --white:   #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── BG ── */
+.bg-glow {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 5% 20%, rgba(0,229,255,0.09) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 35% at 95% 80%, rgba(255,77,109,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(0,245,160,0.04) 0%, transparent 70%);
+}
+.grid-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridScroll 25s linear infinite;
+}
+@keyframes gridScroll {
+  to { background-position: 50px 50px; }
+}
+
+/* ── LAYOUT ── */
+.wrapper { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 2rem 8rem; }
+
+/* ── HEADER ── */
+header { padding: 5rem 0 2.5rem; animation: fadeDown .9s ease both; }
+
+.breadcrumb {
+  font-family: 'Syne', sans-serif;
+  font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.breadcrumb::before { content: ''; width: 28px; height: 1px; background: var(--cyan); }
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -.03em;
+}
+.hero-title .line1 { color: var(--white); display: block; }
+.hero-title .line2 {
+  display: block;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.hero-sub {
+  margin-top: 1.4rem;
+  font-size: 1rem; color: var(--muted); line-height: 1.7;
+  max-width: 560px; font-weight: 300;
+}
+
+/* shield icon big */
+.hero-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(0,245,160,0.08));
+  border: 1px solid rgba(0,229,255,0.25);
+  font-size: 2rem; margin-bottom: 1.6rem;
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,229,255,0); }
+  50%      { box-shadow: 0 0 0 12px rgba(0,229,255,0.06); }
+}
+
+@keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:none; } }
+@keyframes fadeUp   { from { opacity:0; transform:translateY(20px);  } to { opacity:1; transform:none; } }
+
+/* ── INTRO WHY BOX ── */
+.why-box {
+  margin: 2.5rem 0 4rem;
+  background: linear-gradient(135deg, rgba(0,229,255,0.07), rgba(0,245,160,0.04));
+  border: 1px solid rgba(0,229,255,0.2);
+  border-left: 3px solid var(--cyan);
+  border-radius: 16px;
+  padding: 1.6rem 2rem;
+  animation: fadeUp .8s .2s ease both;
+}
+.why-box h3 {
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+  color: var(--cyan); margin-bottom: .8rem; letter-spacing: .05em;
+  text-transform: uppercase; font-size: .8rem;
+}
+.why-list { display: flex; flex-wrap: wrap; gap: .55rem; }
+.why-chip {
+  font-size: .82rem; color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  padding: .3rem .85rem; border-radius: 99px;
+  display: flex; align-items: center; gap: .4rem;
+}
+.why-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink:0; }
+
+/* ── SECTION TITLE ── */
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: .7rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.6rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── THREAT CARDS (topics) ── */
+.topics { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-bottom: 4rem; }
+@media(max-width:620px) { .topics { grid-template-columns: 1fr; } }
+
+.topic-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 1.8rem;
+  backdrop-filter: blur(10px);
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+  animation: fadeUp .7s ease both;
+  position: relative; overflow: hidden;
+}
+.topic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+}
+.topic-card:nth-child(1) { animation-delay:.3s; border-top: 2px solid var(--red); }
+.topic-card:nth-child(1):hover { border-color: var(--red); }
+.topic-card:nth-child(2) { animation-delay:.4s; border-top: 2px solid var(--yellow); }
+.topic-card:nth-child(2):hover { border-color: var(--yellow); }
+.topic-card:nth-child(3) { animation-delay:.5s; border-top: 2px solid var(--purple); }
+.topic-card:nth-child(3):hover { border-color: var(--purple); }
+.topic-card:nth-child(4) { animation-delay:.6s; border-top: 2px solid var(--green); }
+.topic-card:nth-child(4):hover { border-color: var(--green); }
+
+.topic-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.topic-name {
+  font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700;
+  color: var(--white); margin-bottom: .5rem;
+}
+.topic-def {
+  font-size: .88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem;
+}
+
+/* level badge */
+.level {
+  display: inline-block;
+  font-family: 'Syne', sans-serif; font-size: .62rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .25rem .7rem; border-radius: 99px;
+}
+.level-critical { background: rgba(255,77,109,0.15); color: var(--red); border: 1px solid rgba(255,77,109,.3); }
+.level-high     { background: rgba(255,209,102,0.12); color: var(--yellow); border: 1px solid rgba(255,209,102,.3); }
+.level-medium   { background: rgba(179,136,255,0.12); color: var(--purple); border: 1px solid rgba(179,136,255,.3); }
+.level-low      { background: rgba(0,245,160,0.1);   color: var(--green);  border: 1px solid rgba(0,245,160,.3); }
+
+/* terms inside card */
+.terms { margin-top: 1.1rem; display: flex; flex-direction: column; gap: .5rem; }
+.term {
+  font-size: .83rem; display: flex; gap: .6rem; align-items: flex-start;
+  color: rgba(255,255,255,0.7);
+}
+.term-kw { font-weight: 600; color: var(--white); white-space: nowrap; }
+.term::before { content: '→'; color: var(--cyan); flex-shrink: 0; margin-top: 1px; }
+
+/* ── GLOSSARY ── */
+.glossary { margin-bottom: 4rem; animation: fadeUp .7s .4s ease both; }
+
+.gloss-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+@media(max-width:720px) { .gloss-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px) { .gloss-grid { grid-template-columns: 1fr; } }
+
+.gloss-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.2rem 1.4rem;
+  transition: border-color .25s, background .25s;
+}
+.gloss-item:hover { border-color: rgba(0,229,255,.35); background: rgba(0,229,255,0.04); }
+.gloss-word {
+  font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700;
+  color: var(--cyan); margin-bottom: .4rem;
+}
+.gloss-def { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+
+/* ── BEST PRACTICES ── */
+.practices { margin-bottom: 4rem; animation: fadeUp .7s .5s ease both; }
+
+.practice-list { display: flex; flex-direction: column; gap: .9rem; }
+.practice-item {
+  display: flex; align-items: flex-start; gap: 1.2rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.2rem 1.5rem;
+  transition: border-color .25s;
+}
+.practice-item:hover { border-color: rgba(0,245,160,.3); }
+.practice-num {
+  font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800;
+  color: rgba(0,229,255,0.15); line-height: 1; flex-shrink: 0; width: 2rem;
+}
+.practice-content h4 {
+  font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700;
+  color: var(--white); margin-bottom: .3rem;
+}
+.practice-content p { font-size: .85rem; color: var(--muted); line-height: 1.55; }
+
+/* ── SOURCES / ARTICLES ── */
+.sources { margin-bottom: 4rem; animation: fadeUp .7s .6s ease both; }
+
+.source-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+@media(max-width:600px) { .source-grid { grid-template-columns: 1fr; } }
+
+.source-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 1.5rem 1.7rem;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; gap: .7rem;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+  position: relative; overflow: hidden;
+}
+.source-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,229,255,.4);
+  box-shadow: 0 16px 40px rgba(0,0,0,.35), 0 0 30px rgba(0,229,255,.06);
+}
+.source-top { display: flex; align-items: center; gap: .8rem; }
+.source-logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.source-name {
+  font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; color: var(--white);
+}
+.source-type {
+  font-size: .68rem; color: var(--muted); letter-spacing: .08em;
+  text-transform: uppercase; font-family: 'Syne', sans-serif;
+}
+.source-desc { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+
+/* article slots */
+.article-slots { display: flex; flex-direction: column; gap: .5rem; margin-top: .3rem; }
+.article-slot {
+  display: flex; align-items: center; gap: .7rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(0,229,255,0.15);
+  border-radius: 8px; padding: .6rem .9rem;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.article-slot:hover { background: rgba(0,229,255,0.05); border-color: rgba(0,229,255,.3); }
+.slot-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); flex-shrink:0; }
+.slot-text { font-size: .8rem; color: rgba(255,255,255,0.55); font-style: italic; flex: 1; }
+.slot-arrow { color: var(--cyan); font-size: .75rem; margin-left: auto; }
+
+/* actual article link variant */
+.article-slot.filled { border-style: solid; border-color: rgba(0,229,255,.2); }
+.article-slot.filled .slot-text { color: rgba(255,255,255,.75); font-style: normal; }
+
+/* external arrow on source card */
+.source-arrow {
+  position: absolute; top: 1.2rem; right: 1.4rem;
+  color: var(--cyan); font-size: .9rem; opacity: .4;
+  transition: opacity .2s, transform .2s;
+}
+.source-card:hover .source-arrow { opacity: 1; transform: translate(2px,-2px); }
+
+/* ── TIMELINE / ACTU ── */
+.actu { margin-bottom: 4rem; animation: fadeUp .7s .65s ease both; }
+
+.timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 1.05rem; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(180deg, var(--cyan), transparent);
+}
+.tl-item { display: flex; gap: 1.6rem; padding-bottom: 1.8rem; }
+.tl-dot {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; margin-top: .1rem;
+  border: 2px solid var(--cyan); background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.tl-dot::after {
+  content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan);
+}
+.tl-content {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.1rem 1.4rem; flex: 1;
+  transition: border-color .25s;
+}
+.tl-content:hover { border-color: rgba(0,229,255,.35); }
+.tl-date {
+  font-family: 'Syne', sans-serif; font-size: .68rem; font-weight: 600;
+  color: var(--cyan); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .4rem;
+}
+.tl-title { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; color: var(--white); margin-bottom: .35rem; }
+.tl-desc { font-size: .83rem; color: var(--muted); line-height: 1.55; }
+.tl-link {
+  display: inline-flex; align-items: center; gap: .35rem;
+  margin-top: .6rem; font-size: .75rem; color: var(--cyan);
+  text-decoration: none; font-family: 'Syne', sans-serif; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  border-bottom: 1px dashed rgba(0,229,255,.35);
+  padding-bottom: 1px;
+  transition: border-color .2s;
+}
+.tl-link:hover { border-color: var(--cyan); }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; margin-top: 4rem;
+  color: var(--muted); font-size: .78rem; letter-spacing: .06em;
+  animation: fadeUp .8s .9s ease both;
+}
+footer strong { color: var(--cyan); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 99px; }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="grid-bg"></div>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">BTS SIO SISR — Veille Technologique</div>
+    <div class="hero-icon">🛡️</div>
+    <h1 class="hero-title">
+      <span class="line1">La Cybersécurité</span>
+      <span class="line2">au Quotidien</span>
+    </h1>
+    <p class="hero-sub">
+      Thème de veille portant sur les menaces informatiques actuelles, les bonnes pratiques de sécurité
+      et l'actualité cyber — sources : ANSSI, blogs spécialisés, alertes CVE.
+    </p>
+  </header>
+
+  <!-- WHY BOX -->
+  <div class="why-box">
+    <h3>✅ Pourquoi ce thème ?</h3>
+    <div class="why-list">
+      <span class="why-chip"><span class="dot"></span>Nombreuses sources disponibles</span>
+      <span class="why-chip"><span class="dot"></span>Actualité permanente</span>
+      <span class="why-chip"><span class="dot"></span>Applicable dans la vie réelle</span>
+      <span class="why-chip"><span class="dot"></span>Lié au métier SISR</span>
+      <span class="why-chip"><span class="dot"></span>Facile à comprendre et à expliquer</span>
+      <span class="why-chip"><span class="dot"></span>Sources officielles (ANSSI)</span>
+    </div>
+  </div>
+
+  <!-- TOPICS -->
+  <div class="section-label">Les grandes menaces suivies</div>
+  <div class="topics">
+
+    <!-- Phishing -->
+    <div class="topic-card">
+      <span class="topic-icon">🎣</span>
+      <div class="topic-name">Phishing</div>
+      <span class="level level-critical">Critique</span>
+      <p class="topic-def">
+        Technique d'<strong>hameçonnage</strong> par laquelle un attaquant usurpe l'identité
+        d'un organisme de confiance (banque, impôts, DHL…) via un e-mail ou SMS frauduleux
+        pour voler des identifiants ou données bancaires.
+      </p>
+      <div class="terms">
+        <div class="term"><span class="term-kw">Spear phishing :</span> attaque ciblée sur une personne précise</div>
+        <div class="term"><span class="term-kw">Smishing :</span> phishing par SMS</div>
+        <div class="term"><span class="term-kw">Vishing :</span> phishing par appel vocal</div>
+        <div class="term"><span class="term-kw">Indicateur :</span> URL suspecte, expéditeur inconnu</div>
+      </div>
+    </div>
+
+    <!-- Ransomware -->
+    <div class="topic-card">
+      <span class="topic-icon">🔒</span>
+      <div class="topic-name">Ransomware</div>
+      <span class="level level-high">Élevé</span>
+      <p class="topic-def">
+        Logiciel malveillant qui <strong>chiffre les fichiers</strong> d'une victime puis exige
+        une rançon (souvent en cryptomonnaie) pour les déchiffrer. Cible aussi bien les
+        particuliers que les hôpitaux ou entreprises.
+      </p>
+      <div class="terms">
+        <div class="term"><span class="term-kw">Chiffrement :</span> rend les données illisibles sans clé</div>
+        <div class="term"><span class="term-kw">Cryptolocker :</span> variante célèbre de ransomware</div>
+        <div class="term"><span class="term-kw">Double extorsion :</span> vol + chiffrement des données</div>
+        <div class="term"><span class="term-kw">Vecteur :</span> pièce jointe malveillante, RDP exposé</div>
+      </div>
+    </div>
+
+    <!-- Mots de passe -->
+    <div class="topic-card">
+      <span class="topic-icon">🔑</span>
+      <div class="topic-name">Mots de passe & Authentification</div>
+      <span class="level level-medium">Modéré</span>
+      <p class="topic-def">
+        La <strong>gestion des mots de passe</strong> est le premier rempart de la sécurité.
+        Les attaques par force brute, dictionnaire ou credential stuffing exploitent des mots
+        de passe faibles ou réutilisés sur plusieurs services.
+      </p>
+      <div class="terms">
+        <div class="term"><span class="term-kw">Brute force :</span> essai de toutes les combinaisons</div>
+        <div class="term"><span class="term-kw">MFA / 2FA :</span> double authentification (SMS, TOTP)</div>
+        <div class="term"><span class="term-kw">Gestionnaire :</span> KeePass, Bitwarden — stocke les mdp</div>
+        <div class="term"><span class="term-kw">Credential stuffing :</span> réutilisation de mdp volés</div>
+      </div>
+    </div>
+
+    <!-- Vulnérabilités -->
+    <div class="topic-card">
+      <span class="topic-icon">⚠️</span>
+      <div class="topic-name">Vulnérabilités & Mises à jour</div>
+      <span class="level level-low">Préventif</span>
+      <p class="topic-def">
+        Une <strong>vulnérabilité (CVE)</strong> est une faille de sécurité dans un logiciel.
+        Les mises à jour (<em>patches</em>) corrigent ces failles. Ne pas mettre à jour
+        expose le système à des exploits connus.
+      </p>
+      <div class="terms">
+        <div class="term"><span class="term-kw">CVE :</span> identifiant unique d'une vulnérabilité</div>
+        <div class="term"><span class="term-kw">Zero-day :</span> faille inconnue du fabricant, donc non patchée</div>
+        <div class="term"><span class="term-kw">Patch Tuesday :</span> mises à jour Microsoft chaque 2e mardi</div>
+        <div class="term"><span class="term-kw">CVSS :</span> score de criticité d'une vulnérabilité (0–10)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="glossary">
+    <div class="section-label">Lexique des termes techniques</div>
+    <div class="gloss-grid">
+
+      <div class="gloss-item">
+        <div class="gloss-word">Malware</div>
+        <div class="gloss-def">Logiciel malveillant conçu pour endommager un système, voler des données ou espionner (virus, cheval de Troie, spyware…).</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">Firewall</div>
+        <div class="gloss-def">Pare-feu : filtre le trafic réseau entrant/sortant selon des règles définies pour bloquer les connexions non autorisées.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">VPN</div>
+        <div class="gloss-def">Réseau Privé Virtuel : crée un tunnel chiffré entre l'utilisateur et le réseau, masquant le trafic des interceptions.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">DDoS</div>
+        <div class="gloss-def">Attaque par déni de service distribué : sature un serveur de requêtes depuis des milliers de machines pour le rendre inaccessible.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">Ingénierie sociale</div>
+        <div class="gloss-def">Manipulation psychologique d'une personne pour obtenir des informations confidentielles ou un accès non autorisé.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">Chiffrement</div>
+        <div class="gloss-def">Transformation des données en format illisible sans clé. Ex : AES-256, TLS pour les connexions HTTPS.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">SOC</div>
+        <div class="gloss-def">Centre des Opérations de Sécurité : équipe qui surveille en continu les systèmes d'information pour détecter les incidents.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">ANSSI</div>
+        <div class="gloss-def">Agence Nationale de la Sécurité des Systèmes d'Information — publie recommandations, alertes et guides officiels en France.</div>
+      </div>
+      <div class="gloss-item">
+        <div class="gloss-word">Pentest</div>
+        <div class="gloss-def">Test d'intrusion : simulation d'une attaque par un expert pour identifier les failles d'un système avant qu'un vrai attaquant ne les exploite.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BONNES PRATIQUES -->
+  <div class="practices">
+    <div class="section-label">Bonnes pratiques de cybersécurité</div>
+    <div class="practice-list">
+
+      <div class="practice-item">
+        <div class="practice-num">01</div>
+        <div class="practice-content">
+          <h4>Utiliser des mots de passe forts et uniques</h4>
+          <p>Minimum 12 caractères, majuscules, chiffres, symboles. Un mot de passe différent par service. Utiliser un gestionnaire (KeePass, Bitwarden) pour les mémoriser.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">02</div>
+        <div class="practice-content">
+          <h4>Activer l'authentification à deux facteurs (2FA / MFA)</h4>
+          <p>Même si le mot de passe est volé, le 2FA bloque l'accès. Préférer une application TOTP (Google Authenticator, Aegis) plutôt que le SMS, plus vulnérable au SIM swapping.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">03</div>
+        <div class="practice-content">
+          <h4>Mettre à jour régulièrement ses logiciels</h4>
+          <p>Les mises à jour corrigent les vulnérabilités connues (CVE). Activer les mises à jour automatiques sur Windows, les navigateurs et les applications critiques.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">04</div>
+        <div class="practice-content">
+          <h4>Ne jamais cliquer sur un lien suspect</h4>
+          <p>Vérifier l'URL avant de cliquer, ne jamais ouvrir une pièce jointe non attendue. En cas de doute, contacter directement l'organisme supposé expéditeur.</p>
+        </div>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">05</div>
+        <div class="practice-content">
+          <h4>Sauvegarder ses données (règle 3-2-1)</h4>
+          <p>3 copies des données, sur 2 supports différents, dont 1 hors site (cloud ou disque externe déconnecté). Protection indispensable contre les ransomwares.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOURCES / ARTICLES -->
+  <div class="sources">
+    <div class="section-label">Sources de veille — Articles & Liens</div>
+    <div class="source-grid">
+
+      <!-- ANSSI -->
+      <div class="source-card">
+        <span class="source-arrow">↗</span>
+        <div class="source-top">
+          <div class="source-logo">🇫🇷</div>
+          <div>
+            <div class="source-name">ANSSI</div>
+            <div class="source-type">Source officielle · Gouvernementale</div>
+          </div>
+        </div>
+        <p class="source-desc">Agence nationale française de cybersécurité. Publie des alertes, recommandations, guides et rapports sur les menaces actuelles.</p>
+        <div class="article-slots">
+          <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="article-slot filled">
+            <span class="slot-dot"></span>
+            <span class="slot-text">CERT-FR — Alertes et avis de sécurité</span>
+            <span class="slot-arrow">↗</span>
+          </a>
+          <a href="https://www.ssi.gouv.fr/particulier/" target="_blank" class="article-slot filled">
+            <span class="slot-dot"></span>
+            <span class="slot-text">Guide sécurité pour les particuliers</span>
+            <span class="slot-arrow">↗</span>
+          </a>
+          <a href="#" class="article-slot">
+            <span class="slot-dot"></span>
+            <span class="slot-text">→ Ajouter un article ici</span>
+            <span class="slot-arrow">+</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cybermalveillance -->
+      <div class="source-card">
+        <span class="source-arrow">↗</span>
+        <div class="source-top">
+          <div class="source-logo">🛡️</div>
+          <div>
+            <div class="source-name">Cybermalveillance.gouv.fr</div>
+            <div class="source-type">Source officielle · Prévention</div>
+          </div>
+        </div>
+        <p class="source-desc">Plateforme gouvernementale d'assistance aux victimes et de sensibilisation. Fiches pratiques sur chaque type d'attaque.</p>
+        <div class="article-slots">
+          <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/conseils-pratiques/phishing" target="_blank" class="article-slot filled">
+            <span class="slot-dot"></span>
+            <span class="slot-text">Comprendre et éviter le phishing</span>
+            <span class="slot-arrow">↗</span>
+          </a>
+          <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/conseils-pratiques/ransomware" target="_blank" class="article-slot filled">
+            <span class="slot-dot"></span>
+            <span class="slot-text">Les ransomwares — que faire ?</span>
+            <span class="slot-arrow">↗</span>
+          </a>
+          <a href="#" class="article-slot">
+            <span class="slot-dot"></span>
+            <span class="slot-text">→ Ajouter un article ici</span>
+            <span class="slot-arrow">+</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Le Monde Informatique -->
+      <div class="source-card">
+        <span class="source-arrow">↗</span>
+        <div class="source-top">
+          <div class="source-logo">📰</div>
+          <div>
+            <div class="source-name">Le Monde Informatique</div>
+            <div class="source-type">Blog spécialisé · Actualité tech</div>
+          </div>
+        </div>
+        <p class="source-desc">Actualités quotidiennes sur la sécurité informatique, les cyberattaques, les entreprises et les nouvelles technologies.</p>
+        <div class="article-slots">
+          <a href="https://www.lemondeinformatique.fr/actualites/securite.html" target="_blank" class="article-slot filled">
+            <span class="slot-dot"></span>
+            <span class="slot-text">Rubrique Sécurité — actualités</span>
+            <span class="slot-arrow">↗</span>
+          </a>
+          <a href="#" class="article-slot">
+            <span class="slot-dot"></span>
+            <span class="slot-text">→ Ajouter un article ici</span>
+            <span class="slot-arrow">+</span>
+          </a>
+          <a href="#" class="article-slot">
+            <span class="slot-dot"></span>
+            <span class="slot-text">→ Ajouter un article ici</span>
+            <span class="slot-arrow">+</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Zataz -->
+      <div class="source-card">
+        <span class="source-arrow">↗</span>
+        <div class="source-top">
+          <div class="source-logo">🔍</div>
+          <div>
+            <div class="source-name">Zataz.com</div>
+            <div class="source-type">Blog spécialisé · Cybercriminalité</div>
+          </div>
+        </div>
+        <p class="source-desc">Blog français dédié à la cybersécurité et à la cybercriminalité. Couvre les fuites de données, les attaques et les nouvelles menaces.</p>
+        <div class="article-slots">
+          <a href="https://www.zataz.com/" target="_blank" class="article-slot filled">
+            <span class="slot-dot"></span>
+            <span class="slot-text">Zataz — Dernières actualités cyber</span>
+            <span class="slot-arrow">↗</span>
+          </a>
+          <a href="#" class="article-slot">
+            <span class="slot-dot"></span>
+            <span class="slot-text">→ Ajouter un article ici</span>
+            <span class="slot-arrow">+</span>
+          </a>
+          <a href="#" class="article-slot">
+            <span class="slot-dot"></span>
+            <span class="slot-text">→ Ajouter un article ici</span>
+            <span class="slot-arrow">+</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ACTUALITÉS / TIMELINE -->
+  <div class="actu">
+    <div class="section-label">Exemples d'actualités suivies</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-date">2024 — Attaque notable</div>
+          <div class="tl-title">Cyberattaque contre des hôpitaux français</div>
+          <p class="tl-desc">Plusieurs établissements de santé victimes de ransomwares. Les systèmes informatiques ont été chiffrés, paralysant l'accès aux dossiers patients et forçant un retour au papier.</p>
+          <a href="#" class="tl-link">→ Voir l'article source</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-date">2024 — Fuite de données</div>
+          <div class="tl-title">Fuite massive de données personnelles en France</div>
+          <p class="tl-desc">Des millions de numéros de sécurité sociale et informations médicales exposés suite à une intrusion chez des prestataires de l'Assurance Maladie.</p>
+          <a href="#" class="tl-link">→ Voir l'article source</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-date">2025 — Alerte ANSSI</div>
+          <div class="tl-title">Campagne de phishing ciblant les entreprises françaises</div>
+          <p class="tl-desc">L'ANSSI publie une alerte sur une campagne d'hameçonnage sophistiquée usurpant l'identité d'administrations françaises pour dérober des identifiants professionnels.</p>
+          <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="tl-link">→ Voir sur CERT-FR</a>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-date">À compléter</div>
+          <div class="tl-title">→ Ajouter une actualité ici</div>
+          <p class="tl-desc">Espace réservé pour une actualité que vous avez suivie. Source, date, impact, et lien vers l'article original.</p>
+          <a href="#" class="tl-link">→ Lien article</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>BTS SIO — Option <strong>SISR</strong> &nbsp;·&nbsp; Veille Technologique &nbsp;·&nbsp; Thème : <strong>Cybersécurité au quotidien</strong></p>
+  </footer>
+
+</div>
+</body>
+</html>

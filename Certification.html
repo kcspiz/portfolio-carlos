@@ -1,105 +1,579 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certification - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { background: #0a0a1a; color: #e5e7eb; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certifications — Carlos Tetchom Kenmoe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --blue:   #9BC0EE;
+      --blue2:  #5B8FC9;
+      --gold:   #F0B429;
+      --green:  #28c840;
+      --red:    #ef4444;
+      --bg:     #060612;
+      --card:   #0c0c20;
+      --s2:     #0f0f28;
+      --border: rgba(155,192,238,0.12);
+      --text:   #e2e8f0;
+      --muted:  #6b7a8d;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; overflow-x: hidden;
+    }
+
+    /* dot grid */
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(rgba(155,192,238,0.06) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 2rem;
+      background: rgba(6,6,18,0.92); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.2s;
+    }
+    .logo {
+      font-family: 'Space Mono', monospace; font-weight: 700;
+      font-size: 1.1rem; letter-spacing: 3px; color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-r { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
+    .nav-r a {
+      color: var(--muted); text-decoration: none; font-size: 0.8rem;
+      font-weight: 600; padding: 0.38rem 0.7rem; border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-r a:hover { color: var(--blue); background: rgba(155,192,238,0.07); }
+    .nd { position: relative; }
+    .nd > button {
+      background: none; border: none; cursor: pointer; color: var(--muted);
+      font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 600;
+      padding: 0.38rem 0.7rem; border-radius: 4px;
+      display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s;
+    }
+    .nd:hover > button { color: var(--blue); }
+    .ndm {
+      position: absolute; top: calc(100% + 5px); left: 0;
+      min-width: 190px; background: var(--s2);
+      border: 1px solid var(--border); border-radius: 8px; padding: 0.3rem;
+      opacity: 0; pointer-events: none; transform: translateY(-5px);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .nd:hover .ndm { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .ndm a {
+      display: block; padding: 0.45rem 0.7rem; color: var(--text);
+      text-decoration: none; font-size: 0.8rem; border-radius: 5px;
+      transition: background 0.12s, color 0.12s;
+    }
+    .ndm a:hover { background: rgba(155,192,238,0.08); color: var(--blue); }
+    .ndm a.al { color: var(--blue); }
+    #mt {
+      display: none; background: none; border: 1px solid var(--border);
+      color: var(--text); padding: 0.35rem 0.5rem; border-radius: 5px; cursor: pointer;
+    }
+    #mm {
+      display: none; position: fixed; top: 60px; left: 0; right: 0;
+      background: rgba(6,6,18,0.97); border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem; z-index: 99; flex-direction: column; gap: 0.35rem;
+    }
+    #mm.open { display: flex; }
+    #mm a {
+      color: var(--text); text-decoration: none; padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.85rem;
+    }
+    #mm a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      padding: 7rem 2rem 3rem; text-align: center;
+    }
+    .hero-label {
+      font-family: 'Space Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 1.1rem; display: inline-block;
+      animation: fu 0.6s 0.1s both;
+    }
+    .hero-h1 {
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.9rem;
+      animation: fu 0.6s 0.25s both;
+    }
+    .hero-h1 em { font-style: normal; color: var(--blue); }
+    .hero-p {
+      color: var(--muted); font-size: 0.9rem; line-height: 1.8;
+      max-width: 480px; margin: 0 auto;
+      animation: fu 0.6s 0.4s both;
+    }
+    @keyframes fu { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+
+    /* ── MAIN ── */
+    main {
+      position: relative; z-index: 1;
+      max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem;
+    }
+
+    /* ── CERT CARDS ── */
+    .cert-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      display: grid; grid-template-columns: 6px 1fr;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease,
+                  border-color 0.25s, box-shadow 0.25s;
+    }
+    .cert-card.on { opacity: 1; transform: none; }
+    .cert-card:hover { border-color: rgba(155,192,238,0.3); transform: translateX(4px); }
+
+    .cert-stripe { width: 6px; }
+
+    /* EBIOS — bleu français */
+    .ebios .cert-stripe { background: linear-gradient(to bottom, #1a4f8a, #2d6db8); }
+    .ebios:hover { box-shadow: -5px 0 24px rgba(45,109,184,0.12); border-color: rgba(45,109,184,0.4); }
+
+    /* ANSSI — bleu marine tricolore */
+    .anssi .cert-stripe { background: linear-gradient(to bottom, #002395, #ED2939); }
+    .anssi:hover { box-shadow: -5px 0 24px rgba(0,35,149,0.12); border-color: rgba(0,35,149,0.4); }
+
+    .cert-body { padding: 1.6rem 1.7rem; }
+
+    /* Header de la carte */
+    .cert-head {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem;
+    }
+    .cert-head-left { display: flex; align-items: flex-start; gap: 1.1rem; }
+
+    .cert-logo-wrap {
+      width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .ebios .cert-logo-wrap { background: rgba(45,109,184,0.12); border: 1px solid rgba(45,109,184,0.25); color: #5b8fd4; }
+    .anssi .cert-logo-wrap { background: rgba(0,35,149,0.1); border: 1px solid rgba(0,35,149,0.25); color: #4a6bc4; }
+
+    .cert-title-block {}
+    .cert-org {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.25rem;
+    }
+    .cert-name {
+      font-size: 1.08rem; font-weight: 800; line-height: 1.2;
+      margin-bottom: 0.15rem;
+    }
+    .cert-full {
+      font-size: 0.72rem; color: var(--muted); line-height: 1.5;
+    }
+
+    /* Badge statut */
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: 'Space Mono', monospace; font-size: 0.58rem;
+      letter-spacing: 0.06em; padding: 0.22rem 0.6rem; border-radius: 100px;
+      flex-shrink: 0; white-space: nowrap;
+      background: rgba(40,200,64,0.1); border: 1px solid rgba(40,200,64,0.25);
+      color: var(--green);
+    }
+    .cert-badge::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+    }
+
+    /* Séparateur */
+    .cert-divider {
+      height: 1px; background: var(--border); margin: 1rem 0;
+    }
+
+    /* Description */
+    .cert-desc {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.8;
+      margin-bottom: 1.1rem;
+    }
+    .cert-desc strong { color: var(--text); font-weight: 600; }
+
+    /* Points clés */
+    .cert-points {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.5rem; margin-bottom: 1.2rem;
+    }
+    .cert-point {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .cert-point i { font-size: 0.7rem; margin-top: 2px; flex-shrink: 0; }
+    .ebios .cert-point i { color: #5b8fd4; }
+    .anssi .cert-point i { color: #4a6bc4; }
+
+    /* Tags */
+    .cert-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1.2rem; }
+    .ctag {
+      font-family: 'Space Mono', monospace; font-size: 0.58rem;
+      padding: 0.18rem 0.45rem; border-radius: 3px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* Pied de carte */
+    .cert-foot {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .cert-meta {
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .cert-meta-item {
+      display: flex; flex-direction: column; gap: 0.1rem;
+    }
+    .cml { font-family: 'Space Mono', monospace; font-size: 0.55rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .cmv { font-size: 0.78rem; font-weight: 600; }
+
+    .cert-btns { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .cbtn {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.72rem; font-family: 'Syne', sans-serif; font-weight: 600;
+      padding: 0.32rem 0.7rem; border-radius: 5px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--muted); cursor: pointer; text-decoration: none;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .cbtn:hover { border-color: var(--blue); color: var(--blue); background: rgba(155,192,238,0.05); }
+    .ebios .cbtn.pri { background: #2d6db8; border-color: #2d6db8; color: #fff; }
+    .ebios .cbtn.pri:hover { background: #3a80cc; border-color: #3a80cc; }
+    .anssi .cbtn.pri { background: #002395; border-color: #002395; color: #fff; }
+    .anssi .cbtn.pri:hover { background: #0030c0; border-color: #0030c0; }
+
+    /* ── CONTEXTE BAS ── */
+    .context-block {
+      margin-top: 3rem; padding: 1.3rem 1.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.55s 0.2s ease, transform 0.55s 0.2s ease;
+    }
+    .context-block.on { opacity: 1; transform: none; }
+    .ctx-head {
+      display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem;
+    }
+    .ctx-head i { color: var(--blue); font-size: 0.9rem; }
+    .ctx-head span { font-weight: 700; font-size: 0.88rem; }
+    .ctx-text { font-size: 0.8rem; color: var(--muted); line-height: 1.8; }
+    .ctx-text strong { color: var(--text); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 1.5rem 2rem;
+      text-align: center; font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; color: var(--muted);
+      position: relative; z-index: 1;
+    }
+
+    @media (max-width: 860px) { .nav-r { display: none; } #mt { display: block; } }
+    @media (max-width: 580px) {
+      .cert-points { grid-template-columns: 1fr; }
+      .cert-head { flex-direction: column; }
+      .cert-foot { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
-<body class="min-h-screen">
-    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-md fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <span class="text-blue-400 font-bold text-xl">CTK</span>
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="index.html" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Accueil</a>
-                            <a href="index.html#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">À Propos</a>
-                            <a href="index.html#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Compétences</a>
+<body>
 
-                            <div class="relative group">
-                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white inline-flex items-center">
-                                    Mes Projets <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                                </button>
-                                <div class="absolute left-0 mt-2 w-56 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
-                                    <a href="projets en entreprise.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en entreprise</a>
-                                    <a href="projets en formation .html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Projets en formation</a>
-                                </div>
-                            </div>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="logo">CTK</a>
+  <ul class="nav-r">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="index.html#about">À Propos</a></li>
+    <li><a href="index.html#skills">Parcours</a></li>
+    <li class="nd">
+      <button>Mes Projets <i class="fas fa-chevron-down" style="font-size:.52em"></i></button>
+      <div class="ndm">
+        <a href="projets_en_entreprise.html">En entreprise</a>
+        <a href="projets_en_formation.html">En formation</a>
+      </div>
+    </li>
+    <li class="nd">
+      <button style="color:var(--blue)">Autres <i class="fas fa-chevron-down" style="font-size:.52em"></i></button>
+      <div class="ndm">
+        <a href="Certification.html" class="al">Certifications</a>
+        <a href="Epreuve_E6.html">Épreuve E6</a>
+      </div>
+    </li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button id="mt" onclick="document.getElementById('mm').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+</nav>
+<div id="mm">
+  <a href="index.html">Accueil</a>
+  <a href="projets_en_formation.html">Projets en formation</a>
+  <a href="projets_en_entreprise.html">Projets en entreprise</a>
+  <a href="Certification.html" style="color:var(--blue)">Certifications</a>
+  <a href="Epreuve_E6.html">Épreuve E6</a>
+  <a href="index.html#contact">Contact</a>
+</div>
 
-                            <div class="relative group">
-                                <button class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white inline-flex items-center hover:text-white">
-                                    Autres <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                                </button>
-                                <div class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto z-50">
-                                    <a href="Autres.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Page Autres</a>
-                                    <a href="Certification.html" class="block px-4 py-2 text-sm text-white bg-gray-700">Certification</a>
-                                    <a href="Epreuve E6.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">Épreuve E6</a>
-                                </div>
-                            </div>
-                            <a href="index.html#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Contact</a>
-                        </div>
-                    </div>
-                </div>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">Certifications obtenues</div>
+  <h1 class="hero-h1">Mes <em>certifications</em></h1>
+  <p class="hero-p">
+    Deux certifications françaises en cybersécurité, délivrées par des organismes
+    de référence nationaux — obtenues en parallèle de ma formation BTS SIO.
+  </p>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="cert-list">
+
+    <!-- ════════════════════════════
+         CERTIF 1 — EBIOS Risk Manager
+    ════════════════════════════ -->
+    <div class="cert-card ebios" id="c1">
+      <div class="cert-stripe"></div>
+      <div class="cert-body">
+
+        <div class="cert-head">
+          <div class="cert-head-left">
+            <div class="cert-logo-wrap">
+              <i class="fas fa-shield-virus"></i>
             </div>
-            <div class="-mr-2 flex md:hidden">
-                <button id="mobileMenuButton" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+            <div class="cert-title-block">
+              <div class="cert-org">Club EBIOS · ANSSI</div>
+              <div class="cert-name">MOOC EBIOS Risk Manager</div>
+              <div class="cert-full">Expression des Besoins et Identification des Objectifs de Sécurité</div>
             </div>
+          </div>
+          <span class="cert-badge">Obtenu</span>
         </div>
-    </nav>
 
-        <!-- Mobile menu -->
-        <div class="hidden md:hidden" id="mobileMenu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Accueil</a>
-                <a href="index.html#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">À Propos</a>
-                <a href="index.html#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Compétences</a>
-                <div class="border-t border-gray-700"></div>
-                <div class="pl-2">
-                    <a href="projets en entreprise.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en entreprise</a>
-                    <a href="projets en formation .html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projets en formation</a>
-                </div>
-                <div class="border-t border-gray-700"></div>
-                <div class="pl-2">
-                    <a href="Autres.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600">Page Autres</a>
-                    <a href="Certification.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700">Certification</a>
-                    <a href="Epreuve E6.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Épreuve E6</a>
-                </div>
-                <a href="index.html#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
-            </div>
+        <div class="cert-divider"></div>
+
+        <p class="cert-desc">
+          Formation en ligne certifiante portant sur la méthode <strong>EBIOS Risk Manager</strong>,
+          référentiel officiel d'analyse de risques cybersécurité publié par l'<strong>ANSSI</strong>
+          et recommandé au sein des organismes publics et privés en France.
+          Ce MOOC couvre l'intégralité du cycle d'analyse de risques, de l'identification
+          des valeurs métier jusqu'à l'élaboration du plan de traitement.
+        </p>
+
+        <div class="cert-points">
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Cadre réglementaire et contexte cyber français</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Identification des valeurs métier et biens supports</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Analyse des sources de risques et scénarios stratégiques</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Élaboration du plan de traitement du risque</span>
+          </div>
         </div>
 
-    <main class="pt-32 max-w-4xl mx-auto px-4">
-        <h1 class="text-3xl font-bold mb-6">Certifications</h1>
-        <section class="bg-gray-800 p-6 rounded">
-            <p class="text-gray-300 mb-4">Liste et preuves des certifications obtenues.</p>
-            <ul class="list-disc pl-6 text-gray-300">
-                <li>Certification 1 — Détails / fichier</li>
-                <li>Certification 2 — Détails / fichier</li>
-            </ul>
-        </section>
-    </main>
+        <div class="cert-tags">
+          <span class="ctag">Analyse de risques</span>
+          <span class="ctag">Cybersécurité</span>
+          <span class="ctag">EBIOS RM</span>
+          <span class="ctag">ANSSI</span>
+          <span class="ctag">Gouvernance SI</span>
+          <span class="ctag">Conformité</span>
+        </div>
 
-    <script>
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-    </script>
+        <div class="cert-foot">
+          <div class="cert-meta">
+            <div class="cert-meta-item">
+              <span class="cml">Émetteur</span>
+              <span class="cmv">Club EBIOS · ANSSI</span>
+            </div>
+            <div class="cert-meta-item">
+              <span class="cml">Format</span>
+              <span class="cmv">MOOC en ligne</span>
+            </div>
+            <div class="cert-meta-item">
+              <span class="cml">Domaine</span>
+              <span class="cmv">Cybersécurité / GRC</span>
+            </div>
+          </div>
+          <div class="cert-btns">
+            <a href="https://www.clubebios.org/mooc" target="_blank" class="cbtn">
+              <i class="fas fa-external-link-alt"></i> Club EBIOS
+            </a>
+            <a href="pdfs/MOOC.pdf" target="_blank" class="cbtn pri">
+              <i class="fas fa-file-pdf"></i> Voir le certificat
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
+         CERTIF 2 — SecNumacadémie ANSSI
+    ════════════════════════════ -->
+    <div class="cert-card anssi" id="c2">
+      <div class="cert-stripe"></div>
+      <div class="cert-body">
+
+        <div class="cert-head">
+          <div class="cert-head-left">
+            <div class="cert-logo-wrap">
+              <i class="fas fa-university"></i>
+            </div>
+            <div class="cert-title-block">
+              <div class="cert-org">ANSSI — Agence nationale de la sécurité des systèmes d'information</div>
+              <div class="cert-name">SecNumacadémie</div>
+              <div class="cert-full">Sensibilisation à la cybersécurité — Plateforme officielle ANSSI</div>
+            </div>
+          </div>
+          <span class="cert-badge">Obtenu</span>
+        </div>
+
+        <div class="cert-divider"></div>
+
+        <p class="cert-desc">
+          MOOC officiel de l'<strong>ANSSI</strong> (Agence nationale de la sécurité des systèmes
+          d'information) dispensé sur la plateforme <strong>SecNumacadémie</strong>.
+          Cette formation couvre les fondamentaux de la cybersécurité à destination des professionnels
+          et futurs techniciens IT, avec une approche à la fois théorique et opérationnelle.
+        </p>
+
+        <div class="cert-points">
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Sécurité des réseaux et des systèmes d'exploitation</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Cryptographie et mécanismes d'authentification</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Gestion des identités et des droits d'accès</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Sécurité du poste de travail et mobilité</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Réponse aux incidents et continuité d'activité</span>
+          </div>
+          <div class="cert-point">
+            <i class="fas fa-check-circle"></i>
+            <span>Sensibilisation aux menaces et bonnes pratiques</span>
+          </div>
+        </div>
+
+        <div class="cert-tags">
+          <span class="ctag">Cybersécurité</span>
+          <span class="ctag">ANSSI</span>
+          <span class="ctag">Réseaux</span>
+          <span class="ctag">Cryptographie</span>
+          <span class="ctag">Gestion des accès</span>
+          <span class="ctag">Incidents</span>
+          <span class="ctag">Sécurité poste</span>
+        </div>
+
+        <div class="cert-foot">
+          <div class="cert-meta">
+            <div class="cert-meta-item">
+              <span class="cml">Émetteur</span>
+              <span class="cmv">ANSSI</span>
+            </div>
+            <div class="cert-meta-item">
+              <span class="cml">Plateforme</span>
+              <span class="cmv">SecNumacadémie</span>
+            </div>
+            <div class="cert-meta-item">
+              <span class="cml">Domaine</span>
+              <span class="cmv">Cybersécurité</span>
+            </div>
+          </div>
+          <div class="cert-btns">
+            <a href="https://secnumacademie.gouv.fr" target="_blank" class="cbtn">
+              <i class="fas fa-external-link-alt"></i> SecNumacadémie
+            </a>
+            <a href="pdfs/ANSSI.pdf" target="_blank" class="cbtn pri">
+              <i class="fas fa-file-pdf"></i> Voir le certificat
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bloc contexte -->
+  <div class="context-block" id="ctx">
+    <div class="ctx-head">
+      <i class="fas fa-info-circle"></i>
+      <span>Pourquoi ces certifications ?</span>
+    </div>
+    <p class="ctx-text">
+      En option <strong>SISR</strong> du BTS SIO, la cybersécurité est au cœur des compétences attendues.
+      Ces deux certifications complètent ma formation technique en y ajoutant une dimension
+      <strong>gouvernance et analyse de risques</strong> (EBIOS) ainsi qu'une maîtrise des
+      <strong>fondamentaux théoriques de la sécurité</strong> (SecNumacadémie ANSSI).
+      Toutes deux sont délivrées par des organismes français reconnus par l'État, ce qui leur confère
+      un poids réel dans le domaine de la cybersécurité en France.
+    </p>
+  </div>
+
+</main>
+
+<footer>© 2025 Carlos Tetchom Kenmoe — BTS SIO SISR · Certifications</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow =
+      window.scrollY > 8 ? '0 2px 20px rgba(0,0,0,0.5)' : 'none';
+  });
+
+  // Reveal observer
+  const cards = [
+    { el: document.getElementById('c1'), delay: 0 },
+    { el: document.getElementById('c2'), delay: 120 },
+    { el: document.getElementById('ctx'), delay: 0 },
+  ];
+
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const item = cards.find(c => c.el === entry.target);
+        const d = item ? item.delay : 0;
+        setTimeout(() => entry.target.classList.add('on'), d);
+        ro.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cards.forEach(c => ro.observe(c.el));
+</script>
 </body>
 </html>
-
