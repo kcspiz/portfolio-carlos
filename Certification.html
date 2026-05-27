@@ -53,6 +53,21 @@
       font-size: 1.1rem; letter-spacing: 3px; color: var(--accent);
       text-decoration: none;
     }
+    .nav-link {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .nav-link:hover {
+      color: var(--accent);
+      background: rgba(155,192,238,0.08);
+      border-color: var(--accent);
+    }
     .nav-r { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
     .nav-r a {
       color: var(--muted); text-decoration: none; font-size: 0.8rem;
@@ -301,33 +316,14 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="logo">CTK</a>
-  <ul class="nav-r">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="index.html#about">À Propos</a></li>
-    <li><a href="index.html#skills">Parcours</a></li>
-    <li class="nd">
-      <button>Mes Projets <i class="fas fa-chevron-down" style="font-size:.52em"></i></button>
-      <div class="ndm">
-        <a href="projets_en_entreprise.html">En entreprise</a>
-        <a href="projets_en_formation.html">En formation</a>
-      </div>
-    </li>
-    <li class="nd">
-      <button style="color:var(--accent)">Autres <i class="fas fa-chevron-down" style="font-size:.52em"></i></button>
-      <div class="ndm">
-        <a href="Certification.html" class="al">Certifications</a>
-        <a href="Epreuve_E6.html">Épreuve E6</a>
-      </div>
-    </li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-  <button id="mt" onclick="document.getElementById('mm').classList.toggle('open')"><i class="fas fa-bars"></i></button>
-</nav>
+  <a href="mon_histoire.html" class="nav-link">Mon histoire</a>
+  </nav>
 <div id="mm">
   <a href="index.html">Accueil</a>
   <a href="projets_en_formation.html">Projets en formation</a>
   <a href="projets_en_entreprise.html">Projets en entreprise</a>
   <a href="Certification.html" style="color:var(--accent)">Certifications</a>
+  <a href="mon_histoire.html">Mon histoire</a>
   <a href="Epreuve_E6.html">Épreuve E6</a>
   <a href="index.html#contact">Contact</a>
 </div>
@@ -424,7 +420,7 @@
             <a href="https://www.clubebios.org/mooc" target="_blank" class="cbtn">
               <i class="fas fa-external-link-alt"></i> Club EBIOS
             </a>
-            <a href="pdfs/MOOC.pdf" target="_blank" class="cbtn pri">
+            <a href="MOOC.pdf" target="_blank" class="cbtn pri">
               <i class="fas fa-file-pdf"></i> Voir le certificat
             </a>
           </div>
@@ -519,7 +515,7 @@
             <a href="https://secnumacademie.gouv.fr" target="_blank" class="cbtn">
               <i class="fas fa-external-link-alt"></i> SecNumacadémie
             </a>
-            <a href="pdfs/ANSSI.pdf" target="_blank" class="cbtn pri">
+            <a href="ANSSI.pdf" target="_blank" class="cbtn pri">
               <i class="fas fa-file-pdf"></i> Voir le certificat
             </a>
           </div>

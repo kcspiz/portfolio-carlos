@@ -93,6 +93,21 @@
       box-shadow: 0 0 16px rgba(155,192,238,0.15);
     }
 
+    .nav-btn {
+      position: fixed; top: 1.5rem; right: 1.5rem; z-index: 500;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em;
+      color: var(--muted); text-decoration: none;
+      background: rgba(6,6,18,0.85); backdrop-filter: blur(14px);
+      border: 1px solid var(--border); padding: 0.45rem 1rem;
+      border-radius: 100px; transition: color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-btn:hover {
+      color: var(--accent); border-color: var(--accent);
+      transform: translateX(4px);
+      box-shadow: 0 0 16px rgba(155,192,238,0.15);
+    }
+
     /* ── HERO HEADER ── */
     .hero {
       position: relative; z-index: 1;
@@ -386,6 +401,9 @@
 <a href="index.html" class="back-btn">
   <i class="fas fa-arrow-left"></i> Retour au portfolio
 </a>
+<a href="mon_histoire.html" class="nav-btn">
+  <i class="fas fa-arrow-left"></i> Mon histoire
+</a>
 
 <!-- ── HERO ── -->
 <header class="hero">
@@ -397,7 +415,7 @@
   <div class="hero-stats">
     <div class="stat"><strong>3</strong><span>Catégories</span></div>
     <div class="stat-sep"></div>
-    <div class="stat"><strong>7</strong><span>Procédures</span></div>
+    <div class="stat"><strong>6</strong><span>Procédures</span></div>
     <div class="stat-sep"></div>
     <div class="stat"><strong>2024–2026</strong><span>BTS SIO</span></div>
   </div>
@@ -425,7 +443,7 @@
         <div class="card-desc">Infrastructure réseau, virtualisation et pare-feu</div>
         <div class="procedures-list">
          
-          <a href="reseaux/pfsense.html" class="procedure-link">
+          <a href="pfsense.html" class="procedure-link">
             <span class="link-icon"><i class="fas fa-fire"></i></span>
             <span class="link-label">pfSense Firewall</span>
             <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
@@ -445,35 +463,29 @@
         <div class="card-title">Systèmes</div>
         <div class="card-desc">Windows Server, Linux, VLAN et VoIP</div>
         <div class="procedures-list">
-          <a href="systemes/administration.html" class="procedure-link">
-            <span class="link-icon"><i class="fas fa-cogs"></i></span>
-            <span class="link-label">Administration Systèmes</span>
-            <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
-            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
-          </a>
-          <a href="pdf porfolio/ADDS.pdf" class="procedure-link" data-pdf="pdf porfolio/ADDS.pdf">
+          <a href="ADDS.pdf" class="procedure-link" data-pdf="pADDS.pdf">
             <span class="link-icon"><i class="fab fa-windows"></i></span>
             <span class="link-label">Windows Server &amp; AD</span>
             <span class="link-arrow"><i class="fab fa-arrow-right"></i></span>            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>          </a>
-          <a href="pdf porfolio/DNS.pdf" class="procedure-link" data-pdf="pdf porfolio/DNS.pdf">
+          <a href="DNS.pdf" class="procedure-link" data-pdf="DNS.pdf">
             <span class="link-icon"><i class="fab fa-windows"></i></span>
             <span class="link-label">DNS</span>
             <span class="link-arrow"><i class="fab fa-arrow-right"></i></span>
             <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
           </a>
-          <a href="pdf porfolio/GPO.pdf" class="procedure-link" data-pdf="pdf porfolio/GPO.pdf">
+          <a href="GPO.pdf" class="procedure-link" data-pdf="GPO.pdf">
             <span class="link-icon"><i class="fab fa-windows"></i></span>
             <span class="link-label">GPO</span>
             <span class="link-arrow"><i class="fab fa-arrow-right"></i></span>
             <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
           </a>
-          <a href="pdf porfolio/GLPI.pdf" class="procedure-link" data-pdf="pdf porfolio/GLPI.pdf">
+          <a href="GLPI.pdf" class="procedure-link" data-pdf="GLPI.pdf">
             <span class="link-icon"><i class="fab fa-linux"></i></span>
             <span class="link-label">Linux Debian &amp; GLPI</span>
             <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
             <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
           </a>
-          <a href="pdf porfolio/Vlan.pdf" class="procedure-link" data-pdf="pdf porfolio/Vlan.pdf">
+          <a href="Vlan.pdf" class="procedure-link" data-pdf="Vlan.pdf">
             <span class="link-icon"><i class="fas fa-network-wired"></i></span>
             <span class="link-label">VLAN </span>
             <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>

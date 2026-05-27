@@ -94,6 +94,28 @@
       box-shadow: 0 0 16px rgba(155,192,238,0.15);
     }
 
+    .nav-btn {
+      position: fixed;
+      top: 1.5rem; right: 1.5rem;
+      z-index: 500;
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      background: rgba(6,6,18,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-btn:hover {
+      color: var(--accent); border-color: var(--accent);
+      transform: translateX(4px);
+      box-shadow: 0 0 16px rgba(155,192,238,0.15);
+    }
+
     /* ─── HERO ─── */
     .hero {
       position: relative; z-index: 1;
@@ -447,6 +469,9 @@
 <a href="index.html" class="back-btn">
   <i class="fas fa-arrow-left"></i> Retour au portfolio
 </a>
+<a href="mon_histoire.html" class="nav-btn">
+  <i class="fas fa-arrow-left"></i> Mon histoire
+</a>
 
 <!-- ─── HERO ─── -->
 <section class="hero">
@@ -537,7 +562,7 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/MDT.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="MDT.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
@@ -565,12 +590,12 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/Intra.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="Intra.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
 
-      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+      <div class="project-card cat-system reveal-card" data-pdf="ADDS.pdf">
         <div class="project-visual bg-system">🗄️</div>
         <div class="project-body">
           <div class="project-meta">
@@ -592,14 +617,14 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/Outlook.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="Outlook.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
 
      
 
-      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
+      <div class="project-card cat-system reveal-card" data-pdf="ADDS.pdf">
         <div class="project-visual bg-system">🗄️</div>
         <div class="project-body">
           <div class="project-meta">
@@ -621,7 +646,7 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/Profil.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="Profil.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
@@ -650,14 +675,14 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/Borne_wifi.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="Borne_wifi.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
 
       <!-- Scripts -->
       <!-- Schéma réseau -->
-      <div class="project-card cat-network reveal-card" data-pdf="pdf porfolio/guide.pdf">
+      <div class="project-card cat-network reveal-card" data-pdf="guide.pdf">
         <div class="project-visual bg-network">🗺️</div>
         <div class="project-body">
           <div class="project-meta">
@@ -679,12 +704,12 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="images/SHreseau.jpg" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="SHreseau.jpg" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
 
-      <div class="project-card cat-script reveal-card" data-pdf="pdf porfolio/guide.pdf">
+      <div class="project-card cat-script reveal-card" data-pdf="guide.pdf">
         <div class="project-visual bg-script">⚙️</div>
         <div class="project-body">
           <div class="project-meta">
@@ -705,11 +730,25 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/Chocolatey.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="Chocolatey.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <div class="project-images-row" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; padding:2rem 0;">
+      <div class="image-card reveal-card" style="background:var(--surface2); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden;">
+        <img src="3.png" alt="Image 3" style="width:100%; display:block;">
+       
+      </div>
+      <div class="image-card reveal-card" style="background:var(--surface2); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden;">
+        <img src="img_baie.jpg" alt="Image baie réseau" style="width:100%; display:block;">
+        <div style="padding:1rem;">
+          <div style="font-weight:700; margin-bottom:.35rem;">Image img_baie.jpg</div>
+          <div style="color:var(--muted); font-size:.95rem; line-height:1.4;">Illustration de la baie réseau en lien avec l’activité IEF2I.</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -733,7 +772,7 @@
     <div class="projects-grid">
 
       <!-- Diagnostic pannes -->
-      <div class="project-card cat-support reveal-card" data-pdf="pdf porfolio/rapport_stage_reparateurs.pdf">
+      <div class="project-card cat-support reveal-card" data-pdf="rapport_stage_reparateurs.pdf">
         <div class="project-visual bg-support">🔍</div>
         <div class="project-body">
           <div class="project-meta">
@@ -761,7 +800,7 @@
       </div>
 
       <!-- Récupération données -->
-      <div class="project-card cat-security reveal-card" data-pdf="pdf porfolio/rapport_stage_reparateurs.pdf">
+      <div class="project-card cat-security reveal-card" data-pdf="rapport_stage_reparateurs.pdf">
         <div class="project-visual bg-security">💾</div>
         <div class="project-body">
           <div class="project-meta">
@@ -789,7 +828,7 @@
       </div>
 
       <!-- Remise en état -->
-      <div class="project-card cat-support reveal-card" data-pdf="pdf porfolio/rapport_stage_reparateurs.pdf">
+      <div class="project-card cat-support reveal-card" data-pdf="rapport_stage_reparateurs.pdf">
         <div class="project-visual bg-support">🖥️</div>
         <div class="project-body">
           <div class="project-meta">
@@ -816,6 +855,21 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="stage-images-row" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; padding:1.5rem 0;">
+      <div class="image-card reveal-card" style="background:var(--surface2); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden;">
+        <img src="301.png" alt="Stage Mac et PC 301" style="width:100%; display:block;">
+       
+      </div>
+      <div class="image-card reveal-card" style="background:var(--surface2); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden;">
+        <img src="348s.jpg" alt="Stage Mac et PC 348" style="width:100%; display:block;">
+       
+      </div>
+      <div class="image-card reveal-card" style="background:var(--surface2); border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden;">
+        <img src="349.jpg" alt="Stage Mac et PC 349" style="width:100%; display:block;">
+       
+      </div>
     </div>
   </div>
 

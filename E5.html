@@ -500,64 +500,8 @@
     </p>
   </div>
 
-  <!-- Bloc 1 : Rapport de stage -->
-  <div style="margin-bottom: 3.5rem">
-    <p class="section-label">01 — Rapport</p>
-    <h2 class="section-title">Rapport de stage</h2>
-    <div class="docs-grid">
 
-      <div class="doc-card type-pdf reveal-card" onclick="openDoc('rapport_de_stage.pdf')">
-        <div class="shine"></div>
-        <div class="doc-icon-wrap pdf"><i class="fas fa-file-pdf"></i></div>
-        <div class="doc-meta">PDF · Rapport</div>
-        <div class="doc-title">Rapport de Stage — Alternance IEF2I</div>
-        <div class="doc-desc">Bilan complet de l'alternance chez IEF2I : missions réalisées, environnement technique, compétences mobilisées et apports professionnels.</div>
-        <div class="doc-footer">
-          <span class="doc-tag">Janvier 2026 – Présent</span>
-          <div class="doc-arrow"><i class="fas fa-arrow-right"></i></div>
-        </div>
-      </div>
-
-      <div class="doc-card type-pdf reveal-card" onclick="openDoc('rapport_stage_reparateurs.pdf')">
-        <div class="shine"></div>
-        <div class="doc-icon-wrap pdf"><i class="fas fa-file-pdf"></i></div>
-        <div class="doc-meta">PDF · Rapport</div>
-        <div class="doc-title">Rapport de Stage — Les Réparateurs Mac Et PC</div>
-        <div class="doc-desc">Retour d'expérience sur les 6 semaines de stage en maintenance informatique : diagnostic de pannes, récupération de données, remise en état des équipements.</div>
-        <div class="doc-footer">
-          <span class="doc-tag">Juin – Août 2025</span>
-          <div class="doc-arrow"><i class="fas fa-arrow-right"></i></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
- 
   
-
-  <!-- Bloc 2 : Schémas & Documentation technique -->
-  <div style="margin-bottom: 3.5rem">
-    <p class="section-label">02 — Documentation technique</p>
-    <h2 class="section-title">Schémas & livrables</h2>
-    <div class="docs-grid">
-
-      <div class="doc-card type-pptx reveal-card" onclick="openDoc('SHreseau2.pdf')">
-        <div class="shine"></div>
-        <div class="doc-icon-wrap pptx"><i class="fas fa-project-diagram"></i></div>
-        <div class="doc-meta">PDF · Schéma réseau</div>
-        <div class="doc-title">Schéma de l'infrastructure réseau</div>
-        <div class="doc-desc">Cartographie complète de l'infrastructure réseau de l'entreprise : topologie, équipements, adressage IP, VLAN et interconnexions.</div>
-        <div class="doc-footer">
-          <span class="doc-tag">Architecture réseau</span>
-          <div class="doc-arrow"><i class="fas fa-arrow-right"></i></div>
-        </div>
-      </div>
-      
-
-    </div>
-  </div>
-
 
   <!-- Bloc 3 : Présentation orale -->
   <div style="margin-bottom: 3.5rem">
@@ -623,7 +567,7 @@
 
   // ─── Open doc / modal ───
   function openDoc(filename) {
-    const url = encodeURI('pdf porfolio/' + filename);
+    const url = encodeURI(filename);
     window.open(url, '_blank');
   }
 
