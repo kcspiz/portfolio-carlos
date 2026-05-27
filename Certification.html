@@ -10,17 +10,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --blue:   #9BC0EE;
-      --blue2:  #5B8FC9;
-      --gold:   #F0B429;
-      --green:  #28c840;
-      --red:    #ef4444;
-      --bg:     #060612;
-      --card:   #0c0c20;
-      --s2:     #0f0f28;
-      --border: rgba(155,192,238,0.12);
-      --text:   #e2e8f0;
-      --muted:  #6b7a8d;
+      --accent: #9BC0EE;
+      --accent2: #5B8FC9;
+      --gold: #F0B429;
+      --green: #28c840;
+      --red: #ff6b6b;
+      --bg: #060612;
+      --surface: #0d0d22;
+      --surface2: #111130;
+      --border: rgba(155,192,238,0.18);
+      --text: #e2e8f0;
+      --muted: #7a8ba0;
+      --purple: #a29bfe;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,7 +50,7 @@
     }
     .logo {
       font-family: 'Space Mono', monospace; font-weight: 700;
-      font-size: 1.1rem; letter-spacing: 3px; color: var(--blue);
+      font-size: 1.1rem; letter-spacing: 3px; color: var(--accent);
       text-decoration: none;
     }
     .nav-r { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
@@ -58,7 +59,7 @@
       font-weight: 600; padding: 0.38rem 0.7rem; border-radius: 4px;
       transition: color 0.2s, background 0.2s;
     }
-    .nav-r a:hover { color: var(--blue); background: rgba(155,192,238,0.07); }
+    .nav-r a:hover { color: var(--accent); background: rgba(155,192,238,0.07); }
     .nd { position: relative; }
     .nd > button {
       background: none; border: none; cursor: pointer; color: var(--muted);
@@ -66,10 +67,10 @@
       padding: 0.38rem 0.7rem; border-radius: 4px;
       display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s;
     }
-    .nd:hover > button { color: var(--blue); }
+    .nd:hover > button { color: var(--accent); }
     .ndm {
       position: absolute; top: calc(100% + 5px); left: 0;
-      min-width: 190px; background: var(--s2);
+      min-width: 190px; background: var(--surface2);
       border: 1px solid var(--border); border-radius: 8px; padding: 0.3rem;
       opacity: 0; pointer-events: none; transform: translateY(-5px);
       transition: opacity 0.15s, transform 0.15s;
@@ -80,8 +81,8 @@
       text-decoration: none; font-size: 0.8rem; border-radius: 5px;
       transition: background 0.12s, color 0.12s;
     }
-    .ndm a:hover { background: rgba(155,192,238,0.08); color: var(--blue); }
-    .ndm a.al { color: var(--blue); }
+    .ndm a:hover { background: rgba(155,192,238,0.08); color: var(--accent); }
+    .ndm a.al { color: var(--accent); }
     #mt {
       display: none; background: none; border: 1px solid var(--border);
       color: var(--text); padding: 0.35rem 0.5rem; border-radius: 5px; cursor: pointer;
@@ -96,7 +97,7 @@
       color: var(--text); text-decoration: none; padding: 0.5rem 0;
       border-bottom: 1px solid var(--border); font-weight: 600; font-size: 0.85rem;
     }
-    #mm a:hover { color: var(--blue); }
+    #mm a:hover { color: var(--accent); }
 
     /* ── HERO ── */
     .hero {
@@ -105,7 +106,7 @@
     }
     .hero-label {
       font-family: 'Space Mono', monospace; font-size: 0.65rem;
-      letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue);
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent);
       margin-bottom: 1.1rem; display: inline-block;
       animation: fu 0.6s 0.1s both;
     }
@@ -114,7 +115,7 @@
       letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.9rem;
       animation: fu 0.6s 0.25s both;
     }
-    .hero-h1 em { font-style: normal; color: var(--blue); }
+    .hero-h1 em { font-style: normal; color: var(--accent); }
     .hero-p {
       color: var(--muted); font-size: 0.9rem; line-height: 1.8;
       max-width: 480px; margin: 0 auto;
@@ -132,7 +133,7 @@
     .cert-list { display: flex; flex-direction: column; gap: 1.5rem; }
 
     .cert-card {
-      background: var(--card); border: 1px solid var(--border);
+      background: var(--surface); border: 1px solid var(--border);
       border-radius: 14px; overflow: hidden;
       display: grid; grid-template-columns: 6px 1fr;
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
@@ -256,7 +257,7 @@
       color: var(--muted); cursor: pointer; text-decoration: none;
       transition: border-color 0.15s, color 0.15s, background 0.15s;
     }
-    .cbtn:hover { border-color: var(--blue); color: var(--blue); background: rgba(155,192,238,0.05); }
+    .cbtn:hover { border-color: var(--accent); color: var(--accent); background: rgba(155,192,238,0.05); }
     .ebios .cbtn.pri { background: #2d6db8; border-color: #2d6db8; color: #fff; }
     .ebios .cbtn.pri:hover { background: #3a80cc; border-color: #3a80cc; }
     .anssi .cbtn.pri { background: #002395; border-color: #002395; color: #fff; }
@@ -265,7 +266,7 @@
     /* ── CONTEXTE BAS ── */
     .context-block {
       margin-top: 3rem; padding: 1.3rem 1.5rem;
-      background: var(--card); border: 1px solid var(--border);
+      background: var(--surface); border: 1px solid var(--border);
       border-radius: 12px;
       opacity: 0; transform: translateY(14px);
       transition: opacity 0.55s 0.2s ease, transform 0.55s 0.2s ease;
@@ -274,7 +275,7 @@
     .ctx-head {
       display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem;
     }
-    .ctx-head i { color: var(--blue); font-size: 0.9rem; }
+    .ctx-head i { color: var(--accent); font-size: 0.9rem; }
     .ctx-head span { font-weight: 700; font-size: 0.88rem; }
     .ctx-text { font-size: 0.8rem; color: var(--muted); line-height: 1.8; }
     .ctx-text strong { color: var(--text); font-weight: 600; }
@@ -312,7 +313,7 @@
       </div>
     </li>
     <li class="nd">
-      <button style="color:var(--blue)">Autres <i class="fas fa-chevron-down" style="font-size:.52em"></i></button>
+      <button style="color:var(--accent)">Autres <i class="fas fa-chevron-down" style="font-size:.52em"></i></button>
       <div class="ndm">
         <a href="Certification.html" class="al">Certifications</a>
         <a href="Epreuve_E6.html">Épreuve E6</a>
@@ -326,7 +327,7 @@
   <a href="index.html">Accueil</a>
   <a href="projets_en_formation.html">Projets en formation</a>
   <a href="projets_en_entreprise.html">Projets en entreprise</a>
-  <a href="Certification.html" style="color:var(--blue)">Certifications</a>
+  <a href="Certification.html" style="color:var(--accent)">Certifications</a>
   <a href="Epreuve_E6.html">Épreuve E6</a>
   <a href="index.html#contact">Contact</a>
 </div>

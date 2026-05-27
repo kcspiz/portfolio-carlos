@@ -18,6 +18,10 @@
       --border: rgba(155,192,238,0.18);
       --text: #e2e8f0;
       --muted: #7a8ba0;
+      --green: #28c840;
+      --gold: #F0B429;
+      --red: #ff6b6b;
+      --purple: #a29bfe;
 
       --cat-net:    #9BC0EE;
       --cat-sys:    #28c840;
@@ -379,8 +383,8 @@
 
 <div id="scroll-progress"></div>
 
-<a href="../projets_en_formation.html" class="back-btn">
-  <i class="fas fa-arrow-left"></i> Retour aux projets
+<a href="index.html" class="back-btn">
+  <i class="fas fa-arrow-left"></i> Retour au portfolio
 </a>
 
 <!-- ── HERO ── -->
@@ -391,9 +395,9 @@
     Index complet des procédures d'installation<br>et de configuration utilisées en formation.
   </p>
   <div class="hero-stats">
-    <div class="stat"><strong>4</strong><span>Catégories</span></div>
+    <div class="stat"><strong>3</strong><span>Catégories</span></div>
     <div class="stat-sep"></div>
-    <div class="stat"><strong>8</strong><span>Procédures</span></div>
+    <div class="stat"><strong>7</strong><span>Procédures</span></div>
     <div class="stat-sep"></div>
     <div class="stat"><strong>2024–2026</strong><span>BTS SIO</span></div>
   </div>
@@ -420,12 +424,7 @@
         <div class="card-title">Réseaux</div>
         <div class="card-desc">Infrastructure réseau, virtualisation et pare-feu</div>
         <div class="procedures-list">
-          <a href="reseaux/proxmox-ve.html" class="procedure-link">
-            <span class="link-icon"><i class="fas fa-file-code"></i></span>
-            <span class="link-label">Proxmox VE</span>
-            <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
-            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
-          </a>
+         
           <a href="reseaux/pfsense.html" class="procedure-link">
             <span class="link-icon"><i class="fas fa-fire"></i></span>
             <span class="link-label">pfSense Firewall</span>
@@ -462,12 +461,6 @@
             <span class="link-arrow"><i class="fab fa-arrow-right"></i></span>
             <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
           </a>
-          <a href="pdf porfolio/DFS.pdf" class="procedure-link" data-pdf="pdf porfolio/DFS.pdf">
-            <span class="link-icon"><i class="fab fa-windows"></i></span>
-            <span class="link-label">DFS</span>
-            <span class="link-arrow"><i class="fab fa-arrow-right"></i></span>
-            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
-          </a>
           <a href="pdf porfolio/GPO.pdf" class="procedure-link" data-pdf="pdf porfolio/GPO.pdf">
             <span class="link-icon"><i class="fab fa-windows"></i></span>
             <span class="link-label">GPO</span>
@@ -477,12 +470,6 @@
           <a href="pdf porfolio/GLPI.pdf" class="procedure-link" data-pdf="pdf porfolio/GLPI.pdf">
             <span class="link-icon"><i class="fab fa-linux"></i></span>
             <span class="link-label">Linux Debian &amp; GLPI</span>
-            <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
-            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
-          </a>
-          <a href="pdf porfolio/VOIP.pdf" class="procedure-link" data-pdf="pdf porfolio/VOIP.pdf">
-            <span class="link-icon"><i class="fas fa-network-wired"></i></span>
-            <span class="link-label"> VoIP</span>
             <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
             <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
           </a>
@@ -496,25 +483,7 @@
       </div>
     </div>
 
-    <!-- Sécurité -->
-    <div class="category-card" style="--card-color: var(--cat-sec)">
-      <div class="card-inner">
-        <div class="card-header">
-          <div class="card-icon-wrap">🛡️</div>
-          <span class="card-count">1 procédure</span>
-        </div>
-        <div class="card-title">Cybersécurité</div>
-        <div class="card-desc">Audit réseau et analyse de sécurité</div>
-        <div class="procedures-list">
-          <a href="pdf porfolio/Wireshark.pdf" class="procedure-link" data-pdf="pdf porfolio/Wireshark.pdf">
-            <span class="link-icon"><i class="fas fa-shield-virus"></i></span>
-            <span class="link-label">Wireshark &amp; Audit réseau</span>
-            <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
-            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
-          </a>
-        </div>
-      </div>
-    </div>
+    
 
     <!-- Web -->
     <div class="category-card" style="--card-color: var(--cat-web)">
@@ -524,23 +493,11 @@
           <span class="card-count">3 procédures</span>
         </div>
         <div class="card-title">Web</div>
-        <div class="card-desc">Développement web et applications</div>
+        <div class="card-desc">Site web de vente </div>
         <div class="procedures-list">
           <a href="web/developpement.html" class="procedure-link">
             <span class="link-icon"><i class="fas fa-code"></i></span>
             <span class="link-label">Développement Web</span>
-            <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
-            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
-          </a>
-          <a href="web/developpement.html#calculatrice" class="procedure-link">
-            <span class="link-icon"><i class="fas fa-calculator"></i></span>
-            <span class="link-label">Calculatrice Web</span>
-            <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
-            <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
-          </a>
-          <a href="web/developpement.html#portfolio" class="procedure-link">
-            <span class="link-icon"><i class="fas fa-user-circle"></i></span>
-            <span class="link-label">Portfolio Personnel</span>
             <span class="link-arrow"><i class="fas fa-arrow-right"></i></span>
             <span class="btn-procedure" onclick="window.open(this.closest('.procedure-link').href, '_blank')">📋 Procédure</span>
           </a>

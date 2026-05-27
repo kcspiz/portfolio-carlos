@@ -18,21 +18,17 @@
       --border: rgba(155,192,238,0.18);
       --text: #e2e8f0;
       --muted: #7a8ba0;
-      --green: #28c840;
-      --gold: #F0B429;
-      --red: #ff6b6b;
+      --green: #2893c8;
+      --gold: #298cf0;
+      --red: #6be1ff;
       --purple: #a29bfe;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent) var(--bg);
-    }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+    html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
 
     body {
@@ -54,15 +50,17 @@
       transition: width 0.1s;
     }
 
-    /* ─── GRID BG ─── */
+    /* ─── GRID BACKGROUND ─── */
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background-image:
-        linear-gradient(rgba(155,192,238,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(155,192,238,0.035) 1px, transparent 1px);
-      background-size: 44px 44px;
-      pointer-events: none; z-index: 0;
+        linear-gradient(rgba(155,192,238,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(155,192,238,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* ─── NOISE ─── */
@@ -144,7 +142,7 @@
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem; letter-spacing: 0.15em;
       color: var(--green);
-      border: 1px solid rgba(40,200,64,0.35);
+      border: 1px solid rgba(34, 128, 161, 0.35);
       padding: 0.3rem 0.9rem; border-radius: 100px;
       margin-bottom: 1.8rem;
       background: rgba(40,200,64,0.05);
@@ -520,17 +518,16 @@
             <span class="project-cat system">Virtualisation</span>
             <span class="project-date">Jan 2026</span>
           </div>
-          <div class="project-title">Déploiement d'une infrastructure Proxmox VE</div>
+          <div class="project-title">installation automatique avec MDT</div>
           <div class="project-desc">
-            Installation et configuration d'un hyperviseur Proxmox VE sur serveur dédié. Déploiement de machines virtuelles via images ISO (Windows Server, Debian, Ubuntu). Gestion des ressources CPU/RAM, configuration des réseaux virtuels et bridges. Mise en place de snapshots et sauvegardes automatiques.
+            Installation et configuration de Microsoft Deployment Toolkit (MDT) pour automatiser le déploiement de systèmes d'exploitation Windows. Création d'une image de référence, configuration des séquences de tâches et déploiement sur des machines physiques ou virtuelles.
           </div>
           <div class="project-tags">
-            <span class="tag">Proxmox VE</span>
-            <span class="tag">Virtualisation</span>
-            <span class="tag">ISO</span>
+            <span class="tag">MDT</span>
+           <span class="tag">Active Directory</span>
+            <span class="tag">MDT</span>
+            <span class="tag">Intégration</span>
             <span class="tag">Windows Server</span>
-            <span class="tag">Debian</span>
-            <span class="tag">KVM</span>
           </div>
           <div class="project-footer">
             <div class="project-company">
@@ -540,7 +537,7 @@
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/Promox.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="pdf porfolio/MDT.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>
@@ -553,9 +550,9 @@
             <span class="project-cat system">Administration</span>
             <span class="project-date">Jan–Mar 2026</span>
           </div>
-          <div class="project-title">Intégration d'utilisateurs — Active Directory</div>
+          <div class="project-title">Intégration d'utilisateurs Dans le Domaine</div>
           <div class="project-desc">
-            Création et gestion des comptes utilisateurs dans l'infrastructure Active Directory. Attribution des droits, groupes de sécurité et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
+            Intégration d'utilisateurs dans un domaine De l'ebtreprise .
           </div>
           <div class="project-tags">
             <span class="tag">Active Directory</span>
@@ -572,62 +569,6 @@
           </div>
         </div>
       </div>
-
-      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
-        <div class="project-visual bg-system">🗄️</div>
-        <div class="project-body">
-          <div class="project-meta">
-            <span class="project-cat system">Administration</span>
-            <span class="project-date">Jan–Mar 2026</span>
-          </div>
-          <div class="project-title">installation automatique avec MDT</div>
-          <div class="project-desc">
-            Installation et configuration de Microsoft Deployment Toolkit (MDT) pour automatiser le déploiement de systèmes d'exploitation Windows. Création d'une image de référence, configuration des séquences de tâches et déploiement sur des machines physiques ou virtuelles.
-          </div>
-          <div class="project-tags">
-            <span class="tag">Active Directory</span>
-            <span class="tag">MDT</span>
-            <span class="tag">Intégration</span>
-            <span class="tag">Windows Server</span>
-            
-          </div>
-          <div class="project-footer">
-            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
-            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-          </div>
-          <div class="project-buttons">
-            <a href="pdf porfolio/MDT.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
-        <div class="project-visual bg-system">🗄️</div>
-        <div class="project-body">
-          <div class="project-meta">
-            <span class="project-cat system">Administration</span>
-            <span class="project-date">Jan–Mar 2026</span>
-          </div>
-          <div class="project-title">Gérer les options et les rôles dans Ms Teams </div>
-          <div class="project-desc">
-            Gestion des options et des rôles dans Microsoft Teams. Accès à l'interface d'administration, sélection de l'équipe, configuration des paramètres d'équipe, gestion des membres et attribution des rôles (propriétaire, membre, invité). Communication des changements aux utilisateurs concernés.
-          </div>
-          <div class="project-tags">
-            <span class="tag">Active Directory</span>
-            <span class="tag">Microsoft Teams</span>
-            
-            
-          </div>
-          <div class="project-footer">
-            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
-            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-          </div>
-          <div class="project-buttons">
-            <a href="pdf porfolio/option_teams.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
-          </div>
-        </div>
-      </div>
-
 
       <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
         <div class="project-visual bg-system">🗄️</div>
@@ -656,34 +597,7 @@
         </div>
       </div>
 
-      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
-        <div class="project-visual bg-system">🗄️</div>
-        <div class="project-body">
-          <div class="project-meta">
-            <span class="project-cat system">Administration</span>
-            <span class="project-date">Jan–Mar 2026</span>
-          </div>
-          <div class="project-title">Profils utilisateurs — Active Directory</div>
-          <div class="project-desc">
-           gestion des profils utilisateurs dans l'infrastructure Active Directory. Configuration des paramètres, droits d'accès et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
-          </div>
-          <div class="project-tags">
-            <span class="tag">Active Directory</span>
-            <span class="tag">Gestion des profils</span>
-            <span class="tag">Configuration</span>
-            <span class="tag">Profils</span>
-            <span class="tag">Windows Server</span>
-            
-          </div>
-          <div class="project-footer">
-            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
-            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-          </div>
-          <div class="project-buttons">
-            <a href="pdf porfolio/Intra.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
-          </div>
-        </div>
-      </div>
+     
 
       <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
         <div class="project-visual bg-system">🗄️</div>
@@ -692,41 +606,14 @@
             <span class="project-cat system">Administration</span>
             <span class="project-date">Jan–Mar 2026</span>
           </div>
-          <div class="project-title">Intégration d'utilisateurs — Active Directory</div>
+          <div class="project-title">Migration des postes de windows 10 à windows 11</div>
           <div class="project-desc">
-            Création et gestion des comptes utilisateurs dans l'infrastructure Active Directory. Attribution des droits, groupes de sécurité et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
+            Migration de postes de travail de Windows 10 à Windows 11. Planification de la migration, vérification de la compatibilité matérielle, sauvegarde des données, installation de Windows 11 .
           </div>
           <div class="project-tags">
-            <span class="tag">Active Directory</span>
-            <span class="tag">Intégration</span>
-            <span class="tag">Windows Server</span>
-            
-          </div>
-          <div class="project-footer">
-            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
-            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-          </div>
-          <div class="project-buttons">
-            <a href="pdf porfolio/Intra.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card cat-system reveal-card" data-pdf="pdf porfolio/ADDS.pdf">
-        <div class="project-visual bg-system">🗄️</div>
-        <div class="project-body">
-          <div class="project-meta">
-            <span class="project-cat system">Administration</span>
-            <span class="project-date">Jan–Mar 2026</span>
-          </div>
-          <div class="project-title">Intégration d'utilisateurs — Active Directory</div>
-          <div class="project-desc">
-            Création et gestion des comptes utilisateurs dans l'infrastructure Active Directory. Attribution des droits, groupes de sécurité et politiques GPO. Onboarding de nouveaux employés avec configuration poste + compte.
-          </div>
-          <div class="project-tags">
-            <span class="tag">Active Directory</span>
-            <span class="tag">Intégration</span>
-            <span class="tag">Windows Server</span>
+            <span class="tag">Migration</span>
+            <span class="tag">Windows 11</span>
+            <span class="tag">Windows 10</span>
             
           </div>
           <div class="project-footer">
@@ -749,7 +636,7 @@
           </div>
           <div class="project-title">Configuration de bornes Wi-Fi entreprise</div>
           <div class="project-desc">
-            Déploiement et paramétrage de bornes Wi-Fi dans l'infrastructure réseau. Configuration SSID, sécurité WPA2-Enterprise, segmentation VLAN et intégration dans l'infrastructure existante.
+            Déploiement et paramétrage de bornes Wi-Fi dans l'infrastructure réseau. Configuration SSID. Sécurisation avec WPA2-Enterprise, segmentation via VLAN, intégration dans l'infrastructure existante.
           </div>
           <div class="project-tags">
             <span class="tag">Wi-Fi</span>
@@ -769,33 +656,6 @@
       </div>
 
       <!-- Scripts -->
-      <div class="project-card cat-script reveal-card" data-pdf="pdf porfolio/guide.pdf">
-        <div class="project-visual bg-script">⚙️</div>
-        <div class="project-body">
-          <div class="project-meta">
-            <span class="project-cat script">Scripting</span>
-            <span class="project-date">Mar 2026</span>
-          </div>
-          <div class="project-title">Scripts d'automatisation des tâches IT</div>
-          <div class="project-desc">
-            Développement de scripts PowerShell et Bash pour automatiser des tâches récurrentes : déploiement de configurations, inventaire réseau automatique, rapports de maintenance et monitoring de services.
-          </div>
-          <div class="project-tags">
-            <span class="tag">PowerShell</span>
-            <span class="tag">Bash</span>
-            <span class="tag">Automatisation</span>
-            <span class="tag">Monitoring</span>
-          </div>
-          <div class="project-footer">
-            <div class="project-company"><div class="company-dot"></div>IEF2I</div>
-            <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-          </div>
-          <div class="project-buttons">
-            <a href="pdf porfolio/Chocolatey.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
-          </div>
-        </div>
-      </div>
-
       <!-- Schéma réseau -->
       <div class="project-card cat-network reveal-card" data-pdf="pdf porfolio/guide.pdf">
         <div class="project-visual bg-network">🗺️</div>
@@ -824,30 +684,28 @@
         </div>
       </div>
 
-      <!-- Support -->
-      <div class="project-card cat-support reveal-card" data-pdf="pdf porfolio/guide.pdf">
-        <div class="project-visual bg-support">🎧</div>
+      <div class="project-card cat-script reveal-card" data-pdf="pdf porfolio/guide.pdf">
+        <div class="project-visual bg-script">⚙️</div>
         <div class="project-body">
           <div class="project-meta">
-            <span class="project-cat support">Support</span>
-            <span class="project-date">Jan–Présent</span>
+            <span class="project-cat script">Scripting</span>
+            <span class="project-date">Mar 2026</span>
           </div>
-          <div class="project-title">Support technique & assistance utilisateurs</div>
+          <div class="project-title">Scripts d'automatisation des tâches IT</div>
           <div class="project-desc">
-            Gestion des tickets de support, résolution d'incidents matériels et logiciels. Maintenance préventive des postes de travail, installation de logiciels et configuration des périphériques.
+            Développement de scripts PowerShell et chocolatey pour automatiser des tâches récurrentes.
           </div>
           <div class="project-tags">
-            <span class="tag">Helpdesk</span>
-            <span class="tag">ITSM</span>
-            <span class="tag">Windows 10/11</span>
-            <span class="tag">Ticketing</span>
+            <span class="tag">PowerShell</span>
+            <span class="tag">Automatisation</span>
+            <span class="tag">Monitoring</span>
           </div>
           <div class="project-footer">
             <div class="project-company"><div class="company-dot"></div>IEF2I</div>
             <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
           </div>
           <div class="project-buttons">
-            <a href="pdf porfolio/Anydesk.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
+            <a href="pdf porfolio/Chocolatey.pdf" class="btn-procedure" target="_blank">📋 Procédures</a>
           </div>
         </div>
       </div>

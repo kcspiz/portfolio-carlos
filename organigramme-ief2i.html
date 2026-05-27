@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organigramme – IEF2I Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #9BC0EE;
+    --accent2: #5B8FC9;
+    --bg: #060612;
+    --surface: #0d0d22;
+    --surface2: #111130;
+    --border: rgba(155,192,238,0.18);
+    --text: #e2e8f0;
+    --muted: #7a8ba0;
+    --green: #28c840;
+    --gold: #F0B429;
+    --red: #ff6b6b;
+    --purple: #a29bfe;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(155,192,238,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(155,192,238,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .page-header {
+    background: rgba(13,13,34,0.95);
+    padding: 52px 40px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(155,192,238,0.16);
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 20% 50%, rgba(155,192,238,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 70% at 80% 40%, rgba(155,192,238,0.08) 0%, transparent 70%);
+  }
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(155,192,238,0.95), rgba(162,155,254,0.95));
+  }
+  .nav-btn {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    background: rgba(13,13,34,0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(155,192,238,0.18);
+    padding: 0.75rem 1rem;
+    border-radius: 999px;
+    transition: color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-btn:hover {
+    color: var(--accent);
+    border-color: rgba(155,192,238,0.35);
+    transform: translateX(4px);
+    box-shadow: 0 0 18px rgba(155,192,238,0.18);
+  }
+
+  .header-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title span { color: var(--accent); }
+  .header-sub {
+    font-size: 14px;
+    color: rgba(226,232,240,0.75);
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .canvas {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 52px 28px 64px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .top-node-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+    position: relative;
+  }
+  .top-node-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 36px;
+    background: linear-gradient(to bottom, rgba(155,192,238,0.45), transparent);
+    bottom: -36px;
+  }
+
+  .top-node {
+    background: var(--surface2);
+    color: var(--text);
+    border-radius: 18px;
+    padding: 28px 48px;
+    text-align: center;
+    box-shadow: 0 28px 70px rgba(0,0,0,0.35);
+    max-width: 320px;
+    width: 100%;
+    position: relative;
+    animation: fadeDown 0.5s ease both;
+  }
+  .top-node-icon {
+    width: 52px; height: 52px;
+    background: rgba(155,192,238,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+    font-size: 22px;
+  }
+  .top-node-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .top-node-sub {
+    font-size: 12px;
+    color: rgba(226,232,240,0.75);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .tree-connector {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 36px;
+    position: relative;
+    margin-bottom: 0;
+  }
+  .tree-connector::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    width: 2px; height: 100%;
+    background: rgba(155,192,238,0.25);
+    transform: translateX(-50%);
+  }
+
+  .branch-row {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .branch-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(10% + 1px);
+    right: calc(10% + 1px);
+    height: 2px;
+    background: rgba(155,192,238,0.25);
+  }
+
+  .branch-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .branch-col:nth-child(1) { animation-delay: 0.08s; }
+  .branch-col:nth-child(2) { animation-delay: 0.16s; }
+  .branch-col:nth-child(3) { animation-delay: 0.24s; }
+  .branch-col:nth-child(4) { animation-delay: 0.32s; }
+  .branch-col:nth-child(5) { animation-delay: 0.40s; }
+
+  .branch-stem {
+    width: 2px;
+    height: 36px;
+    background: rgba(155,192,238,0.25);
+    flex-shrink: 0;
+  }
+
+  .dept-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 42px rgba(0,0,0,0.32);
+    width: 100%;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+    background: rgba(13,13,34,0.90);
+    border: 1px solid rgba(155,192,238,0.08);
+  }
+  .dept-card:hover {
+    box-shadow: 0 30px 50px rgba(0,0,0,0.42);
+    transform: translateY(-3px);
+  }
+
+  .dept-header {
+    padding: 20px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--white);
+  }
+  .dept-icon {
+    width: 40px; height: 40px;
+    background: rgba(155,192,238,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .dept-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .dept-body {
+    background: rgba(6,6,18,0.95);
+    padding: 14px 18px 18px;
+  }
+  .dept-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(155,192,238,0.08);
+  }
+  .dept-item:last-child { border-bottom: none; }
+  .dept-item-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+    background: var(--accent);
+  }
+  .dept-item-text {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  .dept--blue   .dept-header { background: linear-gradient(135deg, #3c72d2, #5b8fc9); color: var(--white); }
+  .dept--blue   .dept-item-dot { background: #5b8fc9; }
+  .dept--green  .dept-header { background: linear-gradient(135deg, #1f9d6f, #28c840); color: var(--white); }
+  .dept--green  .dept-item-dot { background: #28c840; }
+  .dept--purple .dept-header { background: linear-gradient(135deg, #7a6bef, #a29bfe); color: var(--white); }
+  .dept--purple .dept-item-dot { background: #a29bfe; }
+  .dept--orange .dept-header { background: linear-gradient(135deg, #d18e3f, #f0b429); color: var(--white); }
+  .dept--orange .dept-item-dot { background: #f0b429; }
+  .dept--teal   .dept-header { background: linear-gradient(135deg, #2196b8, #5bd7ec); color: var(--white); }
+  .dept--teal   .dept-item-dot { background: #5bd7ec; }
+
+  .bottom-section {
+    max-width: 1320px;
+    margin: 52px auto 0;
+    padding: 0 28px 64px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .partners-block,
+  .kpi-block {
+    border-radius: 18px;
+    box-shadow: 0 24px 42px rgba(0,0,0,0.32);
+    overflow: hidden;
+    background: rgba(13,13,34,0.90);
+    border: 1px solid rgba(155,192,238,0.08);
+  }
+  .partners-label,
+  .kpi-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px 20px;
+  }
+  .partners-label { background: rgba(155,192,238,0.08); color: var(--text); }
+  .kpi-label { background: rgba(155,192,238,0.12); color: var(--accent); border-bottom: 1px solid rgba(155,192,238,0.08); }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .partner-cell {
+    padding: 22px 18px;
+    border-right: 1px solid rgba(155,192,238,0.08);
+    border-bottom: 1px solid rgba(155,192,238,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .partner-cell:nth-child(4n) { border-right: none; }
+  .partner-cell:nth-child(n+5) { border-bottom: none; }
+  .partner-icon { font-size: 22px; margin-bottom: 2px; color: var(--accent); }
+  .partner-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .partner-desc { font-size: 11.5px; color: rgba(226,232,240,0.75); line-height: 1.45; }
+
+  .kpi-list { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .kpi-item { display: flex; align-items: flex-start; gap: 12px; }
+  .kpi-bar {
+    width: 3px;
+    border-radius: 2px;
+    min-height: 36px;
+    flex-shrink: 0;
+    background: var(--accent);
+    opacity: 0.8;
+  }
+  .kpi-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+  .kpi-desc { font-size: 11px; color: rgba(226,232,240,0.65); margin-top: 3px; line-height: 1.3; }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    .branch-row { flex-direction: column; align-items: center; gap: 24px; }
+    .branch-row::before { display: none; }
+    .branch-col { max-width: 420px; width: 100%; }
+    .branch-stem { height: 0; }
+    .partners-grid { grid-template-columns: repeat(2, 1fr); }
+    .partners-grid .partner-cell:nth-child(2n) { border-right: none; }
+    .partners-grid .partner-cell:nth-child(n+3) { border-bottom: none; }
+    .bottom-section { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="nav-btn">Accueil</a>
+
+<!-- HEADER -->
+<header class="page-header">
+  <p class="header-eyebrow">Structure organisationnelle</p>
+  <h1 class="header-title">Organigramme – <span>IEF2I</span> Education</h1>
+  <p class="header-sub">Pilotage stratégique & développement</p>
+</header>
+
+<!-- CANVAS -->
+<div class="canvas">
+
+  <!-- TOP NODE -->
+  <div class="top-node-wrap">
+    <div class="top-node">
+      <div class="top-node-icon">🎓</div>
+      <div class="top-node-title">Direction Générale</div>
+      <div class="top-node-sub">Pilotage stratégique et développement</div>
+    </div>
+  </div>
+
+  <div class="tree-connector"></div>
+
+  <!-- BRANCH ROW -->
+  <div class="branch-row">
+
+    <!-- 1. PÉDAGOGIQUE -->
+    <div class="branch-col">
+      <div class="branch-stem"></div>
+      <div class="dept-card dept--blue">
+        <div class="dept-header">
+          <div class="dept-icon">🎓</div>
+          <div class="dept-title">Direction Pédagogique</div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Responsables de formations (BTS, Bachelor…)</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Coordinateurs pédagogiques</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Formateurs / Intervenants</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Gestion des examens et de la qualité</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Ingénierie pédagogique et innovation</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ADMINISTRATIVE -->
+    <div class="branch-col">
+      <div class="branch-stem"></div>
+      <div class="dept-card dept--green">
+        <div class="dept-header">
+          <div class="dept-icon">🏛️</div>
+          <div class="dept-title">Direction Administrative & Financière</div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Ressources Humaines</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Comptabilité / Finance</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Service Juridique</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Accueil / Secrétariat et services généraux</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Gestion des contrats et achats</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. COMMERCIALE -->
+    <div class="branch-col">
+      <div class="branch-stem"></div>
+      <div class="dept-card dept--purple">
+        <div class="dept-header">
+          <div class="dept-icon">🤝</div>
+          <div class="dept-title">Direction Commerciale & Relations Entreprises</div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Conseillers Formation</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Chargés d'Admission</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Relations Entreprises et Partenariats</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Placement Alternance et Suivi Entreprises</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Communication / Marketing</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. VIE ÉTUDIANTE -->
+    <div class="branch-col">
+      <div class="branch-stem"></div>
+      <div class="dept-card dept--orange">
+        <div class="dept-header">
+          <div class="dept-icon">👥</div>
+          <div class="dept-title">Service Vie Étudiante</div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Suivi et accompagnement des étudiants</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Support administratif aux étudiants</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Gestion des absences et emplois du temps</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Accompagnement alternance</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Vie associative et événements</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. TECHNIQUE -->
+    <div class="branch-col">
+      <div class="branch-stem"></div>
+      <div class="dept-card dept--teal">
+        <div class="dept-header">
+          <div class="dept-icon">💻</div>
+          <div class="dept-title">Direction Technique & Systèmes d'Information</div>
+        </div>
+        <div class="dept-body">
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Responsable Infrastructure & SI (DSI)</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Administrateurs Systèmes / Réseaux</div></div>
+          <div class="dept-item"><div class="dept-item-dot"></div><div class="dept-item-text">Alternants Administrateurs Techniques Support Niveau 1 & 2</div></div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /branch-row -->
+</div><!-- /canvas -->
+
+<!-- BOTTOM SECTION -->
+<div class="bottom-section">
+
+  <div class="partners-block">
+    <div class="partners-label">Partenaires &amp; Écosystème</div>
+    <div class="partners-grid">
+      <div class="partner-cell">
+        <div class="partner-icon">🏢</div>
+        <div class="partner-name">Entreprises Partenaires</div>
+        <div class="partner-desc">Plus de 3 000 entreprises pour l'alternance, les stages et le recrutement</div>
+      </div>
+      <div class="partner-cell">
+        <div class="partner-icon">🖥️</div>
+        <div class="partner-name">Plateformes E-Learning & Outils</div>
+        <div class="partner-desc">LMS (Moodle), Microsoft 365, Teams, outils collaboratifs, plateformes métiers</div>
+      </div>
+      <div class="partner-cell">
+        <div class="partner-icon">🎒</div>
+        <div class="partner-name">Étudiants & Apprentis</div>
+        <div class="partner-desc">Environ 3 000 à 3 500 étudiants / apprentis par an</div>
+      </div>
+      <div class="partner-cell">
+        <div class="partner-icon">⚙️</div>
+        <div class="partner-name">Partenaires Techniques</div>
+        <div class="partner-desc">Éditeurs de logiciels, hébergeurs, opérateurs télécoms, prestataires IT</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-block">
+    <div class="kpi-label">Chiffres Clés</div>
+    <div class="kpi-list">
+      <div class="kpi-item">
+        <div class="kpi-bar"></div>
+        <div>
+          <div class="kpi-value">5</div>
+          <div class="kpi-desc">campus en France</div>
+        </div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-bar"></div>
+        <div>
+          <div class="kpi-value">3 000–3 500</div>
+          <div class="kpi-desc">étudiants par an</div>
+        </div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-bar"></div>
+        <div>
+          <div class="kpi-value">+3 000</div>
+          <div class="kpi-desc">entreprises partenaires</div>
+        </div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-bar"></div>
+        <div>
+          <div class="kpi-value">4 000–6 000</div>
+          <div class="kpi-desc">identités numériques totales (estim.)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
